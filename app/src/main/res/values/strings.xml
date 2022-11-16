@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">project</string>
+
+    <!-- NavDemo -->
+    <string name="msg1">This is My Account</string>
+    <string name="msg2">This is Settings</string>
+    <string name="msg3">Hi! I am Stephen Sir</string>
+    <string name="msg4">You are already Logout</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <!-- NavDemo -->
+
+</resources>
