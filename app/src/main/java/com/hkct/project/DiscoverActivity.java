@@ -31,20 +31,15 @@ public class DiscoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
-
         txtOutput = findViewById(R.id.txtOutput);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setNavigationDrawer();
     }
 
     private void setNavigationDrawer() {
         drawerLayout = findViewById(R.id.drawerLayout);
-
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.nav_open,R.string.nav_close);
         actionBarDrawerToggle.syncState();
-
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
     }
 
@@ -63,11 +58,11 @@ public class DiscoverActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.nav_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.nav_menu, menu);
+//        return true;
+//    }
 
     public void menu1_click(MenuItem menuItem) {
         Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
