@@ -73,6 +73,7 @@ public class DiscoverActivity extends AppCompatActivity {
 
     public void menu2_click(MenuItem menuItem) {
         Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         txtOutput.setText(R.string.msg2);
         txtOutput.setTextColor(Color.RED);
         drawerLayout.closeDrawers();

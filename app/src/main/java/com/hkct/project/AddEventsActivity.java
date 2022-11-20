@@ -8,14 +8,47 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.HashMap;
 
 public class AddEventsActivity extends AppCompatActivity {
 
+    /* <!-- NoteDemo --> */
+    // Properties
+    private String TAG = "AddEventsActivity===>";
+    private EditText noteDesc;
+    private Button btnAdd;
+    private DBHelper dbhelper = new DBHelper(this);
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_events);
-    }
+
+        Log.d(TAG,"onCreate()");
+
+        setTitle(R.string.title_add);
+
+        // references
+        noteDesc = findViewById(R.id.noteDesc);
+        btnAdd = findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"onCreate()->btnAdd->onClick()");
+                HashMap<String, String> queryValues =  new  HashMap<String, String>();
+                queryValues.put("noteDesc", noteDesc.getText().toString());
+                dbhelper.addNote(queryValues);
+                startActivity(new Intent(getApplicationContext(),EventsActivity.class));
+                AddEventsActivity.this.finish();
+            }
+        });
+    } //onCreate()
+    /* <!-- NoteDemo --> */
+
+
     public void backClick(View v){
         startActivity(new Intent(this,EventsActivity.class));
 
