@@ -5,26 +5,29 @@
     <item
         android:id="@+id/nav_account"
         android:onClick="menu1_click"
-        android:icon="@android:drawable/ic_menu_myplaces"
         android:title="My Account" />
 
     <item
         android:id="@+id/nav_settings"
         android:onClick="menu2_click"
-        android:icon="@android:drawable/ic_menu_manage"
         android:title="Settings" />
 
     <item
         android:id="@+id/nav_about"
         android:onClick="menu3_click"
-        android:icon="@drawable/stephen"
         android:title="About" />
+
+    <item
+        android:id="@+id/nav_events"
+        android:onClick="menu5_click"
+        android:title="Events" />
 
     <item
         android:id="@+id/nav_logout"
         android:onClick="menu4_click"
-        android:icon="@android:drawable/ic_partial_secure"
         android:title="Logout" />
+
+
     <!-- NavDemo -->
 
 </menu>
