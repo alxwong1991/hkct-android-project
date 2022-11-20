@@ -101,5 +101,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return notelist;
     } //getNoteById()
     /* <!-- NoteDemo --> */
-
 }

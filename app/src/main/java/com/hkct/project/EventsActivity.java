@@ -38,14 +38,10 @@ public class EventsActivity extends AppCompatActivity {
     private ListView listView;
 
     private CardView card1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-
-
-
         txtOutput = findViewById(R.id.txtOutput);
 
         // Navigation drawer icon always appear on the action bar
@@ -116,8 +112,8 @@ public class EventsActivity extends AppCompatActivity {
         Log.d(TAG,"menu1_click()->" + m.getItemId() + ","+ m.getTitle());
         txtOutput.setText(R.string.msg1);
         txtOutput.setTextColor(Color.RED);
-
-
+        startActivity(new Intent(this, DiscoverActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
     public void menu2_click(MenuItem m){
@@ -149,9 +145,6 @@ public class EventsActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
-
-
-
 
     // add events btn
     @Override
