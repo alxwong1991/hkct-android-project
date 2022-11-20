@@ -30,6 +30,14 @@
             android:text="Add Event"
             android:onClick="backClick"/>
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView"/>
+
+
+
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

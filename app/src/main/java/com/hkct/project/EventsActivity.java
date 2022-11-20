@@ -5,15 +5,24 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -22,6 +31,10 @@ public class EventsActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
+    private TextView noteId;
+    private DBHelper dbhelper = new DBHelper(this);
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +48,34 @@ public class EventsActivity extends AppCompatActivity {
 
         setNavigationDrawer();
 
-        Log.d(TAG,"AccountActivity!!!");
-    }
+        Log.d(TAG,"===>eventsActivity!!!");
+
+        // Create List
+        ArrayList<HashMap<String, String>> noteList =  dbhelper.getAllNotes();
+
+        // Construct listView
+        if(noteList.size()!=0) {
+            listView = findViewById(R.id.listView);
+            // Set onclick listener
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    noteId = view.findViewById(R.id.noteId);
+                    String Id = noteId.getText().toString();
+                    Intent intent = new Intent(getApplicationContext(),EditEventsActivity.class);
+                    intent.putExtra("noteId", Id);
+                    startActivity(intent);
+                }
+            });
+            ListAdapter adapter = new SimpleAdapter(EventsActivity.this,
+                    noteList,
+                    R.layout.note_row,
+                    new String[] { "noteId","noteDesc"},
+                    new int[] {R.id.noteId, R.id.noteDesc}
+            );
+            listView.setAdapter(adapter);
+        }
+    } //onCreate()
 
     private void setNavigationDrawer(){
         // drawer layout instance
@@ -104,6 +143,18 @@ public class EventsActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
+    }
+
+
+    // add events btn
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.events_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void menu_add_click(MenuItem m){
+        startActivity(new Intent(getApplicationContext(),AddEventsActivity.class));
     }
 
     public void backClick(View v){
