@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+
     tools:context=".AddEventsActivity">
 
 
@@ -13,8 +14,125 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="50dp"
         android:id="@+id/noteDesc"
         android:hint="@string/hint"/>
+
+    <!-- A CardView that contains a TextView -->
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:background="@color/ivory_black"
+        android:alpha="0.5"
+        android:layout_width="match_parent"
+        card_view:cardBackgroundColor="@color/black"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/info_text1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="XXX"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+
+            android:id="@+id/userlistView"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <!-- A CardView that contains a TextView -->
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view1"
+            android:layout_gravity="center"
+            android:layout_marginRight="3dp"
+            android:alpha="0.8"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="1">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_outer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                card_view:cardCornerRadius="50dp"
+                card_view:cardElevation="3dp"
+                android:layout_weight="1">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        card_view:shapeAppearanceOverlay="@style/RoundedCorner"
+                        card_view:srcCompat="@drawable/icon12">
+                    </com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <TextView
+                        android:id="@+id/info_text5"
+                        android:background="@color/ivory_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="XXX"
+                        android:gravity="center"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- A CardView that contains a TextView -->
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_width="wrap_content"
+            card_view:cardBackgroundColor="@color/black"
+            android:layout_height="100dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/info_text2"
+                android:background="@drawable/rounded_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="XXX"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
@@ -26,10 +144,11 @@
 
     <Button
         android:id="@+id/blurBtn"
-        android:alpha="0.5"
+        android:alpha="0.9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:background="@drawable/rounded_btn2"
         android:onClick="backClick"/>
 
 </LinearLayout>
