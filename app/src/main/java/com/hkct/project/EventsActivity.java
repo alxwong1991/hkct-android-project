@@ -3,6 +3,7 @@ package com.hkct.project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
@@ -36,10 +37,14 @@ public class EventsActivity extends AppCompatActivity {
     private DBHelper dbhelper = new DBHelper(this);
     private ListView listView;
 
+    private CardView card1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+
+
 
         txtOutput = findViewById(R.id.txtOutput);
 
@@ -146,6 +151,8 @@ public class EventsActivity extends AppCompatActivity {
     }
 
 
+
+
     // add events btn
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,6 +162,7 @@ public class EventsActivity extends AppCompatActivity {
 
     public void menu_add_click(MenuItem m){
         startActivity(new Intent(getApplicationContext(),AddEventsActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void backClick(View v){
