@@ -1,6 +1,7 @@
 package com.hkct.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -21,6 +23,8 @@ public class AddEventsActivity extends AppCompatActivity {
     private EditText noteDesc;
     private Button btnAdd;
     private DBHelper dbhelper = new DBHelper(this);
+
+    private CardView card_view1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,20 @@ public class AddEventsActivity extends AppCompatActivity {
                 dbhelper.addNote(queryValues);
                 startActivity(new Intent(getApplicationContext(),EventsActivity.class));
                 AddEventsActivity.this.finish();
+            }
+        });
+
+        card_view1 = findViewById(R.id.card_view1);
+
+        card_view1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(AddEventsActivity.this,EventsActivity.class);
+                startActivity(intent);
+//                startActivity(new Intent(getApplicationContext(),EventsActivity.class));
+//                AddEventsActivity.this.finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     } //onCreate()

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
+
     tools:context=".EventsActivity">
 
     <LinearLayout
@@ -24,11 +25,13 @@
 
         <Button
             android:id="@+id/blurBtn"
-            android:alpha="0.5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Event"
+
             android:onClick="backClick"/>
+
+
 
         <ListView
             android:layout_width="match_parent"
@@ -46,7 +49,7 @@
         android:layout_gravity="start"
         android:alpha="0.8"
         app:menu="@menu/nav_menu"
-        android:background="@color/black"
+        android:background="@drawable/rounded_button"
         app:itemTextColor="@color/white"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
