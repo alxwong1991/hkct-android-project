@@ -8,6 +8,22 @@
     android:padding="10dp"
     tools:context=".AddEventsActivity">
 
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/noteDesc"
+        android:hint="@string/hint"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAdd"
+        android:text="@string/btn_add"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
     <Button
         android:id="@+id/blurBtn"
         android:alpha="0.5"
