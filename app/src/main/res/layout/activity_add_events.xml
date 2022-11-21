@@ -78,14 +78,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <com.google.android.material.imageview.ShapeableImageView
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
                         card_view:shapeAppearanceOverlay="@style/RoundedCorner"
                         card_view:srcCompat="@drawable/icon12">
-                    </com.google.android.material.imageview.ShapeableImageView>
+                    </ImageView>
 
 
                     <TextView
@@ -111,7 +111,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="3dp"
             android:layout_width="wrap_content"
-            card_view:cardBackgroundColor="@color/black"
+
             android:layout_height="100dp"
             android:layout_weight="1">
 
@@ -133,6 +133,59 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+    <!--date time-->
+    <!-- ///////////////////////////////////////////////////////////// -->
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_by_data_time"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/text_date"
+            android:background="@color/ivory_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:onClick="datePicker"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            />
+
+
+        <TextView
+            android:id="@+id/text_time"
+            android:background="@color/ivory_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:onClick="timePicker"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ///////////////////////////////////////////////////////////// -->
+    <!--date time-->
+
+
+
+
 
     <Button
         android:layout_width="match_parent"

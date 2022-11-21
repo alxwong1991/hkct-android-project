@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MapActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sw1"
+            android:text="@string/sw1"
+            android:checked="true"
+            android:onClick="sw1Click"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sw2"
+            android:text="@string/sw2"
+            android:checked="true"
+            android:onClick="sw2Click"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sw3"
+            android:text="@string/sw3"
+            android:checked="true"
+            android:onClick="sw3Click"/>
+    </LinearLayout>
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        mapbox:mapbox_cameraTargetLat="22.293569"
+        mapbox:mapbox_cameraTargetLng="114.169561"
+        mapbox:mapbox_cameraZoom="15"
+        android:id="@+id/mapView"/>
+
+</LinearLayout>
