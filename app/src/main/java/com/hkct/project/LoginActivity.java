@@ -77,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getText().toString();
 
         if (!email.matches(emailPattern)) {
-            inputEmail.setError("Enter correct email");
-        } else if (password.isEmpty() || password.length() < 5) {
-            inputPassword.setError("Enter proper password");
+            Toast.makeText(LoginActivity.this,"Enter correct email", Toast.LENGTH_LONG).show();
+        } else if (password.isEmpty() || password.length() < 7) {
+            Toast.makeText(LoginActivity.this,"Enter proper password", Toast.LENGTH_LONG).show();
         } else {
             progressDialog.setMessage("Please wait while login...");
             progressDialog.setTitle("Login");
