@@ -530,4 +530,7 @@
     <!-- Extrusion color expression highlight -->
     <string name="tap_on_building_to_highlight">Tap on a building to highlight it</string>
 
+    <!-- QR code generator -->
+    <string name="qr_input_hint">Please input your words here!!</string>
+
 </resources>
