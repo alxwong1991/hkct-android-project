@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
+    // Realtime database
 //    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://android-project-ba4e1-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     @SuppressLint("MissingInflatedId")

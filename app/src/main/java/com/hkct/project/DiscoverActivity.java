@@ -15,8 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DiscoverActivity extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class DiscoverActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private Toolbar mainToolbar;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -64,25 +68,25 @@ public class DiscoverActivity extends AppCompatActivity {
 //        return true;
 //    }
 
-    public void menu1_click(MenuItem menuItem) {
-        Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+    public void menu1_click(MenuItem m){
+        Log.d(TAG,"menu1_click()->" + m.getItemId() + ","+ m.getTitle());
         txtOutput.setText(R.string.msg1);
         txtOutput.setTextColor(Color.RED);
-        drawerLayout.closeDrawers();
-    }
-
-    public void menu2_click(MenuItem menuItem) {
-        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        startActivity(new Intent(this, DiscoverActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        txtOutput.setText(R.string.msg2);
-        txtOutput.setTextColor(Color.RED);
         drawerLayout.closeDrawers();
     }
+    public void menu2_click(MenuItem m){
+        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
+        txtOutput.setText(R.string.msg2);
+        txtOutput.setTextColor(Color.BLUE);
 
-    public void menu3_click(MenuItem menuItem) {
-        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        drawerLayout.closeDrawers();
+    }
+    public void menu3_click(MenuItem m){
+        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
         txtOutput.setText(R.string.msg3);
-        txtOutput.setTextColor(Color.RED);
+        txtOutput.setTextColor(Color.GREEN);
         drawerLayout.closeDrawers();
     }
 
@@ -93,10 +97,12 @@ public class DiscoverActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
-
-    public void menu4_click(MenuItem menuItem) {
-        Log.d(TAG,"menu4_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-        txtOutput.setTextColor(Color.RED);
+    public void menu4_click(MenuItem m){
+        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
+//        txtOutput.setText(R.string.msg4);
+        Toast.makeText(DiscoverActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+//        txtOutput.setTextColor(Color.CYAN);
+        FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();

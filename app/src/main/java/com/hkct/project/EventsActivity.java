@@ -19,8 +19,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,8 +141,10 @@ public class EventsActivity extends AppCompatActivity {
 
     public void menu4_click(MenuItem m){
         Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
-        txtOutput.setText(R.string.msg4);
-        txtOutput.setTextColor(Color.CYAN);
+//        txtOutput.setText(R.string.msg4);
+        Toast.makeText(EventsActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+//        txtOutput.setTextColor(Color.CYAN);
+        FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
