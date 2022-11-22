@@ -75,8 +75,8 @@ public class EventsActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter(EventsActivity.this,
                     noteList,
                     R.layout.note_row,
-                    new String[] { "noteId","noteDesc"},
-                    new int[] {R.id.noteId, R.id.noteDesc}
+                    new String[] { "noteId","noteDesc", "noteName"},
+                    new int[] {R.id.noteId, R.id.noteDesc, R.id.noteName}
             );
             listView.setAdapter(adapter);
         }
@@ -166,7 +166,7 @@ public class EventsActivity extends AppCompatActivity {
     }
 
     public void backClick(View v){
-        startActivity(new Intent(this,AddEventsActivity.class));
+        startActivity(new Intent(this,LocationPickerActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
         if(version >=5){

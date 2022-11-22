@@ -10,6 +10,21 @@
     tools:context=".AddEventsActivity">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/address"
+        android:text="address"
+        android:padding="10dp">
+
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:id="@+id/noteName"
+        android:hint="Note Name"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -17,6 +32,8 @@
         android:minHeight="50dp"
         android:id="@+id/noteDesc"
         android:hint="@string/hint"/>
+
+
 
     <!-- A CardView that contains a TextView -->
     <androidx.cardview.widget.CardView
@@ -122,7 +139,7 @@
             </ImageView>
 
             <TextView
-                android:id="@+id/info_text2"
+                android:id="@+id/noteAddress"
                 android:background="@drawable/rounded_btn2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
