@@ -140,6 +140,7 @@ public class AddEventsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(AddEventsActivity.this,LocationPickerActivity.class);
                 startActivity(intent);
+                AddEventsActivity.this.finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
