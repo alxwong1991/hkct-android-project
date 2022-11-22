@@ -7,10 +7,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,7 +25,11 @@ public class AddEventsActivity extends AppCompatActivity {
     /* <!-- NoteDemo --> */
     // Properties
     private String TAG = "AddEventsActivity===>";
+    private TextView address;
+    private String addressString;
     private EditText noteDesc;
+    private EditText noteName;
+
     private Button btnAdd;
     private DBHelper dbhelper = new DBHelper(this);
 
@@ -42,10 +44,28 @@ public class AddEventsActivity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();//用來做date
     Calendar calendar1 = Calendar.getInstance();//用來做time
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_events);
+
+
+
+        // get back height and weight value from Bundle
+        Bundle bundle = this.getIntent().getExtras();
+
+        if(bundle != null) {
+        addressString = bundle.getString("placeName");
+
+        address=findViewById(R.id.address);
+        address.setText(addressString);
+
+        }
+
+        Log.d("===", "result:" + addressString);
+
 
         // date time
         // ========================================================
@@ -80,6 +100,8 @@ public class AddEventsActivity extends AppCompatActivity {
 
         // references
         noteDesc = findViewById(R.id.noteDesc);
+        noteName = findViewById(R.id.noteName);
+
         btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +109,7 @@ public class AddEventsActivity extends AppCompatActivity {
                 Log.d(TAG,"onCreate()->btnAdd->onClick()");
                 HashMap<String, String> queryValues =  new  HashMap<String, String>();
                 queryValues.put("noteDesc", noteDesc.getText().toString());
+                queryValues.put("noteName", noteName.getText().toString());
                 dbhelper.addNote(queryValues);
                 startActivity(new Intent(getApplicationContext(),EventsActivity.class));
                 AddEventsActivity.this.finish();
@@ -114,15 +137,27 @@ public class AddEventsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Intent intent = new Intent(AddEventsActivity.this,LocationPickerActivity.class);
                 startActivity(intent);
-                AddEventsActivity.this.finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
 
     } //onCreate()
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch (resultCode) {
+//            case REQUEST_CODE:
+//                String result = data.getStringExtra("cloth_id");
+//                Log.d("debug11", "result:" + result);
+//                break;
+//        }
+//    }
+
     /* <!-- NoteDemo --> */
 
 //    date time
@@ -158,4 +193,4 @@ public class AddEventsActivity extends AppCompatActivity {
         }
         this.finish();
     }
-}
+}//AddEventsActivity

@@ -9,7 +9,22 @@
 
     tools:context=".AddEventsActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="address"
+        android:id="@+id/address"
+        android:padding="10dp">
 
+    </TextView>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:id="@+id/noteName"
+        android:hint="Events name"/>
 
     <EditText
         android:layout_width="match_parent"

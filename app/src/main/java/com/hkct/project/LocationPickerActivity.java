@@ -1,5 +1,6 @@
 package com.hkct.project;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -63,6 +64,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
     private PermissionsManager permissionsManager;
     private ImageView hoveringMarker;
     private Layer droppedMarkerLayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,6 +278,28 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
                                         Toast.makeText(LocationPickerActivity.this,
                                                 String.format(getString(R.string.location_picker_place_name_result),
                                                         feature.placeName()), Toast.LENGTH_SHORT).show();
+
+
+
+                                        // Convert height and weight to double
+                                        String addressString = String.valueOf(feature.placeName());
+
+
+                                        // Create intent object
+                                        Intent intent = new Intent(getApplicationContext(),AddEventsActivity.class);
+
+                                        // Create bundle container and add height and weight into bundle
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("placeName",addressString);
+
+
+                                        // put bundle object into intent
+                                        intent.putExtras(bundle);
+
+                                        startActivity(intent);
+
+                                        // Close this screen
+                                        LocationPickerActivity.this.finish();
                                     }
                                 }
                             });
