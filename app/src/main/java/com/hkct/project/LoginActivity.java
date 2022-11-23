@@ -77,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getText().toString();
 
         if (!email.matches(emailPattern)) {
-            inputEmail.setError("Enter correct email");
+            Toast.makeText(LoginActivity.this, "Enter correct email", Toast.LENGTH_SHORT).show();
         } else if (password.isEmpty() || password.length() < 5) {
-            inputPassword.setError("Enter proper password");
+            Toast.makeText(LoginActivity.this, "Enter proper password", Toast.LENGTH_SHORT).show();
         } else {
             progressDialog.setMessage("Please wait while login...");
             progressDialog.setTitle("Login");
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void preformDebugOnly() {
-        startActivity(new Intent(LoginActivity.this, DiscoverActivity.class));
+        startActivity(new Intent(LoginActivity.this, EventsActivity.class));
     }
 
     private void sendUserToNextActivity() {
@@ -113,5 +113,4 @@ public class LoginActivity extends AppCompatActivity {
 
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
-
 }
