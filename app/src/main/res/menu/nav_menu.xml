@@ -3,7 +3,7 @@
 
     <!-- NavDemo -->
     <item
-        android:id="@+id/nav_account"
+        android:id="@+id/nav_discover"
         android:onClick="menu1_click"
         android:title="Discover" />
 
@@ -13,7 +13,7 @@
         android:title="Settings" />
 
     <item
-        android:id="@+id/nav_about"
+        android:id="@+id/nav_profile"
         android:onClick="menu3_click"
         android:title="Profile" />
 
@@ -22,10 +22,10 @@
         android:onClick="menu5_click"
         android:title="Events" />
 
-    <item
-        android:id="@+id/nav_logout"
-        android:onClick="menu4_click"
-        android:title="Logout" />
+<!--    <item-->
+<!--        android:id="@+id/nav_logout"-->
+<!--        android:onClick="menu4_click"-->
+<!--        android:title="Logout" />-->
 
 
     <!-- NavDemo -->
