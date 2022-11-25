@@ -170,17 +170,17 @@ public class EventsActivity extends AppCompatActivity {
         Toast.makeText(EventsActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
 
-    public void backClick(View v){
-    public void addClick(View v){
-        startActivity(new Intent(this,AddEventsActivity.class));
+
+    public void addClick(View v) {
+        startActivity(new Intent(this, AddEventsActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(version >=5){
+        if (version >= 5) {
 
 //            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         this.finish();
     }
-
 }
+

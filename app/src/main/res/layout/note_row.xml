@@ -59,24 +59,24 @@
                     android:layout_height="wrap_content"
 
                     android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/eventDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/eventDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
 
-                    android:text="eventDate"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:layout_weight="1"
-                    />
+                        android:text="eventDate"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_weight="1"
+                        />
 
-                <TextView
-                    android:id="@+id/eventTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="eventTime"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:layout_weight="1"
-                    />
+                    <TextView
+                        android:id="@+id/eventTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="eventTime"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
