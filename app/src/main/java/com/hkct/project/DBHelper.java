@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         Log.d(TAG,"onCreate()");
         String query;
-        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, noteDesc TEXT)";
+        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, noteDesc TEXT, eventName TEXT)";
         database.execSQL(query);
     } //onCreate()
 
@@ -44,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("noteDesc", queryValues.get("noteDesc"));
+        values.put("eventName", queryValues.get("eventName"));
         database.insert("noteTable", null, values);
         database.close();
     } //addNote()
@@ -53,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("noteDesc", queryValues.get("noteDesc"));
+        values.put("eventName", queryValues.get("eventName"));
         return database.update("noteTable",
                 values,
                 "noteId" + " = ?",
@@ -79,7 +81,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("noteId", cursor.getString(0));
                 map.put("noteDesc", cursor.getString(1));
-                Log.d(TAG,"noteId->"+cursor.getString(0)+",noteDesc->"+cursor.getString(1));
+                map.put("eventName", cursor.getString(2));
+                Log.d(TAG,"noteId->"+cursor.getString(0)+",noteDesc->"+cursor.getString(1)+",eventName->"+cursor.getString(2));
                 notelist.add(map);
             } while (cursor.moveToNext());
         }
@@ -96,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 notelist.put("noteDesc", cursor.getString(1));
+                notelist.put("eventName", cursor.getString(2));
             } while (cursor.moveToNext());
         }
         return notelist;

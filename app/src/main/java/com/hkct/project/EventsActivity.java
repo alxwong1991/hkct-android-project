@@ -42,7 +42,7 @@ public class EventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        txtOutput = findViewById(R.id.txtOutput);
+
 
         // Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,8 +71,8 @@ public class EventsActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter(EventsActivity.this,
                     noteList,
                     R.layout.note_row,
-                    new String[] { "noteId","noteDesc"},
-                    new int[] {R.id.noteId, R.id.noteDesc}
+                    new String[] { "noteId","noteDesc", "eventName"},
+                    new int[] {R.id.noteId, R.id.noteDesc, R.id.eventName}
             );
             listView.setAdapter(adapter);
         }
@@ -158,7 +158,7 @@ public class EventsActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public void backClick(View v){
+    public void addClick(View v){
         startActivity(new Intent(this,AddEventsActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
