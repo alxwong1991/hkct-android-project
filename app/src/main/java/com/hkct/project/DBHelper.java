@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         Log.d(TAG,"onCreate()");
         String query;
-        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, noteDesc TEXT, eventName TEXT)";
+        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, noteDesc TEXT, eventName TEXT, eventAddress TEXT, text_date TEXT, text_time TEXT)";
         database.execSQL(query);
     } //onCreate()
 
@@ -45,6 +45,9 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("noteDesc", queryValues.get("noteDesc"));
         values.put("eventName", queryValues.get("eventName"));
+        values.put("eventAddress", queryValues.get("eventAddress"));
+        values.put("text_date", queryValues.get("text_date"));
+        values.put("text_time", queryValues.get("text_time"));
         database.insert("noteTable", null, values);
         database.close();
     } //addNote()
@@ -55,6 +58,9 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("noteDesc", queryValues.get("noteDesc"));
         values.put("eventName", queryValues.get("eventName"));
+        values.put("eventAddress", queryValues.get("eventAddress"));
+        values.put("text_date", queryValues.get("text_date"));
+        values.put("text_time", queryValues.get("text_time"));
         return database.update("noteTable",
                 values,
                 "noteId" + " = ?",
@@ -82,7 +88,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 map.put("noteId", cursor.getString(0));
                 map.put("noteDesc", cursor.getString(1));
                 map.put("eventName", cursor.getString(2));
-                Log.d(TAG,"noteId->"+cursor.getString(0)+",noteDesc->"+cursor.getString(1)+",eventName->"+cursor.getString(2));
+                map.put("eventAddress", cursor.getString(3));
+                map.put("text_date", cursor.getString(4));
+                map.put("text_time", cursor.getString(5));
+                Log.d(TAG,"noteId->"+cursor.getString(0)+",noteDesc->"+cursor.getString(1)+",eventName->"+cursor.getString(2)+",eventAddress->"+cursor.getString(3)+",text_date->"+cursor.getString(4)+",text_time->"+cursor.getString(5));
                 notelist.add(map);
             } while (cursor.moveToNext());
         }
@@ -100,6 +109,9 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 notelist.put("noteDesc", cursor.getString(1));
                 notelist.put("eventName", cursor.getString(2));
+                notelist.put("eventAddress", cursor.getString(3));
+                notelist.put("text_date", cursor.getString(4));
+                notelist.put("text_time", cursor.getString(5));
             } while (cursor.moveToNext());
         }
         return notelist;
