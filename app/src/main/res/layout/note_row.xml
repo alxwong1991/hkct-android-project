@@ -1,116 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:padding="5dp"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <!-- A CardView that contains a TextView -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/noteId"
-        android:text="NoteId"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_weight="1"
-        android:layout_marginRight="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/noteDesc"
-        android:text="NoteDesc"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_weight="1"/>
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@color/ivory_black"
+        card_view:cardCornerRadius="50dp"
+        card_view:cardElevation="3dp"
+        >
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/noteDate"
-            android:text="NoteDesc"
-            android:textColor="@android:color/holo_blue_dark"
-           />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/noteMap"
-            android:text="NoteDesc"
-            android:textColor="@android:color/holo_blue_dark"
-       />
-
-        <!-- A CardView that contains a TextView -->
-        <androidx.cardview.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_outer2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            card_view:cardCornerRadius="50dp"
-            card_view:cardElevation="3dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_weight="1"
             >
 
-
             <TextView
-                android:id="@+id/info_text3"
-                android:background="@drawable/rounded_btn2"
-                android:layout_width="match_parent"
+                android:id="@+id/noteId"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="XXX"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
                 android:gravity="center"
-                android:textColor="@color/white"
-                />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_outer"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            card_view:cardCornerRadius="50dp"
-            card_view:cardElevation="3dp">
-
-
-
+                android:text="NoteId"
+                android:textColor="#FF6100"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-                <com.google.android.material.imageview.ShapeableImageView
+                <TextView
+                    android:id="@+id/eventName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="eventName"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textStyle="bold" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    card_view:shapeAppearanceOverlay="@style/RoundedCorner"
-                    card_view:srcCompat="@drawable/icon12">
-                </com.google.android.material.imageview.ShapeableImageView>
+                    android:layout_height="wrap_content"
 
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/eventDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
 
-            <TextView
-                android:id="@+id/info_text5"
-                android:background="@drawable/rounded_btn2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="XXX"
-                android:gravity="center"
-                android:textColor="@color/white"/>
+                        android:text="eventDate"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/eventTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="eventTime"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_weight="1"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/eventsAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="eventsAddress"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <TextView
+                    android:id="@+id/noteDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NoteDesc"
+
+                    android:textColor="@android:color/holo_blue_dark" />
 
             </LinearLayout>
 
 
-        </androidx.cardview.widget.CardView>
 
+        </LinearLayout>
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

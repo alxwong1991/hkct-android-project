@@ -44,7 +44,7 @@ public class EventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        txtOutput = findViewById(R.id.txtOutput);
+
 
         // Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,8 +73,8 @@ public class EventsActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter(EventsActivity.this,
                     noteList,
                     R.layout.note_row,
-                    new String[] { "noteId","noteDesc"},
-                    new int[] {R.id.noteId, R.id.noteDesc}
+                    new String[] { "noteId","noteDesc", "eventName"},
+                    new int[] {R.id.noteId, R.id.noteDesc, R.id.eventName}
             );
             listView.setAdapter(adapter);
         }
@@ -170,16 +170,17 @@ public class EventsActivity extends AppCompatActivity {
         Toast.makeText(EventsActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
 
-    public void backClick(View v){
-        startActivity(new Intent(this,AddEventsActivity.class));
+
+    public void addClick(View v) {
+        startActivity(new Intent(this, AddEventsActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(version >=5){
+        if (version >= 5) {
 
 //            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         this.finish();
     }
-
 }
+

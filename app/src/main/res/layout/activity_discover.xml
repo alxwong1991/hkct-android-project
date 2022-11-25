@@ -38,7 +38,7 @@
         android:layout_gravity="start"
         android:alpha="0.8"
         app:menu="@menu/nav_menu"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_menu"
         app:itemTextColor="@color/white"/>
 
 
