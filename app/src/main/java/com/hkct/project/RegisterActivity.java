@@ -69,11 +69,11 @@ public class RegisterActivity extends AppCompatActivity {
         String confirmPassword = inputConfirmPassword.getText().toString();
 
         if (!email.matches(emailPattern)) {
-            inputEmail.setError("Enter correct email");
+            Toast.makeText(RegisterActivity.this, "Enter correct email", Toast.LENGTH_SHORT).show();
         } else if (password.isEmpty() || password.length() < 5) {
-            inputPassword.setError("Enter proper password");
+            Toast.makeText(RegisterActivity.this, "Enter proper password", Toast.LENGTH_SHORT).show();
         } else if (!password.equals(confirmPassword)) {
-            inputConfirmPassword.setError("Password not match");
+            Toast.makeText(RegisterActivity.this, "Password not match", Toast.LENGTH_SHORT).show();
         } else {
             progressDialog.setMessage("Please wait while registering...");
             progressDialog.setTitle("Registration");

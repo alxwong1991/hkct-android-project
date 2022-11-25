@@ -19,8 +19,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,23 +112,20 @@ public class EventsActivity extends AppCompatActivity {
 
     public void menu1_click(MenuItem m){
         Log.d(TAG,"menu1_click()->" + m.getItemId() + ","+ m.getTitle());
-        txtOutput.setText(R.string.msg1);
-        txtOutput.setTextColor(Color.RED);
         startActivity(new Intent(this, DiscoverActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
     public void menu2_click(MenuItem m){
         Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
-        txtOutput.setText(R.string.msg2);
-        txtOutput.setTextColor(Color.BLUE);
-
+//        txtOutput.setText(R.string.msg2);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
     public void menu3_click(MenuItem m){
         Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
-        txtOutput.setText(R.string.msg3);
-        txtOutput.setTextColor(Color.GREEN);
+//        txtOutput.setText(R.string.msg3);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
@@ -137,20 +136,26 @@ public class EventsActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
-    public void menu4_click(MenuItem m){
-        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
-        txtOutput.setText(R.string.msg4);
-        txtOutput.setTextColor(Color.CYAN);
-        startActivity(new Intent(this, LoginActivity.class));
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        drawerLayout.closeDrawers();
-    }
+//    public void menu4_click(MenuItem m){
+//        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
+//        FirebaseAuth.getInstance().signOut();
+//        startActivity(new Intent(this, LoginActivity.class));
+//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//        Toast.makeText(EventsActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+//        drawerLayout.closeDrawers();
+//    }
 
     // add events btn
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.events_add, menu);
+        getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void menu_profile_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),SetUpActivity.class));
     }
 
     public void menu_add_click(MenuItem m){
@@ -158,6 +163,14 @@ public class EventsActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    public void menu_logout_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Toast.makeText(EventsActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+    }
+
+    public void backClick(View v){
     public void addClick(View v){
         startActivity(new Intent(this,AddEventsActivity.class));
 

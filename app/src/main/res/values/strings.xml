@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">project</string>
+    <string name="app_name">Instag</string>
 
     <!-- NavDemo -->
-    <string name="msg1">This is My Account</string>
+    <string name="msg1">This Discover</string>
     <string name="msg2">This is Settings</string>
     <string name="msg3">Hi! I am Stephen Sir</string>
     <string name="msg4">You are already Logout</string>
@@ -529,5 +529,9 @@
 
     <!-- Extrusion color expression highlight -->
     <string name="tap_on_building_to_highlight">Tap on a building to highlight it</string>
+    <string name="username">Enter Your Name</string>
+    <string name="save">Save</string>
+    <string name="add_post">Add Post</string>
+    <string name="enter_caption">Write Caption Here...</string>
 
 </resources>
