@@ -3,6 +3,7 @@ package com.hkct.project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
@@ -42,6 +43,8 @@ public class EditEventsActivity extends AppCompatActivity {
     private TextView text_date;
     private TextView text_time;
 
+    private CardView card_view3;
+
     private Button btnEdit, btnDelete;
     private DBHelper dbhelper = new DBHelper(this);
 
@@ -58,6 +61,20 @@ public class EditEventsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_events);
+
+        card_view3 = findViewById(R.id.card_map);
+
+        card_view3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(EditEventsActivity.this,LocationPickerActivity.class);
+                startActivity(intent);
+//                AddEventsActivity.this.finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
 
         // date time
         // ========================================================
@@ -243,6 +260,7 @@ public class EditEventsActivity extends AppCompatActivity {
 //        }
 //        this.finish();
 //    }
+
 
     private void doEdit(){
         Log.d(TAG,"doEdit()");
