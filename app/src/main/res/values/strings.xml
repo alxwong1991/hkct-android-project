@@ -23,7 +23,13 @@
 
 
     <!-- MarkerDemo -->
-    <string name="access_token">pk.eyJ1Ijoibmd5aWtsb2siLCJhIjoiY2w5dGU1a3hvMDB3MTN3cWVrMzdwdHh3eCJ9.YETxiWUAtSRs2PcfWE5ccw</string>
+
+
+    <string name="access_token">
+        pk.eyJ1Ijoibmd5aWtsb2siLCJhIjoiY2w5dGU1a3hvMDB3MTN3cWVrMzdwdHh3eCJ9.YETxiWUAtSRs2PcfWE5ccw
+    </string>
+
+
     <string name="version">1.0</string>
     <string name="sw1">1 point:</string>
     <string name="sw2">2 points"</string>

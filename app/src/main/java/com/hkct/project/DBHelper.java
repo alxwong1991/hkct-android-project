@@ -26,7 +26,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         Log.d(TAG,"onCreate()");
         String query;
-        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, noteDesc TEXT, eventName TEXT, eventAddress TEXT, text_date TEXT, text_time TEXT)";
+        query = "CREATE TABLE notetable ( noteId INTEGER PRIMARY KEY, " +
+                "noteDesc TEXT, " +
+                "eventName TEXT, " +
+                "eventAddress TEXT, " +
+                "text_date TEXT, " +
+                "text_time TEXT)";
         database.execSQL(query);
     } //onCreate()
 

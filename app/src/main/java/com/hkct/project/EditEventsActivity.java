@@ -62,8 +62,8 @@ public class EditEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_events);
 
-//        card_view3 = findViewById(R.id.card_map);
-//
+        card_view3 = findViewById(R.id.card_map);
+
 //        card_view3.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -71,7 +71,7 @@ public class EditEventsActivity extends AppCompatActivity {
 //
 //                Intent intent = new Intent(EditEventsActivity.this,LocationPickerActivity2.class);
 //                startActivity(intent);
-////                AddEventsActivity.this.finish();
+////
 //                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 //            }
 //        });
