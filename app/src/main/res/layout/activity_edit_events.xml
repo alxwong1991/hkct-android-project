@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="150dp"
             android:background="@drawable/rounded_editbtn"
             android:alpha="0.8"
             android:gravity="center"
@@ -34,7 +35,6 @@
         <!-- A CardView that contains a TextView -->
         <androidx.cardview.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_map"
             android:alpha="0.9"
             android:layout_gravity="center"
             card_view:cardCornerRadius="20dp"
@@ -49,39 +49,11 @@
                 android:orientation="vertical"
 
                 >
-                <TextView
-                    android:id="@+id/info_map"
-                    android:alpha="0.8"
-                    android:background="@drawable/rounded_maplocalbtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:paddingBottom="5dp"
-                    android:textSize="50px"
-                    android:text="Map Location"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:layout_weight="1"
-                    />
-
-                <TextView
-                    android:alpha="0.8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:background="#FF7F50"
-                    android:textStyle="italic"
-                    android:text="Tap here to select Map Location"
-                    android:textColor="@color/white"
-                    android:paddingBottom="10dp"
-                    android:layout_weight="1">
-                </TextView>
 
 
 
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"

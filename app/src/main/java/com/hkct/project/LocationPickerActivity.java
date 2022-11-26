@@ -279,9 +279,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
                                                 String.format(getString(R.string.location_picker_place_name_result),
                                                         feature.placeName()), Toast.LENGTH_SHORT).show();
 
-
-
-                                        // Convert height and weight to double
+                                        // Convert to String
                                         String addressString = String.valueOf(feature.placeName());
 
 
