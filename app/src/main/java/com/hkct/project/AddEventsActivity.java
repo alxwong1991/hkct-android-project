@@ -56,6 +56,8 @@ public class AddEventsActivity extends AppCompatActivity {
     //顯示日期、時間
     TextView textDate,textTime;
     //這個dialog的監聽物件(目前空)
+
+
     DatePickerDialog.OnDateSetListener pickerDialog;
     TimePickerDialog.OnTimeSetListener timeDialog;
     Calendar calendar = Calendar.getInstance();//用來做date
