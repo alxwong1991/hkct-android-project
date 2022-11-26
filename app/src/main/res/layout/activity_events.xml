@@ -15,24 +15,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="10dp"
         >
 
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/rounded_addbtn"
-            android:alpha="0.5"
-            android:text="ADD Event"
-            android:layout_marginBottom="50dp"
-            android:onClick="addClick">
-        </Button>
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_event"
+            android:textColor="@color/white"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="Events List"
 
+            >
+        </TextView>
+
+        <Button
+            android:id="@+id/bSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:background="@color/black"
+            android:text=" tap here to Add event "
+            android:textColor="#FFF5EE"
+            android:drawableTop="@android:drawable/ic_menu_add"
+            android:textSize="16sp"
+            android:onClick="addClick"/>
 
         <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listView"/>
+            android:layout_height="match_parent" />
+
 
 
 

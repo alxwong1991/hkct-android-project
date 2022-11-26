@@ -46,6 +46,9 @@ public class EventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_events);
 
 
+        //ActivityName
+        setTitle("");
+
         // Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -73,8 +76,8 @@ public class EventsActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter(EventsActivity.this,
                     noteList,
                     R.layout.note_row,
-                    new String[] { "noteId","noteDesc", "eventName"},
-                    new int[] {R.id.noteId, R.id.noteDesc, R.id.eventName}
+                    new String[] { "noteId","noteDesc", "eventName", "eventAddress", "text_date", "text_time"},
+                    new int[] {R.id.noteId, R.id.noteDesc, R.id.eventName, R.id.eventAddress , R.id.text_date , R.id.text_time}
             );
             listView.setAdapter(adapter);
         }
@@ -148,7 +151,6 @@ public class EventsActivity extends AppCompatActivity {
     // add events btn
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.events_add, menu);
         getMenuInflater().inflate(R.menu.profile, menu);
         getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);

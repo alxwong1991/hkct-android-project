@@ -38,15 +38,19 @@ public class AddEventsActivity extends AppCompatActivity {
     private NavigationView navView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private EditText address;
+    private EditText eventAddress;
     private String addressString;
     private EditText noteDesc;
     private EditText eventName;
+    private TextView text_date;
+    private TextView text_time;
+
+
 
     private Button btnAdd;
     private DBHelper dbhelper = new DBHelper(this);
 
-    private CardView card_view1;
+//    private CardView card_view1;
     private CardView card_view3;
 
     //顯示日期、時間
@@ -72,7 +76,7 @@ public class AddEventsActivity extends AppCompatActivity {
         Log.d(TAG,"===>eventsActivity!!!");
 
         //ActivityName
-        setTitle(R.string.title_add);
+        setTitle("");
 
         // get back height and weight value from Bundle
         Bundle bundle = this.getIntent().getExtras();
@@ -80,8 +84,9 @@ public class AddEventsActivity extends AppCompatActivity {
         if(bundle != null) {
         addressString = bundle.getString("placeName");
 
-        address=findViewById(R.id.address);
-        address.setText(addressString);
+            eventAddress=findViewById(R.id.eventAddress);
+            eventAddress.setText(addressString);
+            Log.d("===", "result:" + addressString);
 
         }
 
@@ -100,7 +105,7 @@ public class AddEventsActivity extends AppCompatActivity {
                 calendar.set(Calendar.YEAR,year);//年
                 calendar.set(Calendar.MONTH,month);//月(*注意：此處的月份從0~11*)
                 calendar.set(Calendar.DATE,dayOfMonth);//日
-                textDate.setText("日期："+year+"/"+(month+1)+"/"+dayOfMonth);//使其月份+1顯示
+                textDate.setText(+year+" / "+(month+1)+" / "+dayOfMonth);//使其月份+1顯示
             }
         };
 
@@ -110,7 +115,7 @@ public class AddEventsActivity extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 calendar1.set(Calendar.HOUR,hourOfDay);//小時
                 calendar1.set(Calendar.MINUTE,minute);//分鐘
-                textTime.setText("時間："+hourOfDay+"時"+minute+"分");
+                textTime.setText(hourOfDay+" : "+minute);
             }
         };
         // =========================================================
@@ -122,37 +127,48 @@ public class AddEventsActivity extends AppCompatActivity {
         // references
         noteDesc = findViewById(R.id.noteDesc);
         eventName = findViewById(R.id.eventName);
+        eventAddress = findViewById(R.id.eventAddress);
+        text_date = findViewById(R.id.text_date);
+        text_time = findViewById(R.id.text_time);
 
         btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"onCreate()->btnAdd->onClick()");
+                Log.d(TAG,"noteDesc.getText()."+noteDesc.getText());
+                Log.d(TAG,"noteDesc.getText()."+eventName.getText());
+                Log.d(TAG,"noteDesc.getText()."+text_date.getText());
+                Log.d(TAG,"noteDesc.getText()."+text_time.getText());
+                Log.d(TAG,"noteDesc.getText()."+eventAddress.getText());
                 HashMap<String, String> queryValues =  new  HashMap<String, String>();
                 queryValues.put("noteDesc", noteDesc.getText().toString());
                 queryValues.put("eventName", eventName.getText().toString());
+                queryValues.put("text_date", text_date.getText().toString());
+                queryValues.put("text_time", text_time.getText().toString());
+                queryValues.put("eventAddress", eventAddress.getText().toString());
                 dbhelper.addNote(queryValues);
                 startActivity(new Intent(getApplicationContext(),EventsActivity.class));
                 AddEventsActivity.this.finish();
             }
         });
 
-        card_view1 = findViewById(R.id.card_view1);
+//        card_view1 = findViewById(R.id.card_view1);
+//
+//        card_view1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(AddEventsActivity.this,AddEventsActivity.class);
+//                startActivity(intent);
+////                startActivity(new Intent(getApplicationContext(),EventsActivity.class));
+////                AddEventsActivity.this.finish();
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            }
+//        });
 
-        card_view1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(AddEventsActivity.this,AddEventsActivity.class);
-                startActivity(intent);
-//                startActivity(new Intent(getApplicationContext(),EventsActivity.class));
-//                AddEventsActivity.this.finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        });
-
-
-        card_view3 = findViewById(R.id.card_view3);
+        card_view3 = findViewById(R.id.card_map);
 
         card_view3.setOnClickListener(new View.OnClickListener() {
             @Override
