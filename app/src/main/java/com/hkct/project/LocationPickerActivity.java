@@ -57,6 +57,8 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.visibility;
  */
 public class LocationPickerActivity extends AppCompatActivity implements PermissionsListener, OnMapReadyCallback {
 
+    private static final int REQUEST_CODE = 1;
+
     private static final String DROPPED_MARKER_LAYER_ID = "DROPPED_MARKER_LAYER_ID";
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -283,21 +285,27 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
                                         String addressString = String.valueOf(feature.placeName());
 
 
-                                        // Create intent object
-                                        Intent intent = new Intent(getApplicationContext(),AddEventsActivity.class);
-
-                                        // Create bundle container and add height and weight into bundle
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("placeName",addressString);
+                                        Intent intent = getIntent();
+                                        intent.putExtra("placeName", addressString);
+                                        setResult(REQUEST_CODE,intent);
+                                        finish();
 
 
-                                        // put bundle object into intent
-                                        intent.putExtras(bundle);
-
-                                        startActivity(intent);
-
-                                        // Close this screen
-                                        LocationPickerActivity.this.finish();
+//                                        // Create intent object
+//                                        Intent intent = new Intent(getApplicationContext(),AddEventsActivity.class);
+//
+//                                        // Create bundle container and add height and weight into bundle
+//                                        Bundle bundle = new Bundle();
+//                                        bundle.putString("placeName",addressString);
+//
+//
+//                                        // put bundle object into intent
+//                                        intent.putExtras(bundle);
+//
+//                                        startActivity(intent);
+//
+//                                        // Close this screen
+//                                        LocationPickerActivity.this.finish();
                                     }
                                 }
                             });
