@@ -157,23 +157,23 @@ public class DiscoverActivity extends AppCompatActivity {
     public void menu1_click(MenuItem menuItem) {
         Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        txtOutput.setText(R.string.msg1);
-        txtOutput.setTextColor(Color.RED);
+        startActivity(new Intent(this, DiscoverActivity.class));
         drawerLayout.closeDrawers();
     }
 
     public void menu2_click(MenuItem menuItem) {
         Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        txtOutput.setText(R.string.msg2);
-        txtOutput.setTextColor(Color.RED);
+//        txtOutput.setText(R.string.msg2);
+//        txtOutput.setTextColor(Color.RED);
         drawerLayout.closeDrawers();
     }
 
     public void menu3_click(MenuItem menuItem) {
         Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-        txtOutput.setText(R.string.msg3);
-        txtOutput.setTextColor(Color.RED);
+//        txtOutput.setText(R.string.msg3);
+//        txtOutput.setTextColor(Color.RED);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
