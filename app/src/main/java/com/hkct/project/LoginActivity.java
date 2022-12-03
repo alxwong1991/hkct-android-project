@@ -26,7 +26,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText inputEmail, inputPassword;
     Button btnLogin;
-    Button btnDebug;
+    // use for debugging
+//    Button btnDebug;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnDebug = findViewById(R.id.btnDebug);
+//        btnDebug = findViewById(R.id.btnDebug);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -64,12 +65,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnDebug.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                preformDebugOnly();
-            }
-        });
+        // use for debugging
+//        btnDebug.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                preformDebugOnly();
+//            }
+//        });
     }
 
     private void preformLogin() {
@@ -102,9 +104,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void preformDebugOnly() {
-        startActivity(new Intent(LoginActivity.this, EventsActivity.class));
-    }
+    // use for debugging
+//    private void preformDebugOnly() {
+//        startActivity(new Intent(LoginActivity.this, EventsActivity.class));
+//    }
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(LoginActivity.this, DiscoverActivity.class);
