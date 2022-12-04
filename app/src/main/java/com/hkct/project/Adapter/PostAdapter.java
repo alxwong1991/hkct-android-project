@@ -103,7 +103,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         });
 
         // like btn color change
-        firestore.collection("Posts/" + postId + "/Likes").document().addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error == null) {
