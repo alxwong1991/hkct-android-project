@@ -2,7 +2,7 @@ package com.hkct.project.Model;
 
 import java.util.Date;
 
-public class Post {
+public class Post extends PostId {
     private String image, user, caption;
     private Date time;
 
