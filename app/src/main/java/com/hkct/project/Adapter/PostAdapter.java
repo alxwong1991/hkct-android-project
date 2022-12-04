@@ -108,9 +108,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error == null) {
                     if (value.exists()) {
-                        holder.likePic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.before_liked));
+                        holder.likePic.setImageDrawable(context.getDrawable(R.drawable.after_liked));
                     } else {
-                        holder.likePic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.before_liked));
+                        holder.likePic.setImageDrawable(context.getDrawable(R.drawable.before_liked));
                     }
                 }
             }
