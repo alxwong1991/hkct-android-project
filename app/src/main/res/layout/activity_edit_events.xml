@@ -20,7 +20,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:background="@drawable/rounded_editbtn"
             android:alpha="0.8"
             android:gravity="center"
@@ -32,28 +32,55 @@
         </TextView>
 
 
-        <!-- A CardView that contains a TextView -->
         <androidx.cardview.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_map"
             android:alpha="0.9"
             android:layout_gravity="center"
             card_view:cardCornerRadius="20dp"
             android:background="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-
                 >
+                <TextView
+                    android:id="@+id/info_map"
+                    android:alpha="0.8"
+                    android:background="@drawable/rounded_maplocalbtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="50px"
+                    android:text="Map Location"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:alpha="0.8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:background="#FF7F50"
+                    android:textStyle="italic"
+                    android:text="Tap here to select Map Location"
+                    android:textColor="@color/white"
+                    android:paddingBottom="10dp"
+                    android:layout_weight="1">
+                </TextView>
 
 
 
                 <EditText
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
@@ -89,6 +116,67 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
+<!--        &lt;!&ndash; A CardView that contains a TextView &ndash;&gt;-->
+<!--        <androidx.cardview.widget.CardView-->
+<!--            xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--            android:alpha="0.9"-->
+<!--            android:layout_gravity="center"-->
+<!--            card_view:cardCornerRadius="20dp"-->
+<!--            android:background="@color/black"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            -->
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+
+<!--                >-->
+
+
+
+<!--                <EditText-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingLeft="20dp"-->
+<!--                    android:hint="Event address"-->
+
+<!--                    android:textColor="@color/ivory_black"-->
+<!--                    android:id="@+id/eventAddress"-->
+<!--                    android:layout_weight="1">-->
+<!--                </EditText>-->
+
+
+
+<!--                <EditText-->
+<!--                    android:paddingLeft="20dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/eventName"-->
+<!--                    android:hint="Event name"-->
+
+<!--                    />-->
+
+<!--                <EditText-->
+<!--                    android:paddingLeft="20dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:minHeight="50dp"-->
+<!--                    android:id="@+id/noteDesc"-->
+<!--                    android:hint="Event describe"-->
+<!--                    android:layout_marginBottom="20dp"/>-->
+
+
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
 
 
 
@@ -231,10 +319,10 @@
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="400px"
+        android:layout_width="350px"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:alpha="0.8"
+        android:alpha="0.96"
         app:menu="@menu/nav_menu"
         android:background="@drawable/rounded_menu"
         app:itemTextColor="@color/white"/>

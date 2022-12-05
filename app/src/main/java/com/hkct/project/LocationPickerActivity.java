@@ -57,6 +57,8 @@ import timber.log.Timber;
  */
 public class LocationPickerActivity extends AppCompatActivity implements PermissionsListener, OnMapReadyCallback {
 
+    private static final int REQUEST_CODE = 1;
+
     private static final String DROPPED_MARKER_LAYER_ID = "DROPPED_MARKER_LAYER_ID";
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -82,6 +84,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
     }
+
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
@@ -125,7 +128,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
 
                             // Transform the appearance of the button to become the cancel button
                             selectLocationButton.setBackgroundColor(
-                                    ContextCompat.getColor(LocationPickerActivity.this, R.color.ivory_black));
+                                    ContextCompat.getColor(LocationPickerActivity.this, com.mapbox.mapboxsdk.R.color.mapbox_blue));
                             selectLocationButton.setText(getString(R.string.location_picker_select_location_button_cancel));
 
                             // Show the SymbolLayer icon to represent the selected map location
@@ -147,7 +150,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
 
                             // Switch the button appearance back to select a location.
                             selectLocationButton.setBackgroundColor(
-                                    ContextCompat.getColor(LocationPickerActivity.this, R.color.ivory_black));
+                                    ContextCompat.getColor(LocationPickerActivity.this, com.mapbox.mapboxsdk.R.color.mapbox_blue));
                             selectLocationButton.setText(getString(R.string.location_picker_select_location_button_select));
 
                             // Show the red hovering ImageView marker
@@ -283,21 +286,27 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
                                         String addressString = String.valueOf(feature.placeName());
 
 
-                                        // Create intent object
-                                        Intent intent = new Intent(getApplicationContext(),AddEventsActivity.class);
-
-                                        // Create bundle container and add height and weight into bundle
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("placeName",addressString);
+                                        Intent intent = getIntent();
+                                        intent.putExtra("placeName", addressString);
+                                        setResult(REQUEST_CODE,intent);
+                                        finish();
 
 
-                                        // put bundle object into intent
-                                        intent.putExtras(bundle);
-
-                                        startActivity(intent);
-
-                                        // Close this screen
-                                        LocationPickerActivity.this.finish();
+//                                        // Create intent object
+//                                        Intent intent = new Intent(getApplicationContext(),AddEventsActivity.class);
+//
+//                                        // Create bundle container and add height and weight into bundle
+//                                        Bundle bundle = new Bundle();
+//                                        bundle.putString("placeName",addressString);
+//
+//
+//                                        // put bundle object into intent
+//                                        intent.putExtras(bundle);
+//
+//                                        startActivity(intent);
+//
+//                                        // Close this screen
+//                                        LocationPickerActivity.this.finish();
                                     }
                                 }
                             });

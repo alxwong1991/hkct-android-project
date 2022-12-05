@@ -19,13 +19,26 @@
         android:paddingRight="10dp"
         >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:alpha="1"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="Weather API"
+        >
+        </TextView>
+
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="100dp"
             android:background="@drawable/rounded_event"
-            android:textColor="@color/white"
-            android:alpha="0.8"
+            android:textColor="@color/black"
+            android:alpha="1"
+            android:textSize="15dp"
             android:gravity="center"
             android:text="Events List"
 
@@ -57,10 +70,10 @@
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="400px"
+        android:layout_width="350px"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:alpha="0.8"
+        android:alpha="0.96"
         app:menu="@menu/nav_menu"
         android:background="@drawable/rounded_menu"
         app:itemTextColor="@color/white"/>

@@ -28,6 +28,8 @@ import java.util.HashMap;
 
 public class EditEventsActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 1;
+
     /* <!-- NoteDemo --> */
     // Properties
     private String TAG = "EditActivity===>";
@@ -61,20 +63,6 @@ public class EditEventsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_events);
-
-        card_view3 = findViewById(R.id.card_map);
-
-//        card_view3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                Intent intent = new Intent(EditEventsActivity.this,LocationPickerActivity2.class);
-//                startActivity(intent);
-////
-//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//            }
-//        });
 
         // date time
         // ========================================================
@@ -160,9 +148,42 @@ public class EditEventsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 doDelete();
             }
+
+
         });
 
+        card_view3 = findViewById(R.id.card_map);
+
+        card_view3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(EditEventsActivity.this,LocationPickerActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+
+//                Intent intent = new Intent(AddEventsActivity.this,LocationPickerActivity.class);
+//                startActivity(intent);
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+
+
     } //onCreate()
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case REQUEST_CODE:
+                String result = data.getStringExtra("placeName");
+
+                eventAddress=findViewById(R.id.eventAddress);
+                eventAddress.setText(result);
+                Log.d("debug || ", "result :" + result);
+                break;
+        }
+    }
 
     private void setNavigationDrawer(){
         // drawer layout instance
@@ -224,6 +245,14 @@ public class EditEventsActivity extends AppCompatActivity {
         txtOutput.setText(R.string.msg4);
         txtOutput.setTextColor(Color.CYAN);
         startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
+    //    MembershipActivity
+    public void menu6_click(MenuItem menuItem) {
+        Log.d(TAG,"menu6_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        startActivity(new Intent(this, MembershipActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
