@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.CommentsActivity;
 import com.hkct.project.Model.Post;
+import com.hkct.project.Model.Users;
 import com.hkct.project.R;
 
 import java.text.DateFormat;
@@ -39,13 +40,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private List<Post> mList;
+    private List<Users> usersList;
     private Activity context;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
 
-    public PostAdapter(Activity context, List<Post> mList) {
+    public PostAdapter(Activity context, List<Post> mList, List<Users> usersList) {
         this.mList = mList;
         this.context = context;
+        this.usersList = usersList;
     }
 
     @NonNull
@@ -67,21 +70,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         String date = DateFormat.getDateInstance().format(new Date(milliseconds));
         holder.setPostDate(date);
 
-        String userId = post.getUser();
-        firestore.collection("Users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    String username = task.getResult().getString("name");
-                    String image = task.getResult().getString("image");
+        String username = usersList.get(position).getName();
+        String image = usersList.get(position).getImage();
 
-                    holder.setProfilePic(image);
-                    holder.setPostUsername(username);
-                } else {
-                    Toast.makeText(context, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        holder.setProfilePic(image);
+        holder.setPostUsername(username);
 
         // like btn
         String postId = post.PostId;

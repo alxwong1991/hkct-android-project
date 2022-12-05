@@ -35,6 +35,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.Adapter.PostAdapter;
 import com.hkct.project.Model.Post;
+import com.hkct.project.Model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class DiscoverActivity extends AppCompatActivity {
     private List<Post> list;
     private Query query;
     private ListenerRegistration listenerRegistration;
+    private List<Users> usersList;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -69,7 +71,8 @@ public class DiscoverActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(DiscoverActivity.this));
 
         list = new ArrayList<>();
-        adapter = new PostAdapter(DiscoverActivity.this, list);
+        usersList = new ArrayList<>();
+        adapter = new PostAdapter(DiscoverActivity.this, list, usersList);
         mRecyclerView.setAdapter(adapter);
 
         if (firebaseAuth.getCurrentUser() != null) {
@@ -90,8 +93,20 @@ public class DiscoverActivity extends AppCompatActivity {
                         if (doc.getType() == DocumentChange.Type.ADDED) {
                             String postId = doc.getDocument().getId();
                             Post post = doc.getDocument().toObject(Post.class).withId(postId);
-                            list.add(post);
-                            adapter.notifyDataSetChanged();
+                            String postUserId = doc.getDocument().getString("user");
+                            firestore.collection("Users").document(postUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        Users users = task.getResult().toObject(Users.class);
+                                        usersList.add(users);
+                                        list.add(post);
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(DiscoverActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         } else {
                             adapter.notifyDataSetChanged();
                         }
