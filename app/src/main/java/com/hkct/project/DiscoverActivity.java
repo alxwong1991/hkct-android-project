@@ -185,6 +185,14 @@ public class DiscoverActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //    MembershipActivity
+    public void menu6_click(MenuItem menuItem) {
+        Log.d(TAG,"menu6_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        startActivity(new Intent(this, MembershipActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.posts_add, menu);
