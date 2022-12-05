@@ -263,6 +263,14 @@ public class EditEventsActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //    MembershipActivity
+    public void menu6_click(MenuItem menuItem) {
+        Log.d(TAG,"menu6_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        startActivity(new Intent(this, MembershipActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
     //    date time
     public void datePicker(View v){
         //建立date的dialog

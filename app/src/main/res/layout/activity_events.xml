@@ -19,6 +19,18 @@
         android:paddingRight="10dp"
         >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:alpha="1"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="Weather API"
+        >
+        </TextView>
+
 
         <TextView
             android:layout_width="match_parent"

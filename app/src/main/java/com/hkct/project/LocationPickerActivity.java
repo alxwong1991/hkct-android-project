@@ -85,6 +85,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
         mapView.getMapAsync(this);
     }
 
+
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         LocationPickerActivity.this.mapboxMap = mapboxMap;
