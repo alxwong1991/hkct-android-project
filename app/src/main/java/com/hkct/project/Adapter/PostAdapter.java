@@ -1,6 +1,8 @@
 package com.hkct.project.Adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.CommentsActivity;
 import com.hkct.project.Model.Post;
@@ -135,6 +138,46 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 context.startActivity(commentIntent);
             }
         });
+
+        if (currentUserId.equals(post.getUser())) {
+            holder.deleteBtn.setVisibility(View.VISIBLE);
+            holder.deleteBtn.setClickable(true);
+            holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle("Delete")
+                            .setMessage("Are you sure?")
+                            .setNegativeButton("No", null)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    firestore.collection("Posts/" + postId + "/Comments").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            for (QueryDocumentSnapshot snapshot : task.getResult()) {
+                                                firestore.collection("Posts/" + postId + "/Comments").document(snapshot.getId()).delete();
+                                            }
+                                        }
+                                    });
+                                    firestore.collection("Posts/" + postId + "/Likes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            for (QueryDocumentSnapshot snapshot : task.getResult()) {
+                                                firestore.collection("Posts/" + postId + "/Likes").document(snapshot.getId()).delete();
+                                            }
+                                        }
+                                    });
+                                    firestore.collection("Posts").document(postId).delete();
+                                    mList.remove(position);
+                                    notifyDataSetChanged();
+                                }
+                            });
+                    alert.show();
+                }
+            });
+        }
     }
 
     @Override
@@ -146,12 +189,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         ImageView postPic, commentsPic, likePic;
         CircleImageView profilePic;
         TextView postUsername, postDate, postCaption, postLikes;
+        ImageView deleteBtn;
         View mView;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
             likePic = mView.findViewById(R.id.like_btn);
             commentsPic = mView.findViewById(R.id.comments_post);
+            deleteBtn = mView.findViewById(R.id.delete_btn);
         }
 
         public void setPostLikes(int count) {

@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@color/white"
+                android:background="@color/ivory_black"
                 android:clickable="false"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
