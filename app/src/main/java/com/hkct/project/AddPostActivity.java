@@ -111,7 +111,7 @@ public class AddPostActivity extends AppCompatActivity {
                     });
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(AddPostActivity.this, "Please Add Image adn Write Your caption", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostActivity.this, "Please Add Image and Write Your Caption", Toast.LENGTH_SHORT).show();
                 }
             }
         });
