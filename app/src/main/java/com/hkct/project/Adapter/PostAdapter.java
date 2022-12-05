@@ -1,6 +1,7 @@
 package com.hkct.project.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hkct.project.CommentsActivity;
 import com.hkct.project.Model.Post;
 import com.hkct.project.R;
 
@@ -130,6 +132,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 }
             }
         });
+
+        //comments implementation
+        holder.commentsPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent commentIntent = new Intent(context, CommentsActivity.class);
+                commentIntent.putExtra("postid", postId);
+                context.startActivity(commentIntent);
+            }
+        });
     }
 
     @Override
@@ -146,6 +158,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             super(itemView);
             mView = itemView;
             likePic = mView.findViewById(R.id.like_btn);
+            commentsPic = mView.findViewById(R.id.comments_post);
         }
 
         public void setPostLikes(int count) {
