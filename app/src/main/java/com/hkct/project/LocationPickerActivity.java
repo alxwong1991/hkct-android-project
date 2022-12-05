@@ -127,7 +127,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
 
                             // Transform the appearance of the button to become the cancel button
                             selectLocationButton.setBackgroundColor(
-                                    ContextCompat.getColor(LocationPickerActivity.this, R.color.ivory_black));
+                                    ContextCompat.getColor(LocationPickerActivity.this, com.mapbox.mapboxsdk.R.color.mapbox_blue));
                             selectLocationButton.setText(getString(R.string.location_picker_select_location_button_cancel));
 
                             // Show the SymbolLayer icon to represent the selected map location
@@ -149,7 +149,7 @@ public class LocationPickerActivity extends AppCompatActivity implements Permiss
 
                             // Switch the button appearance back to select a location.
                             selectLocationButton.setBackgroundColor(
-                                    ContextCompat.getColor(LocationPickerActivity.this, R.color.ivory_black));
+                                    ContextCompat.getColor(LocationPickerActivity.this, com.mapbox.mapboxsdk.R.color.mapbox_blue));
                             selectLocationButton.setText(getString(R.string.location_picker_select_location_button_select));
 
                             // Show the red hovering ImageView marker

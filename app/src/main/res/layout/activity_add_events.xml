@@ -257,10 +257,10 @@
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="400px"
+        android:layout_width="350px"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:alpha="0.8"
+        android:alpha="0.96"
         app:menu="@menu/nav_menu"
         android:background="@drawable/rounded_menu"
         app:itemTextColor="@color/white"/>
