@@ -278,6 +278,22 @@ public class AddEventsActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //    MembershipActivity
+    public void menu6_click(MenuItem menuItem) {
+        Log.d(TAG,"menu6_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+        startActivity(new Intent(this, MembershipActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
+    //   QR code
+    public void menu7_click(MenuItem menuItem) {
+        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, QRcodeActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
