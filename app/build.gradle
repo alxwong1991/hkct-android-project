@@ -70,5 +70,11 @@ dependencies {
     implementation 'com.stripe:stripe-java:22.0.0'
     implementation 'com.android.volley:volley:1.2.1'
 
+   // QR code
+    implementation('com.journeyapps:zxing-android-embedded:3.6.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.3.0'
+
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+
 
 }

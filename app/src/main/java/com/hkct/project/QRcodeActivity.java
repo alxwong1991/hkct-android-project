@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.paymentsheet.PaymentSheet;
 import com.stripe.android.paymentsheet.PaymentSheetResult;
@@ -31,11 +37,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QRcodeActivity extends AppCompatActivity {
+public class QRcodeActivity extends AppCompatActivity implements View.OnClickListener{
 
         private final String TAG = "QRcodeActivity===>";
         private DrawerLayout drawerLayout;
         private ActionBarDrawerToggle actionBarDrawerToggle;
+
+        private Button btnScan;
 
 
         @Override
@@ -53,8 +61,36 @@ public class QRcodeActivity extends AppCompatActivity {
 
             Log.d(TAG, "===>QRcodeActivity!!!");
 
+            Button btn = (Button) findViewById(R.id.btn);
+            btn.setOnClickListener(this);
+
+            // Scan Button
+            btnScan = findViewById(R.id.QRscan);
+            btnScan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(QRcodeActivity.this, QRscanActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            });
+
 
         }//onCreate
+
+    public void getCode(){
+        ImageView ivCode=(ImageView)findViewById(R.id.qrview);
+        EditText etContent=(EditText)findViewById(R.id.qrtext);
+
+        BarcodeEncoder encoder = new BarcodeEncoder();
+
+        try{
+            Bitmap bit = encoder.encodeBitmap(etContent.getText().toString()
+                    , BarcodeFormat.QR_CODE,250,250);
+            ivCode.setImageBitmap(bit);
+        }catch (WriterException e){
+            e.printStackTrace();
+        }
+    }
 
 
         private void setNavigationDrawer() {
@@ -131,4 +167,8 @@ public class QRcodeActivity extends AppCompatActivity {
             drawerLayout.closeDrawers();
         }
 
+    @Override
+    public void onClick(View v) {
+        getCode();
+    }
 }//MembershipActivity

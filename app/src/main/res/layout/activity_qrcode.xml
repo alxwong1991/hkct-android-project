@@ -18,6 +18,36 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/qrtext"
+            android:hint="input text"
+            android:gravity="center"
+            android:textColor="@color/white">
+        </EditText>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn"
+            android:text="Btn">
+        </Button>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/QRscan"
+            android:text="QRcode scanner">
+        </Button>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/qrview">
+        </ImageView>
 
 
 
