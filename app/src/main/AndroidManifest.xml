@@ -52,6 +52,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".QRscanActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AddPostActivity"
             android:exported="false">
             <meta-data
