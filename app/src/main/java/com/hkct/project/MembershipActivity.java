@@ -305,4 +305,12 @@ public class MembershipActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //   QR code
+    public void menu7_click(MenuItem menuItem) {
+        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, QRcodeActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
 }//MembershipActivity

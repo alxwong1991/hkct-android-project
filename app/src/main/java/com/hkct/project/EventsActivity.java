@@ -147,6 +147,14 @@ public class EventsActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //   QR code
+    public void menu7_click(MenuItem menuItem) {
+        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, QRcodeActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
 //    public void menu4_click(MenuItem m){
 //        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
 //        FirebaseAuth.getInstance().signOut();
