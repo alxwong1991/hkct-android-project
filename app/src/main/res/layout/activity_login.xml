@@ -108,21 +108,21 @@
                 app:layout_constraintStart_toStartOf="@+id/inputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 
-<!--            debug button-->
-            <!--            debug button-->
 
-            <Button
-                android:id="@+id/btnDebug"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
-                android:text="For Debug Only"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/textView"
-                app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/inputPassword" />
+<!--            use for debugging-->
+<!--            <Button-->
+<!--                android:id="@+id/btnDebug"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:background="@drawable/input_bg"-->
+<!--                android:text="For Debug Only"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/textView"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/forgotPassword"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/inputPassword" />-->
+<!--            use for debugging-->
 
             <TextView
                 android:id="@+id/createNewAccount"
