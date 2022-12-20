@@ -45,7 +45,6 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
         private Button btnScan;
 
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
