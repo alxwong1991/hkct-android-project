@@ -5,11 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,8 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,15 +34,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.hkct.project.Adapter.ProfilePostAdapter;
+import com.hkct.project.Adapter.PostAdapter;
 import com.hkct.project.Model.Post;
+import com.hkct.project.Model.Users;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -58,10 +53,13 @@ public class ProfileActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseFirestore firestore;
     private String Uid;
-    private Uri mImageUri = null;
     private FirebaseAuth auth;
+    private Uri mImageUri;
     private Query query;
     private ListenerRegistration listenerRegistration;
+    private List<Post> posts;
+    private List<Users> user;
+    private PostAdapter adapter;
 
     // test member
     private Button mTestBtn;
@@ -69,8 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView mMembershipIcon;
 
     RecyclerView mRecyclerView;
-    ProfilePostAdapter profilePostAdapter;
-    List<Post> posts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,15 +90,64 @@ public class ProfileActivity extends AppCompatActivity {
         mCancelTestBtn = findViewById(R.id.test_cancel_member_btn);
         mMembershipIcon = findViewById(R.id.membership_icon);
 
-//        mRecyclerView.findViewById(R.id.recyclerViewPosts);
-//        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView = findViewById(R.id.recyclerViewPosts);
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
 //        int numberOfColumns = 3;
 //        LinearLayoutManager linearLayoutManager = new GridLayoutManager(ProfileActivity.this, numberOfColumns);
 //        mRecyclerView.setLayoutManager(linearLayoutManager);
 
-//        posts = new ArrayList<>();
-//        profilePostAdapter = new ProfilePostAdapter(ProfileActivity.this, posts);
+        posts = new ArrayList<>();
+        user = new ArrayList<>();
+        adapter = new PostAdapter(ProfileActivity.this, posts, user);
+        mRecyclerView.setAdapter(adapter);
+
 //        mRecyclerView.setAdapter(profilePostAdapter);
+
+        if (auth.getCurrentUser() != null) {
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    Boolean isBottom = !mRecyclerView.canScrollVertically(1);
+                    if (isBottom)
+                        Toast.makeText(ProfileActivity.this, "Reached Bottom", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            // get current user posts
+            query = firestore.collection("Posts").whereEqualTo("user", auth.getCurrentUser().getUid()).orderBy("time", Query.Direction.DESCENDING);
+
+            listenerRegistration = query.addSnapshotListener(ProfileActivity.this, new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                    for (DocumentChange doc : value.getDocumentChanges()) {
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
+                            String postID = doc.getDocument().getId();
+                            Post post = doc.getDocument().toObject(Post.class).withId(postID);
+                            String postUserID = doc.getDocument().getString("user");
+                            firestore.collection("Users").document(postUserID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        Users users = task.getResult().toObject(Users.class);
+                                        user.add(users);
+                                        posts.add(post);
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                    listenerRegistration.remove();
+                }
+            });
+        }
 
         // get membership
         mTestBtn.setOnClickListener(new View.OnClickListener() {
@@ -164,53 +209,32 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+        Log.d(TAG,"===>profileActivity!!!");
+        setNavigationDrawer();
+    }
 
-//        if (auth.getCurrentUser() != null) {
-//            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        if (currentUser == null) {
+//            startActivity(new Intent(ProfileActivity.this, DiscoverActivity.class));
+//            finish();
+//        } else {
+//            String currentUserId = auth.getCurrentUser().getUid();
+//            firestore.collection("Users").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //                @Override
-//                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                    super.onScrolled(recyclerView, dx, dy);
-//                    Boolean isBottom = !mRecyclerView.canScrollVertically(1);
-//                    if (isBottom) {
-//                        Toast.makeText(ProfileActivity.this, "Reached Bottom", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//
-//            query = firestore.collection("Posts").whereEqualTo("user", firebaseAuth.getCurrentUser().getUid()).orderBy("time", Query.Direction.DESCENDING);
-//
-//            listenerRegistration = query.addSnapshotListener(ProfileActivity.this, new EventListener<QuerySnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                    for (DocumentChange doc : value.getDocumentChanges()) {
-//                        if (doc.getType() == DocumentChange.Type.ADDED) {
-//                            String postId = doc.getDocument().getId();
-//                            Post post = doc.getDocument().toObject(Post.class).withId(postId);
-//                            String postUserId = doc.getDocument().getString("user");
-//                            firestore.collection("Posts").document(postUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                    if (task.isSuccessful()) {
-//                                        posts.add(post);
-//                                        profilePostAdapter.notifyDataSetChanged();
-//                                    } else {
-//                                        Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                            });
-//                        } else {
-//                            profilePostAdapter.notifyDataSetChanged();
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        if (!task.getResult().exists()) {
+//                            startActivity(new Intent(ProfileActivity.this, AddPostActivity.class));
+//                            finish();
 //                        }
 //                    }
-//                    listenerRegistration.remove();
 //                }
 //            });
 //        }
-
-        Log.d(TAG,"===>profileActivity!!!");
-
-        setNavigationDrawer();
-    }
+//    }
 
     // test membership
     private void refreshPage() {

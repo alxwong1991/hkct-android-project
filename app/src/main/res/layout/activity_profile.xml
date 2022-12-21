@@ -63,7 +63,6 @@
             android:visibility="invisible"
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/test_member_btn"
             app:layout_constraintTop_toTopOf="@+id/test_member_btn"/>
 
