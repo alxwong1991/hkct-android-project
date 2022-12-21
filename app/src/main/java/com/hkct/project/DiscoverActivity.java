@@ -48,6 +48,7 @@ public class DiscoverActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private RecyclerView mRecyclerView;
@@ -57,7 +58,6 @@ public class DiscoverActivity extends AppCompatActivity {
     private ListenerRegistration listenerRegistration;
     private List<Users> usersList;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +85,10 @@ public class DiscoverActivity extends AppCompatActivity {
                         Toast.makeText(DiscoverActivity.this, "Reached Bottom", Toast.LENGTH_SHORT).show();
                 }
             });
+
+            // get all users posts
             query = firestore.collection("Posts").orderBy("time", Query.Direction.DESCENDING);
+
             listenerRegistration = query.addSnapshotListener(DiscoverActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -115,7 +118,6 @@ public class DiscoverActivity extends AppCompatActivity {
                 }
             });
         }
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setNavigationDrawer();
     }
@@ -190,6 +192,7 @@ public class DiscoverActivity extends AppCompatActivity {
         Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
 //        txtOutput.setText(R.string.msg3);
 //        txtOutput.setTextColor(Color.RED);
+        startActivity(new Intent(this, ProfileActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }

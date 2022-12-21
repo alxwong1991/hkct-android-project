@@ -50,6 +50,8 @@ public class SetUpActivity extends AppCompatActivity {
     private Uri mImageUri = null;
     private ProgressBar progressBar;
     private boolean isPhotoSelected = false;
+    private String isMember = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +109,6 @@ public class SetUpActivity extends AppCompatActivity {
                                             saveToFireStore(task, name, uri);
                                         }
                                     });
-
                                 } else {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(SetUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -123,6 +124,7 @@ public class SetUpActivity extends AppCompatActivity {
                 }
             }
         });
+
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +147,7 @@ public class SetUpActivity extends AppCompatActivity {
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", name);
         map.put("image", downloadUri.toString());
+        map.put("membership", isMember);
         firestore.collection("Users").document(Uid).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -160,6 +163,7 @@ public class SetUpActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
