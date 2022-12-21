@@ -122,26 +122,30 @@ public class ProfileActivity extends AppCompatActivity {
             listenerRegistration = query.addSnapshotListener(ProfileActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                    for (DocumentChange doc : value.getDocumentChanges()) {
-                        if (doc.getType() == DocumentChange.Type.ADDED) {
-                            String postID = doc.getDocument().getId();
-                            Post post = doc.getDocument().toObject(Post.class).withId(postID);
-                            String postUserID = doc.getDocument().getString("user");
-                            firestore.collection("Users").document(postUserID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        Users users = task.getResult().toObject(Users.class);
-                                        user.add(users);
-                                        posts.add(post);
-                                        adapter.notifyDataSetChanged();
-                                    } else {
-                                        Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    if (error != null) {
+                        Toast.makeText(ProfileActivity.this, "No Posts", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (DocumentChange doc : value.getDocumentChanges()) {
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+                                String postID = doc.getDocument().getId();
+                                Post post = doc.getDocument().toObject(Post.class).withId(postID);
+                                String postUserID = doc.getDocument().getString("user");
+                                firestore.collection("Users").document(postUserID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            Users users = task.getResult().toObject(Users.class);
+                                            user.add(users);
+                                            posts.add(post);
+                                            adapter.notifyDataSetChanged();
+                                        } else {
+                                            Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                }
-                            });
-                        } else {
-                            adapter.notifyDataSetChanged();
+                                });
+                            } else {
+                                adapter.notifyDataSetChanged();
+                            }
                         }
                     }
                     listenerRegistration.remove();
