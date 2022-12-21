@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     private Activity context;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
+//    private String Uid;
 
     public PostAdapter(Activity context, List<Post> mList, List<Users> usersList) {
         this.mList = mList;
@@ -58,6 +60,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         View v = LayoutInflater.from(context).inflate(R.layout.each_post, parent, false);
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+//        Uid = auth.getCurrentUser().getUid();
         return new PostViewHolder(v);
     }
 
@@ -139,6 +142,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         });
 
         if (currentUserId.equals(post.getUser())) {
+
+//            firestore.collection("Users").whereEqualTo("membership", "1").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        if (currentUserId.equals(Uid)) {
+//                            holder.membershipIcon.setVisibility(View.VISIBLE);
+//                        }
+//                    }
+//                }
+//            });
+
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setClickable(true);
             holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +204,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         CircleImageView profilePic;
         TextView postUsername, postDate, postCaption, postLikes;
         ImageView deleteBtn;
+        ImageView membershipIcon;
+
         View mView;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -196,6 +213,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             likePic = mView.findViewById(R.id.like_btn);
             commentsPic = mView.findViewById(R.id.comments_post);
             deleteBtn = mView.findViewById(R.id.delete_btn);
+            membershipIcon = mView.findViewById(R.id.membership_icon_post);
         }
 
         public void setPostLikes(int count) {

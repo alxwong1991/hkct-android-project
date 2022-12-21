@@ -58,7 +58,6 @@ public class DiscoverActivity extends AppCompatActivity {
     private ListenerRegistration listenerRegistration;
     private List<Users> usersList;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,7 @@ public class DiscoverActivity extends AppCompatActivity {
                 }
             });
 
-            // get all posts
+            // get all users posts
             query = firestore.collection("Posts").orderBy("time", Query.Direction.DESCENDING);
 
             listenerRegistration = query.addSnapshotListener(DiscoverActivity.this, new EventListener<QuerySnapshot>() {
