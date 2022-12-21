@@ -30,7 +30,11 @@ import com.stripe.android.paymentsheet.PaymentSheetResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.http.POST;
@@ -50,6 +54,8 @@ public class MembershipActivity extends AppCompatActivity {
     String customerID;
     String EphericalKey;
     String ClientSecret;
+    Date date;
+    TextView planDate;
 
 
     @Override
@@ -66,6 +72,27 @@ public class MembershipActivity extends AppCompatActivity {
         setNavigationDrawer();
 
         Log.d(TAG,"===>MembershipActivity!!!");
+
+
+        //planDate
+        Calendar rightNow = Calendar.getInstance();
+
+        //add planDate
+        rightNow.add(Calendar.DAY_OF_YEAR, 10);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+
+        Date date = rightNow.getTime();
+
+        String format = sdf.format(date);
+
+        planDate=findViewById(R.id.planDate);
+        planDate.setText(format);
+
+
+
+
+
 
         //Stripe 2
         button = findViewById(R.id.btn);
@@ -124,9 +151,13 @@ public class MembershipActivity extends AppCompatActivity {
 
     }//onCreate
 
+
+    //payment success
     private void onPaymentResult(PaymentSheetResult paymentSheetResult) {
         if(paymentSheetResult instanceof PaymentSheetResult.Completed){
             Toast.makeText(this, "payment success", Toast.LENGTH_SHORT).show();
+
+
         }
 
     }

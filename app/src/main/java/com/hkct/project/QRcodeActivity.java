@@ -61,6 +61,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
             Log.d(TAG, "===>QRcodeActivity!!!");
 
+            //-g QrCode btn
             Button btn = (Button) findViewById(R.id.btn);
             btn.setOnClickListener(this);
 
@@ -77,6 +78,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
         }//onCreate
 
+    // -g QRcode by EditText -- findViewById(R.id.qrtext)
     public void getCode(){
         ImageView ivCode=(ImageView)findViewById(R.id.qrview);
         EditText etContent=(EditText)findViewById(R.id.qrtext);

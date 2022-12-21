@@ -15,19 +15,140 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:padding="10dp"
             >
+
+
+
+
+
+            <!--  user name  -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ms_userNameCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp">
+                <TextView
+                    android:id="@+id/ms_userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808A87"
+                    android:gravity="center"
+                    android:padding="30dp"
+                    android:text="userName"
+                    android:textColor="#FFE384"
+                    android:textSize="20dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:text="Current Plan"
+                android:gravity="center"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="50dp"
+                android:textColor="@color/white"
+                android:text="Premium"
+                android:gravity="center"
+                >
+            </TextView>
+
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/planCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808A87"
+                    android:gravity="center"
+                    android:paddingTop="30dp"
+                    android:text="1 - month plan"
+                    android:textColor="#FFE384"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808A87"
+                    android:gravity="center"
+                    android:paddingBottom="30dp"
+                    android:text="$ 299"
+                    android:textColor="#FFE384"
+                    android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:text="Expiry date : "
+                        android:textColor="@color/ivory_black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/planDate"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textColor="@color/ivory_black"
+                        android:text="palnDate"
+                        android:gravity="center"
+                        >
+                    </TextView>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:id="@+id/btn"
                 android:text="pay"
-                android:layout_marginTop="250dp"
+                android:background="@drawable/rounded_button"
                 >
             </Button>
+
+
+
+
+
+
+
 
 
 

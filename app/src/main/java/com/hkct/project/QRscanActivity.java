@@ -2,11 +2,15 @@ package com.hkct.project;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import java.io.IOException;
 
 public class QRscanActivity extends AppCompatActivity {
 
+    private final String TAG = "QRscanActivity===>";
     private SurfaceView surfaceView;
     private TextView textView;
     private CameraSource cameraSource;
@@ -49,11 +54,16 @@ public class QRscanActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes=detections.getDetectedItems();
                 if(qrCodes.size()!=0){
                     textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
+
+                    // startActivity(new Intent(this, profile.class));
+                    // QRscansActivity.this.finish();
+                    Log.d(TAG, "menu6_click()->" + qrCodes.valueAt(0).displayValue);
                 }
             }
         });
@@ -154,4 +164,16 @@ public class QRscanActivity extends AppCompatActivity {
                 break;
         }
     }
+    public void backClick(View v){
+        startActivity(new Intent(this,EventsActivity.class));
+
+        int version = Integer.valueOf(android.os.Build.VERSION.SDK);
+        if(version >=5){
+
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        }
+        this.finish();
+    }
+
 }
