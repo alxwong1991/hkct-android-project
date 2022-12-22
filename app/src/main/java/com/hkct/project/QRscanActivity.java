@@ -58,7 +58,7 @@ public class QRscanActivity extends AppCompatActivity {
         });
 
 
-        // 取得相機權限
+
         getPermissionCamera();
 
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -96,8 +96,7 @@ public class QRscanActivity extends AppCompatActivity {
         });
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                //.setRequestedPreviewSize(300, 300) // 可以自訂預覽視窗畫面內容大小
-                .setAutoFocusEnabled(true) // 自動對焦
+                .setAutoFocusEnabled(true)
                 .build();
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -127,42 +126,39 @@ public class QRscanActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * 自訂相機權限代號，用於判斷是否取得權限
-     */
+
     private static final int REQUEST_CAMERA_PERMISSION = 1;
 
     /**
-     * 取得相機權限
+     * Get camera permissions
      */
     public void getPermissionCamera() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
-            // 已有相機權限，不須再詢問
             return;
         }
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
 
-            // 曾經被使用者拒絕授予權限過，可以在這邊提醒使用者為何需要權限
+            // Remind users why permissions are needed
             new AlertDialog.Builder(this)
                     .setCancelable(false)
-                    .setTitle("需要相機權限")
-                    .setMessage("需要相機權限才能掃描 QR Code，請授予相機權限")
+                    .setTitle("Camera permission required")
+                    .setMessage("Camera permission is required to scan QR Code, please grant camera permission")
                     .setPositiveButton("OK", (dialog, which) -> {
-                                // 再次顯示權限授予視窗
+                                // Show permission grant window again
                                 ActivityCompat.requestPermissions(QRscanActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                             }
                     )
                     .show();
         } else {
-            // 第一次詢問權限，或者使用者點選「不再詢問」
+            // Ask for permissions for the first time, or the user clicks "Don't ask again"
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
         }
     }
 
     /**
-     * 取得詢問相機權限的結果
+     * Get the result of asking camera permission
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -171,8 +167,8 @@ public class QRscanActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 使用者同意授予權限
-                    Toast.makeText(this, "已取得相機權限", Toast.LENGTH_SHORT).show();
+                    // User agrees to grant permissions
+                    Toast.makeText(this, "Camera permission has been obtained", Toast.LENGTH_SHORT).show();
 
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         return;
@@ -185,8 +181,8 @@ public class QRscanActivity extends AppCompatActivity {
 
 
                 } else {
-                    // 使用者拒絕授予權限
-                    Toast.makeText(this, "未取得相機權限", Toast.LENGTH_SHORT).show();
+                    // User denied permission
+                    Toast.makeText(this, "Camera permission not obtained", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

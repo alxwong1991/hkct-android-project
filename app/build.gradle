@@ -75,7 +75,6 @@ dependencies {
    // QR code
     implementation('com.journeyapps:zxing-android-embedded:3.6.0') { transitive = false }
     implementation 'com.google.zxing:core:3.3.0'
-
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
 
 
