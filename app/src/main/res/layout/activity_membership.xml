@@ -10,41 +10,125 @@
 
         tools:context=".MembershipActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_pic_personal"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/elcipse"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_name_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Username"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
+            app:layout_constraintTop_toTopOf="@+id/profile_pic_personal" />
+
+<!--        <Button-->
+<!--            android:id="@+id/test_member_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:text="Test Member"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/profile_name_personal"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/profile_name_personal" />-->
+
+        <Button
+            android:id="@+id/test_cancel_member_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:text="Cancel Member"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/membership_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/membership_icon"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
+            app:layout_constraintTop_toBottomOf="@+id/profile_name_personal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPosts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="150dp"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="parent" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="20dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.455"
+            android:onClick="myQRcode"
+            >
+
+
+            <ImageView
+                android:padding="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="80dp"
+                android:background="#808A87"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_qr_code_2_24">
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp"
+            android:layout_marginTop="150dp"
             >
 
 
-
-
-
-            <!--  user name  -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/ms_userNameCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp">
-                <TextView
-                    android:id="@+id/ms_userName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#808A87"
-                    android:gravity="center"
-                    android:padding="30dp"
-                    android:text="userName"
-                    android:textColor="#FFE384"
-                    android:textSize="20dp" />
-            </androidx.cardview.widget.CardView>
-
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -58,9 +142,9 @@
                 android:id="@+id/plan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="50dp"
+                android:textSize="40dp"
                 android:textColor="@color/white"
-                android:text="Premium"
+                android:text="Free Member"
                 android:gravity="center"
                 >
             </TextView>
@@ -84,33 +168,27 @@
                     android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/title_plan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#808A87"
                     android:gravity="center"
                     android:paddingTop="30dp"
-                    android:text="1 - month plan"
+                    android:paddingBottom="30dp"
+                    android:text="Become Premium"
                     android:textColor="#FFE384"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#808A87"
-                    android:gravity="center"
-                    android:paddingBottom="30dp"
-                    android:text="$ 299"
-                    android:textColor="#FFE384"
-                    android:textSize="20dp" />
 
                     <TextView
+                        android:id="@+id/monthplan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
-                        android:text="Expiry date : "
+                        android:text="30 days plan"
                         android:textColor="@color/ivory_black"
                         android:textSize="20dp" />
 
@@ -122,7 +200,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         android:textColor="@color/ivory_black"
-                        android:text="palnDate"
+                        android:text="$ 299"
                         android:gravity="center"
                         >
                     </TextView>
@@ -142,16 +220,6 @@
                 android:background="@drawable/rounded_button"
                 >
             </Button>
-
-
-
-
-
-
-
-
-
-
 
 
 

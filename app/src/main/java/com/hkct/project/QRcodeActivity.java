@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -43,7 +44,9 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
         private DrawerLayout drawerLayout;
         private ActionBarDrawerToggle actionBarDrawerToggle;
 
-        private Button btnScan;
+        private CardView btnScan;
+
+        private String uidQR;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
             Log.d(TAG, "===>QRcodeActivity!!!");
 
             //-g QrCode btn
-            Button btn = (Button) findViewById(R.id.btn);
+            CardView btn = (CardView) findViewById(R.id.btn);
             btn.setOnClickListener(this);
 
             // Scan Button
@@ -74,6 +77,10 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
 
+            Bundle bundle = getIntent().getExtras();
+            uidQR = bundle.getString("uidQR");
+            Log.d("===", "bundle.getString(\\\"uidQR\\\");\" "+uidQR);
+
 
         }//onCreate
 
@@ -81,6 +88,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
     public void getCode(){
         ImageView ivCode=(ImageView)findViewById(R.id.qrview);
         EditText etContent=(EditText)findViewById(R.id.qrtext);
+        etContent.setText(uidQR);
 
         BarcodeEncoder encoder = new BarcodeEncoder();
 

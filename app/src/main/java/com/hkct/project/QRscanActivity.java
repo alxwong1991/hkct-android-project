@@ -38,6 +38,26 @@ public class QRscanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscan);
 
+
+        // Scan Button
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+
+
         // 取得相機權限
         getPermissionCamera();
 
@@ -61,9 +81,16 @@ public class QRscanActivity extends AppCompatActivity {
                 if(qrCodes.size()!=0){
                     textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
 
-                    // startActivity(new Intent(this, profile.class));
-                    // QRscansActivity.this.finish();
-                    Log.d(TAG, "menu6_click()->" + qrCodes.valueAt(0).displayValue);
+                    Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("uidQR", textView.toString());
+                    intent.putExtras(bundle);
+
+                    startActivity(intent);
+
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                    Log.d(TAG, "displayValue->" + qrCodes.valueAt(0).displayValue);
                 }
             }
         });
