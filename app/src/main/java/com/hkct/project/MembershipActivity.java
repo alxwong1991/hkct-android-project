@@ -277,7 +277,7 @@ public class MembershipActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
                             customerID = object.getString("id");
-                            Toast.makeText(MembershipActivity.this, customerID, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MembershipActivity.this, customerID, Toast.LENGTH_SHORT).show();
 
                             // transaction number
                             Log.d("debug || customerID  : ", "result :" + customerID );
@@ -373,7 +373,7 @@ public class MembershipActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
                             EphericalKey = object.getString("id");
-                            Toast.makeText(MembershipActivity.this, EphericalKey, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MembershipActivity.this, EphericalKey, Toast.LENGTH_SHORT).show();
                             Log.d("debug || EphericalKey : ", "result :" + EphericalKey);
 
                             getClientSecret(customerID, EphericalKey);
@@ -421,7 +421,7 @@ public class MembershipActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
                             ClientSecret = object.getString("client_secret");
-                            Toast.makeText(MembershipActivity.this, ClientSecret, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MembershipActivity.this, ClientSecret, Toast.LENGTH_SHORT).show();
 
                             Log.d("debug || ClientSecret  : ", "result :" + ClientSecret );
 

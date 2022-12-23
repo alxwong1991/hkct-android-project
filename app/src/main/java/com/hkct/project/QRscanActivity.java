@@ -45,7 +45,6 @@ public class QRscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
