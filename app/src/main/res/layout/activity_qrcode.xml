@@ -27,20 +27,122 @@
             android:textColor="@color/white">
         </EditText>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn"
-            android:text="Btn">
-        </Button>
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:onClick="myQRcode"
+                android:layout_marginBottom="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <ImageView
+
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="#808A87"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_qr_code_2_24">
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/text_date"
+                        android:background="#808A87"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="myQRcode"
+                        android:textSize="20dp"
+
+                        android:gravity="center"
+                        android:textColor="#FFE384"
+
+                        android:paddingBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/QRscan"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:onClick="QRscan"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <ImageView
+
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="#808A87"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_qr_code_scanner_24">
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/text_time"
+                        android:background="#808A87"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="QRcode Scanner"
+                        android:textSize="20dp"
+
+                        android:gravity="center"
+                        android:textColor="#FFE384"
+
+                        android:paddingBottom="10dp"
+                        />
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/QRscan"
-            android:text="QRcode scanner">
-        </Button>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+
+
+<!--        <Button-->
+<!--            android:id="@+id/btnEdit"-->
+<!--            android:alpha="0.9"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="confirm"-->
+<!--            android:background="@drawable/rounded_button"-->
+<!--            android:onClick="backClick"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            />-->
+
 
         <ImageView
             android:layout_width="match_parent"
