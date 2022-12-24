@@ -46,7 +46,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     private Activity context;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
-//    private String Uid;
+    private String Uid;
 
     public PostAdapter(Activity context, List<Post> mList, List<Users> usersList) {
         this.mList = mList;
@@ -60,7 +60,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         View v = LayoutInflater.from(context).inflate(R.layout.each_post, parent, false);
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-//        Uid = auth.getCurrentUser().getUid();
+        Uid = auth.getCurrentUser().getUid();
         return new PostViewHolder(v);
     }
 
@@ -143,16 +143,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         if (currentUserId.equals(post.getUser())) {
 
-//            firestore.collection("Users").whereEqualTo("membership", "1").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        if (currentUserId.equals(Uid)) {
-//                            holder.membershipIcon.setVisibility(View.VISIBLE);
-//                        }
-//                    }
-//                }
-//            });
+            firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().exists()) {
+                            String memberShip = task.getResult().getString("membership");
+                            if (memberShip.equals("1")) {
+                                holder.membershipIcon.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+            });
 
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setClickable(true);

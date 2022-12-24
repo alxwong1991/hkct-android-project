@@ -15,45 +15,13 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_pic_personal"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/elcipse"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/profile_name_personal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Username"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
-                app:layout_constraintTop_toTopOf="@+id/profile_pic_personal" />
-
-            <Button
-                android:id="@+id/test_member_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
-                android:text="Test Member"
-                app:layout_constraintStart_toEndOf="@+id/profile_name_personal"
-                app:layout_constraintTop_toTopOf="@+id/profile_name_personal" />
-
-            <Button
-                android:id="@+id/test_cancel_member_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
-                android:text="Cancel Member"
-                app:layout_constraintStart_toEndOf="@+id/profile_name_personal"
-                app:layout_constraintTop_toBottomOf="@+id/test_member_btn" />
 
             <ImageView
                 android:id="@+id/membership_icon"
@@ -62,9 +30,20 @@
                 android:src="@drawable/membership_icon"
                 android:visibility="invisible"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toEndOf="@+id/test_member_btn"
-                app:layout_constraintTop_toTopOf="@+id/test_member_btn"/>
+                app:layout_constraintStart_toEndOf="@+id/profile_name_personal"
+                app:layout_constraintTop_toTopOf="@+id/profile_name_personal"/>
+
+            <TextView
+                android:id="@+id/profile_name_personal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Username"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_pic_personal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPosts"
