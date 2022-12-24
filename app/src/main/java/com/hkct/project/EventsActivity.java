@@ -119,19 +119,23 @@ public class EventsActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
-    public void menu2_click(MenuItem m){
-        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
-//        txtOutput.setText(R.string.msg2);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        drawerLayout.closeDrawers();
-    }
+//    public void menu2_click(MenuItem m){
+//        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
+////        txtOutput.setText(R.string.msg2);
+//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//        drawerLayout.closeDrawers();
+//    }
+
+    //   Profile
     public void menu3_click(MenuItem m){
         Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
+        startActivity(new Intent(this, ProfileActivity.class));
 //        txtOutput.setText(R.string.msg3);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
+    //   Events
     public void menu5_click(MenuItem menuItem) {
         Log.d(TAG,"menu5_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, EventsActivity.class));

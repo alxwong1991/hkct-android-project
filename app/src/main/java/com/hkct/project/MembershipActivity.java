@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -510,14 +511,15 @@ public class MembershipActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
-    public void menu2_click(MenuItem m){
-        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
-//        txtOutput.setText(R.string.msg2);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        drawerLayout.closeDrawers();
-    }
+//    public void menu2_click(MenuItem m){
+//        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
+////        txtOutput.setText(R.string.msg2);
+//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//        drawerLayout.closeDrawers();
+//    }
     public void menu3_click(MenuItem m){
         Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
+        startActivity(new Intent(this, ProfileActivity.class));
 //        txtOutput.setText(R.string.msg3);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
@@ -536,6 +538,24 @@ public class MembershipActivity extends AppCompatActivity {
         startActivity(new Intent(this, MembershipActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void menu_profile_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),SetUpActivity.class));
+    }
+
+    public void menu_logout_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Toast.makeText(MembershipActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
 
     //   QR code

@@ -7,10 +7,10 @@
         android:onClick="menu1_click"
         android:title="Discover" />
 
-    <item
-        android:id="@+id/nav_settings"
-        android:onClick="menu2_click"
-        android:title="Settings" />
+<!--    <item-->
+<!--        android:id="@+id/nav_settings"-->
+<!--        android:onClick="menu2_click"-->
+<!--        android:title="Settings" />-->
 
     <item
         android:id="@+id/nav_profile"

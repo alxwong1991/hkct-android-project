@@ -180,14 +180,15 @@ public class DiscoverActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
-    public void menu2_click(MenuItem menuItem) {
-        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//        txtOutput.setText(R.string.msg2);
-//        txtOutput.setTextColor(Color.RED);
-        drawerLayout.closeDrawers();
-    }
+//    public void menu2_click(MenuItem menuItem) {
+//        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+////        txtOutput.setText(R.string.msg2);
+////        txtOutput.setTextColor(Color.RED);
+//        drawerLayout.closeDrawers();
+//    }
 
+    //   Profile
     public void menu3_click(MenuItem menuItem) {
         Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
 //        txtOutput.setText(R.string.msg3);
@@ -197,6 +198,7 @@ public class DiscoverActivity extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    //   Events
     public void menu5_click(MenuItem menuItem) {
         Log.d(TAG,"menu5_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, EventsActivity.class));

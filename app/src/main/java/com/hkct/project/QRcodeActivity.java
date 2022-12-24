@@ -139,16 +139,17 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
             drawerLayout.closeDrawers();
         }
 
-        public void menu2_click(MenuItem m) {
-            Log.d(TAG, "menu2_click()->" + m.getItemId() + "," + m.getTitle());
-//        txtOutput.setText(R.string.msg2);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            drawerLayout.closeDrawers();
-        }
+//        public void menu2_click(MenuItem m) {
+//            Log.d(TAG, "menu2_click()->" + m.getItemId() + "," + m.getTitle());
+////        txtOutput.setText(R.string.msg2);
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            drawerLayout.closeDrawers();
+//        }
 
         public void menu3_click(MenuItem m) {
             Log.d(TAG, "menu3_click()->" + m.getItemId() + "," + m.getTitle());
 //        txtOutput.setText(R.string.msg3);
+            startActivity(new Intent(this, ProfileActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             drawerLayout.closeDrawers();
         }
