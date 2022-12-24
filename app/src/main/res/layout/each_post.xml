@@ -12,6 +12,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/black"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,12 +60,12 @@
                 android:id="@+id/membership_icon_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/membership_icon"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/username_tv"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/user_post"
@@ -97,9 +98,9 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/caption_tv"
+                app:layout_constraintTop_toBottomOf="@+id/user_post"
                 app:srcCompat="@drawable/before_liked" />
 
             <TextView
@@ -107,22 +108,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="36dp"
                 android:text="0 Likes"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/like_btn"
-                app:layout_constraintTop_toTopOf="@+id/like_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/user_post" />
 
             <ImageView
                 android:id="@+id/comments_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginBottom="5dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/like_count_tv"
                 app:layout_constraintTop_toTopOf="@+id/like_count_tv"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_baseline_insert_comment_24" />
 
             <ImageButton

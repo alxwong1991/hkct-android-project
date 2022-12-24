@@ -39,22 +39,22 @@ public class QRscanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrscan);
 
 
-        // Scan Button
-        textView = findViewById(R.id.textView);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        });
+//        // Scan Button
+//        textView = findViewById(R.id.textView);
+//        textView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
+//                intent.putExtras(bundle);
+//
+//                startActivity(intent);
+//
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            }
+//        });
 
 
 
@@ -80,14 +80,31 @@ public class QRscanActivity extends AppCompatActivity {
                 if(qrCodes.size()!=0){
                     textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
 
-                    Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("uidQR", textView.toString());
-                    intent.putExtras(bundle);
+//                    Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("uidQR", textView.toString());
+//                    intent.putExtras(bundle);
+//
+//                    startActivity(intent);
+//
+//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-                    startActivity(intent);
 
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("uidQR", textView.getText().toString());
+//                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
 
                     Log.d(TAG, "displayValue->" + qrCodes.valueAt(0).displayValue);
                 }

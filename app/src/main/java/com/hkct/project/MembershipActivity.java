@@ -133,7 +133,7 @@ public class MembershipActivity extends AppCompatActivity {
 
         // test member
 //        mTestBtn = findViewById(R.id.test_member_btn);
-        mCancelTestBtn = findViewById(R.id.test_cancel_member_btn);
+//        mCancelTestBtn = findViewById(R.id.test_cancel_member_btn);
         mMembershipIcon = findViewById(R.id.membership_icon);
 
         mRecyclerView = findViewById(R.id.recyclerViewPosts);
@@ -186,22 +186,22 @@ public class MembershipActivity extends AppCompatActivity {
 //        });
 
 //         cancel membership
-        mCancelTestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firestore.collection("Users").document(Uid).update("membership", "0").addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MembershipActivity.this, "Unsubscribe!", Toast.LENGTH_SHORT).show();
-                            refreshPage();
-                        } else {
-                            Toast.makeText(MembershipActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
+//        mCancelTestBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                firestore.collection("Users").document(Uid).update("membership", "0").addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(MembershipActivity.this, "Unsubscribe!", Toast.LENGTH_SHORT).show();
+//                            refreshPage();
+//                        } else {
+//                            Toast.makeText(MembershipActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//            }
+//        });
 //
         firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
