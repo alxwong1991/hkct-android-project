@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -141,6 +140,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             }
         });
 
+        holder.postLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent likeIntent = new Intent(context, )
+            }
+        });
+
         if (currentUserId.equals(post.getUser())) {
 
             firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -217,6 +223,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             commentsPic = mView.findViewById(R.id.comments_post);
             deleteBtn = mView.findViewById(R.id.delete_btn);
             membershipIcon = mView.findViewById(R.id.membership_icon_post);
+            CircleImageView circleImageView;
         }
 
         public void setPostLikes(int count) {
