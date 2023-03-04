@@ -108,7 +108,6 @@
                 app:layout_constraintStart_toStartOf="@+id/inputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 
-
 <!--            use for debugging-->
 <!--            <Button-->
 <!--                android:id="@+id/btnDebug"-->
