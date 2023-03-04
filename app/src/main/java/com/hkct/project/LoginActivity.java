@@ -43,8 +43,13 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         inputEmail = findViewById(R.id.inputEmail);
+        // set default login
+        inputEmail.setText("alex@gmail.com");
         inputPassword = findViewById(R.id.inputPassword);
+        // set default login
+        inputPassword.setText("alex123");
         btnLogin = findViewById(R.id.btnLogin);
+        // use for debugging
 //        btnDebug = findViewById(R.id.btnDebug);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
