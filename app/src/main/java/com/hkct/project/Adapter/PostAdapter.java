@@ -30,6 +30,9 @@ import com.hkct.project.CommentsActivity;
 import com.hkct.project.LikesActivity;
 import com.hkct.project.Model.Post;
 import com.hkct.project.Model.Users;
+import com.hkct.project.OtherProfileActivity;
+import com.hkct.project.OtherUsersActivity;
+import com.hkct.project.ProfileActivity;
 import com.hkct.project.R;
 
 import java.text.DateFormat;
@@ -147,10 +150,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.postLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("hello","abc123");
                 Intent likeIntent = new Intent(context, LikesActivity.class);
                 likeIntent.putExtra("postid", postId);
                 context.startActivity(likeIntent);
+            }
+        });
+
+        // other profile implementation
+        holder.postUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("hello","abc123");
+                String otherUserUid = mList.get(position).getUser();
+                String currentUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                Intent profileIntent;
+                if (otherUserUid.equals(currentUserUid)) {
+                    profileIntent = new Intent(context, ProfileActivity.class);
+                } else {
+                    profileIntent = new Intent(context, OtherProfileActivity.class);
+                    profileIntent.putExtra("otherUserUid", otherUserUid);
+                }
+                context.startActivity(profileIntent);
             }
         });
 
