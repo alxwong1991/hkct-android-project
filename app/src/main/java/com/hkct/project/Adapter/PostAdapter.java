@@ -160,7 +160,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.postUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("hello","abc123");
                 String otherUserUid = mList.get(position).getUser();
                 String currentUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

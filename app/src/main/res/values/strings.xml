@@ -543,5 +543,8 @@
     <string name="enter_caption">Write Caption Here...</string>
     <string name="add_comment">Add Comment</string>
     <string name="write_comment">Write Your Comment</string>
+    <string name="join">Join Event</string>
+    <string name="leave">Leave Event</string>
+    <string name="view_event">View Event Details</string>
 
 </resources>
