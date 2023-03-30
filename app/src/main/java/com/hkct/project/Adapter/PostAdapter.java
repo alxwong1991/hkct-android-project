@@ -241,8 +241,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         TextView postUsername, postDate, postCaption, postLikes;
         ImageView deleteBtn;
         ImageView membershipIcon;
-
         View mView;
+
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;

@@ -1,28 +1,39 @@
 package com.hkct.project.Model;
 
+import com.google.type.DateTime;
+
 import java.util.Date;
 
 public class Event extends EventId {
-    private String image, user, description, address;
-    private Date time;
+    private String eventImage, eventUser, eventDescription, eventAddress, eventTitle;
+    private Date eventDate;
+    private DateTime eventTime;
 
-    public String getUser() {
-        return user;
+    public String getEventUser() {
+        return eventUser;
     }
 
-    public String getImage() {
-        return image;
+    public String getEventImage() {
+        return eventImage;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public Date getTime() {
-        return time;
+    public String getEventAddress() {
+        return eventAddress;
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public DateTime getEventTime() {
+        return eventTime;
     }
 }

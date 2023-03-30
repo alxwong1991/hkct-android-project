@@ -134,20 +134,10 @@
                 app:srcCompat="@drawable/rectangle" />
 
             <Button
-                android:id="@+id/event_join_btn"
-                android:layout_width="140dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/green"
-                android:text="@string/join"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/user_event"
-                app:layout_constraintTop_toBottomOf="@+id/member_count_tv" />
-
-            <Button
                 android:id="@+id/event_leave_btn"
                 android:layout_width="140dp"
                 android:layout_height="38dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/red"
                 android:text="@string/leave"
@@ -157,10 +147,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/member_count_tv" />
 
             <Button
+                android:id="@+id/event_join_btn"
+                android:layout_width="140dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/green"
+                android:text="@string/join"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/user_event"
+                app:layout_constraintTop_toBottomOf="@+id/member_count_tv" />
+
+            <Button
                 android:id="@+id/event_view_btn"
                 android:layout_width="180dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/dark_blue"
                 android:text="@string/view_event"
                 android:textColor="@color/white"

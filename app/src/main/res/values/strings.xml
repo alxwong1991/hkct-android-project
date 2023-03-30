@@ -541,6 +541,11 @@
     <string name="follow_user">Follow</string>
     <string name="unfollow_user">Unfollow</string>
     <string name="enter_caption">Write Caption Here...</string>
+    <string name="enter_event_title">Event Title</string>
+    <string name="enter_event_detail">Event Description</string>
+    <string name="enter_event_location">Event Location</string>
+    <string name="add_event">Add Event</string>
+    <string name="edit_event">Edit Event</string>
     <string name="add_comment">Add Comment</string>
     <string name="write_comment">Write Your Comment</string>
     <string name="join">Join Event</string>
