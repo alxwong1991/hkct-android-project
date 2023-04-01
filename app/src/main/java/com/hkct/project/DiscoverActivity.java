@@ -53,7 +53,7 @@ public class DiscoverActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private RecyclerView mRecyclerView;
     private PostAdapter adapter;
-    private List<Post> list;
+    private List<Post> postList;
     private Query query;
     private ListenerRegistration listenerRegistration;
     private List<Users> usersList;
@@ -70,9 +70,9 @@ public class DiscoverActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(DiscoverActivity.this));
 
-        list = new ArrayList<>();
+        postList = new ArrayList<>();
         usersList = new ArrayList<>();
-        adapter = new PostAdapter(DiscoverActivity.this, list, usersList);
+        adapter = new PostAdapter(DiscoverActivity.this, postList, usersList);
         mRecyclerView.setAdapter(adapter);
 
         if (firebaseAuth.getCurrentUser() != null) {
@@ -103,7 +103,7 @@ public class DiscoverActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Users users = task.getResult().toObject(Users.class);
                                         usersList.add(users);
-                                        list.add(post);
+                                        postList.add(post);
                                         adapter.notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(DiscoverActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

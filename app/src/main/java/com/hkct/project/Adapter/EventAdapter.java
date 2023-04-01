@@ -213,16 +213,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
-            eventTitle = mView.findViewById(R.id.event_title);
-            eventAddress = mView.findViewById(R.id.event_location);
-            eventDate = mView.findViewById(R.id.event_date);
-            eventTime = mView.findViewById(R.id.event_time);
-            eventPic = mView.findViewById(R.id.user_event);
             joinIcon = mView.findViewById(R.id.join_icon);
             leaveIcon = mView.findViewById(R.id.leave_icon);
             eventAttendees = mView.findViewById(R.id.member_count_tv);
             eventDetailBtn = mView.findViewById(R.id.event_view_btn);
-            eventDescription = mView.findViewById(R.id.event_detail_description);
             eventDeleteBtn = mView.findViewById(R.id.event_delete_btn);
             eventEditBtn = mView.findViewById(R.id.event_edit_btn);
         }
@@ -233,6 +227,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 //        }
 
         public void setEventTitle(String title) {
+            eventTitle = mView.findViewById(R.id.event_title);
             eventTitle.setText(title);
         }
 
@@ -242,6 +237,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 //        }
 
         public void setEventPic(String image) {
+            eventPic = mView.findViewById(R.id.user_event);
             if (image != null) {
                 Glide.with(context).load(image).into(eventPic);
             } else {
@@ -250,22 +246,26 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         }
 
         public void setEventAddress(String address) {
+            eventAddress = mView.findViewById(R.id.event_location);
             eventAddress.setText(address);
         }
 
         public void setEventDate(String date) {
+            eventDate = mView.findViewById(R.id.event_date);
             eventDate.setText(date);
         }
 
         public void setEventTime(String time) {
+            eventTime = mView.findViewById(R.id.event_time);
             eventTime.setText(time);
         }
 
         public void setEventAttendees(int count) {
-            eventAttendees.setText(count + " Members Joined");
+            eventAttendees.setText(count + " Member Joined");
         }
 
         public void setEventDescription(String description) {
+            eventDescription = mView.findViewById(R.id.event_detail_description);
             if (eventDescription != null) {
                 eventDescription.setText(description);
             }
