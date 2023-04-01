@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -56,9 +57,13 @@ public class EventActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.recyclerViewEventPosts);
 
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(EventActivity.this));
+
         list = new ArrayList<>();
         usersList = new ArrayList<>();
         adapter = new EventAdapter(EventActivity.this, list, usersList);
+        mRecyclerView.setAdapter(adapter);
 
         Log.d(TAG,"===>eventActivity!!!");
 
@@ -74,7 +79,8 @@ public class EventActivity extends AppCompatActivity {
                 }
             });
 
-            query = firestore.collection("Events").orderBy("time", Query.Direction.DESCENDING);
+            // get all events posts
+            query = firestore.collection("Events").orderBy("timestamp", Query.Direction.DESCENDING);
 
             listenerRegistration = query.addSnapshotListener(EventActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
@@ -110,7 +116,6 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void setNavigationDrawer() {
-        Log.d("hihihihihi","here");
         drawerLayout = findViewById(R.id.drawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.nav_open,R.string.nav_close);
         actionBarDrawerToggle.syncState();

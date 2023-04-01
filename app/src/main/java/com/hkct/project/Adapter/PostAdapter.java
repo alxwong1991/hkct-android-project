@@ -45,15 +45,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
-    private List<Post> mList;
+    private List<Post> postList;
     private List<Users> usersList;
     private Activity context;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private String Uid;
 
-    public PostAdapter(Activity context, List<Post> mList, List<Users> usersList) {
-        this.mList = mList;
+    public PostAdapter(Activity context, List<Post> postList, List<Users> usersList) {
+        this.postList = postList;
         this.context = context;
         this.usersList = usersList;
     }
@@ -70,7 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post post = mList.get(position);
+        Post post = postList.get(position);
         holder.setPostPic(post.getImage());
         holder.setPostCaption(post.getCaption());
 
@@ -160,7 +160,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.postUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String otherUserUid = mList.get(position).getUser();
+                String otherUserUid = postList.get(position).getUser();
                 String currentUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 Intent profileIntent;
@@ -220,7 +220,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                                         }
                                     });
                                     firestore.collection("Posts").document(postId).delete();
-                                    mList.remove(position);
+                                    postList.remove(position);
                                     notifyDataSetChanged();
                                 }
                             });
@@ -232,15 +232,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return postList.size();
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        ImageView postPic, commentsPic, likePic;
+        ImageView postPic, commentsPic, likePic, deleteBtn, membershipIcon;
         CircleImageView profilePic;
         TextView postUsername, postDate, postCaption, postLikes;
-        ImageView deleteBtn;
-        ImageView membershipIcon;
         View mView;
 
         public PostViewHolder(@NonNull View itemView) {

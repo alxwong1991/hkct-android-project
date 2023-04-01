@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".EventDetailActivity">
+    tools:context=".OtherEventDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/addevent_toolbar"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Host Name"
+        android:text="Other Host Name"
         android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/host_profile_pic_event"

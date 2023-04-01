@@ -5,14 +5,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,12 +33,20 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class AddEventActivity extends AppCompatActivity {
 
-    private Button mAddPostBtn;
-    private EditText mCaptionText, mLocation, mEventTitle;
+    private Button mAddEventBtn;
+    private TextView mEventDateTextView, mEventTimeTextView;
+    private EditText mEventTitle, mEventLocation, mEventDescription;
     private ImageView mEventImage;
     private ProgressBar mProgressBar;
     private Uri eventImageUri = null;
@@ -42,17 +55,74 @@ public class AddEventActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private String currentUserId;
 
+    private Calendar selectedDate = Calendar.getInstance();
+    private Calendar selectedTime = Calendar.getInstance();
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        mAddPostBtn = findViewById(R.id.save_event_btn);
-        mCaptionText = findViewById(R.id.event_title);
-        mEventImage = findViewById(R.id.event_image);
-        mLocation = findViewById(R.id.event_location);
+        mAddEventBtn = findViewById(R.id.save_event_btn);
         mEventTitle = findViewById(R.id.event_title);
+        mEventImage = findViewById(R.id.event_image);
+        mEventLocation = findViewById(R.id.event_location);
+        mEventDescription = findViewById(R.id.event_description);
+        mEventDateTextView = findViewById(R.id.event_date);
+        mEventTimeTextView = findViewById(R.id.event_time);
+
+        ImageView datePicker = findViewById(R.id.event_date_picker);
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int year = selectedDate.get(Calendar.YEAR);
+                int month = selectedDate.get(Calendar.MONTH);
+                int day = selectedDate.get(Calendar.DAY_OF_MONTH);
+
+                // Create a date picker dialog and set the selected date as the default
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddEventActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                // Set the selected date to the chosen date
+                                selectedDate.set(year, month, dayOfMonth);
+
+                                // Update the date TextView
+                                mEventDateTextView.setText(formatDate(selectedDate.getTime()));
+                            }
+                        },
+                        year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+        ImageView timePicker = findViewById(R.id.event_time_picker);
+        timePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int hour = selectedTime.get(Calendar.HOUR_OF_DAY);
+                int minute = selectedTime.get(Calendar.MINUTE);
+
+                // Create a time picker dialog and set the selected time as the default
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        AddEventActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                // Set the selected time to the chosen time
+                                selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                selectedTime.set(Calendar.MINUTE, minute);
+
+                                // Update the time TextView
+                                mEventTimeTextView.setText(formatTime(selectedTime.getTime()));
+                            }
+                        },
+                        hour, minute, false);
+                timePickerDialog.show();
+            }
+        });
 
         mProgressBar = findViewById(R.id.event_progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
@@ -72,13 +142,17 @@ public class AddEventActivity extends AppCompatActivity {
                         .start(AddEventActivity.this);
             }
         });
-        mAddPostBtn.setOnClickListener(new View.OnClickListener() {
+
+        mAddEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mProgressBar.setVisibility(View.VISIBLE);
                 String title = mEventTitle.getText().toString();
-                String description = mCaptionText.getText().toString();
-                String location = mLocation.getText().toString();
+                String description = mEventDescription.getText().toString();
+                String location = mEventLocation.getText().toString();
+                String date = mEventDateTextView.getText().toString();
+                String time = mEventTimeTextView.getText().toString();
+
                 if (!description.isEmpty() && eventImageUri != null) {
                     StorageReference eventRef = storageReference.child("event_images").child(FieldValue.serverTimestamp().toString() + ".jpg");
                     eventRef.putFile(eventImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -94,7 +168,9 @@ public class AddEventActivity extends AppCompatActivity {
                                         postMap.put("description", description);
                                         postMap.put("location", location);
                                         postMap.put("title", title);
-                                        postMap.put("time", FieldValue.serverTimestamp());
+                                        postMap.put("date", date);
+                                        postMap.put("time", time);
+                                        postMap.put("timestamp", FieldValue.serverTimestamp());
 
                                         firestore.collection("Events").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                             @Override
@@ -119,7 +195,7 @@ public class AddEventActivity extends AppCompatActivity {
                     });
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(AddEventActivity.this, "Please Add Image and Write Your Caption", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -138,5 +214,15 @@ public class AddEventActivity extends AppCompatActivity {
                 Toast.makeText(this, result.getError().toString(), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private String formatDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+    private String formatTime(Date date) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
+        return timeFormat.format(date);
     }
 }

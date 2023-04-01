@@ -1,17 +1,7 @@
 package com.hkct.project.Model;
 
-import com.google.type.DateTime;
-
-import java.util.Date;
-
 public class Event extends EventId {
-    private String eventImage, eventUser, eventDescription, eventAddress, eventTitle;
-    private Date eventDate;
-    private DateTime eventTime;
-
-    public String getEventUser() {
-        return eventUser;
-    }
+    private String eventImage, eventDescription, eventAddress, eventTitle, eventDate, eventTime, user;
 
     public String getEventImage() {
         return eventImage;
@@ -29,11 +19,15 @@ public class Event extends EventId {
         return eventAddress;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public DateTime getEventTime() {
+    public String getEventTime() {
         return eventTime;
+    }
+
+    public String getUser() {
+        return user;
     }
 }
