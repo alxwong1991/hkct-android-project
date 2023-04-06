@@ -46,7 +46,7 @@ public class EventActivity extends AppCompatActivity {
     private Query query;
     private ListenerRegistration listenerRegistration;
     private List<Users> usersList;
-    private List<Event> list;
+    private List<Event> eventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +60,9 @@ public class EventActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(EventActivity.this));
 
-        list = new ArrayList<>();
+        eventList = new ArrayList<>();
         usersList = new ArrayList<>();
-        adapter = new EventAdapter(EventActivity.this, list, usersList);
+        adapter = new EventAdapter(EventActivity.this, eventList, usersList);
         mRecyclerView.setAdapter(adapter);
 
         Log.d(TAG,"===>eventActivity!!!");
@@ -88,15 +88,17 @@ public class EventActivity extends AppCompatActivity {
                     for (DocumentChange doc : value.getDocumentChanges()) {
                         if (doc.getType() == DocumentChange.Type.ADDED) {
                             String eventId = doc.getDocument().getId();
+                            Log.d("eventlog","eid="+eventId);
                             Event event = doc.getDocument().toObject(Event.class).withId(eventId);
                             String eventUserId = doc.getDocument().getString("user");
                             firestore.collection("Users").document(eventUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
+                                        Log.d("eventlog","event title = "+event.title);
                                         Users users = task.getResult().toObject(Users.class);
                                         usersList.add(users);
-                                        list.add(event);
+                                        eventList.add(event);
                                         adapter.notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(EventActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

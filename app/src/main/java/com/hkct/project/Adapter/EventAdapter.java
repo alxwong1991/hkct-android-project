@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         this.eventList = eventList;
         this.context = context;
         this.usersList = usersList;
+        Log.d("eventlog123","size="+this.eventList.size());
     }
 
     @NonNull
@@ -65,19 +67,24 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override
     public void onBindViewHolder(@NonNull EventAdapter.EventViewHolder holder, int position) {
+        Log.d("eventlog","hihi");
         Event event = eventList.get(position);
+        //Log.d("eventlog",event.getEventTitle());
 //        String eventUsername = usersList.get(position).getName();
 //        String image = usersList.get(position).getImage();
 
 //        holder.setProfilePic(image);
 //        holder.setEventUsername(eventUsername);
 
-        holder.setEventTitle(event.getEventTitle());
-        holder.setEventDate(event.getEventDate());
-        holder.setEventTime(event.getEventTime());
-        holder.setEventPic(event.getEventImage());
-        holder.setEventDescription(event.getEventDescription());
-        holder.setEventAddress(event.getEventAddress());
+        holder.setEventTitle(event.title);
+        //Log.d("eventlog",event.getEventTitle());
+
+
+        holder.setEventDate(event.date);
+        holder.setEventTime(event.time);
+        holder.setEventPic(event.image);
+        holder.setEventDescription(event.description);
+        holder.setEventAddress(event.location);
 
         // join event
         String eventId = event.EventId;

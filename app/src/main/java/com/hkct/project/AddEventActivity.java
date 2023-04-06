@@ -10,6 +10,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -135,6 +136,7 @@ public class AddEventActivity extends AppCompatActivity {
         mEventImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("addeventlog", "testing");
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(3,2)
@@ -152,7 +154,6 @@ public class AddEventActivity extends AppCompatActivity {
                 String location = mEventLocation.getText().toString();
                 String date = mEventDateTextView.getText().toString();
                 String time = mEventTimeTextView.getText().toString();
-
                 if (!description.isEmpty() && eventImageUri != null) {
                     StorageReference eventRef = storageReference.child("event_images").child(FieldValue.serverTimestamp().toString() + ".jpg");
                     eventRef.putFile(eventImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

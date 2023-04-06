@@ -1,7 +1,7 @@
 package com.hkct.project.Model;
 
 public class Comments {
-    private String comment, user;
+    public String comment, user;
 
     public String getComment() {
         return comment;

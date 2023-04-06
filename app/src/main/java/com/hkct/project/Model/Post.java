@@ -3,8 +3,8 @@ package com.hkct.project.Model;
 import java.util.Date;
 
 public class Post extends PostId {
-    private String image, user, caption;
-    private Date time;
+    public String image, user, caption;
+    public Date time;
 
     public String getImage() {
         return image;

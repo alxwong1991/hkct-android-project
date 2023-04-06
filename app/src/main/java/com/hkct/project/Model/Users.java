@@ -1,7 +1,7 @@
 package com.hkct.project.Model;
 
 public class Users {
-    private String image, name;
+    public String image, name;
 
     public String getImage() {
         return image;
