@@ -156,7 +156,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
         public void menu5_click(MenuItem menuItem) {
             Log.d(TAG, "menu5_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
-            startActivity(new Intent(this, EventsActivity.class));
+            startActivity(new Intent(this, EventActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             drawerLayout.closeDrawers();
         }

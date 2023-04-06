@@ -18,9 +18,9 @@
         android:title="Profile" />
 
     <item
-        android:id="@+id/nav_events"
+        android:id="@+id/nav_event"
         android:onClick="menu5_click"
-        android:title="Events" />
+        android:title="Event" />
 
     <item
         android:id="@+id/nav_membership"

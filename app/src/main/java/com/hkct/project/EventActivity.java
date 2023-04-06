@@ -80,7 +80,7 @@ public class EventActivity extends AppCompatActivity {
             });
 
             // get all events posts
-            query = firestore.collection("Events").orderBy("timestamp", Query.Direction.DESCENDING);
+            query = firestore.collection("/Events").orderBy("timestamp", Query.Direction.DESCENDING);
 
             listenerRegistration = query.addSnapshotListener(EventActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
@@ -116,11 +116,16 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void setNavigationDrawer() {
+        // drawer layout instance
         drawerLayout = findViewById(R.id.drawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.nav_open,R.string.nav_close);
+        // Toggle the menu icon
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         actionBarDrawerToggle.syncState();
+
+        // pass the toggle for the drawer layout listener
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-    }
+
+    } //setNavigationDrawer()
 
     // Menu
     //   Discover

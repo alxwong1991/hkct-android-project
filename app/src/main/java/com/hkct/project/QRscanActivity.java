@@ -203,16 +203,16 @@ public class QRscanActivity extends AppCompatActivity {
                 break;
         }
     }
-    public void backClick(View v){
-        startActivity(new Intent(this,EventsActivity.class));
-
-        int version = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(version >=5){
-
-//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        }
-        this.finish();
-    }
+//    public void backClick(View v){
+//        startActivity(new Intent(this,EventsActivity.class));
+//
+//        int version = Integer.valueOf(android.os.Build.VERSION.SDK);
+//        if(version >=5){
+//
+////            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//        }
+//        this.finish();
+//    }
 
 }
