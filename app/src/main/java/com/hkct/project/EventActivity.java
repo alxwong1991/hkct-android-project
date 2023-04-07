@@ -95,7 +95,6 @@ public class EventActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        Log.d("eventlog","event title = "+event.title);
                                         Users users = task.getResult().toObject(Users.class);
                                         usersList.add(users);
                                         eventList.add(event);

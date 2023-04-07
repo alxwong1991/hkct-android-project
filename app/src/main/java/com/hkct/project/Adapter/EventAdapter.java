@@ -76,15 +76,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 //        holder.setProfilePic(image);
 //        holder.setEventUsername(eventUsername);
 
-        holder.setEventTitle(event.title);
+        holder.setEventTitle(event.getTitle());
         //Log.d("eventlog",event.getEventTitle());
 
 
-        holder.setEventDate(event.date);
-        holder.setEventTime(event.time);
-        holder.setEventPic(event.image);
-        holder.setEventDescription(event.description);
-        holder.setEventAddress(event.location);
+        holder.setEventDate(event.getDate());
+        holder.setEventTime(event.getTime());
+        holder.setEventPic(event.getImage());
+        holder.setEventDescription(event.getDescription());
+        holder.setEventAddress(event.getLocation());
 
         // join event
         String eventId = event.EventId;

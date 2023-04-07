@@ -74,7 +74,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         //Log.d("eventlog",post.getCaption());
         holder.setPostPic(post.getImage());
         holder.setPostCaption(post.getCaption());
-
         long milliseconds = post.getTime().getTime();
         String date = DateFormat.getDateInstance().format(new Date(milliseconds));
         holder.setPostDate(date);
