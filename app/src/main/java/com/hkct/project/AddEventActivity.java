@@ -154,6 +154,7 @@ public class AddEventActivity extends AppCompatActivity {
                 String location = mEventLocation.getText().toString();
                 String date = mEventDateTextView.getText().toString();
                 String time = mEventTimeTextView.getText().toString();
+
                 if (!description.isEmpty() && eventImageUri != null) {
                     StorageReference eventRef = storageReference.child("event_images").child(FieldValue.serverTimestamp().toString() + ".jpg");
                     eventRef.putFile(eventImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -163,17 +164,17 @@ public class AddEventActivity extends AppCompatActivity {
                                 eventRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        HashMap<String, Object> postMap = new HashMap<>();
-                                        postMap.put("image", uri.toString());
-                                        postMap.put("user", currentUserId);
-                                        postMap.put("description", description);
-                                        postMap.put("location", location);
-                                        postMap.put("title", title);
-                                        postMap.put("date", date);
-                                        postMap.put("time", time);
-                                        postMap.put("timestamp", FieldValue.serverTimestamp());
+                                        HashMap<String, Object> postEventMap = new HashMap<>();
+                                        postEventMap.put("image", uri.toString());
+                                        postEventMap.put("user", currentUserId);
+                                        postEventMap.put("description", description);
+                                        postEventMap.put("location", location);
+                                        postEventMap.put("title", title);
+                                        postEventMap.put("date", date);
+                                        postEventMap.put("time", time);
+                                        postEventMap.put("timestamp", FieldValue.serverTimestamp());
 
-                                        firestore.collection("Events").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                        firestore.collection("Events").add(postEventMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentReference> task) {
                                                 if (task.isSuccessful()) {

@@ -77,9 +77,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 //        holder.setEventUsername(eventUsername);
 
         holder.setEventTitle(event.getTitle());
-        //Log.d("eventlog",event.getEventTitle());
-
-
         holder.setEventDate(event.getDate());
         holder.setEventTime(event.getTime());
         holder.setEventPic(event.getImage());
@@ -161,9 +158,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                 Intent eventDetailIntent;
                 if (otherUserEventPost.equals(currentUserEventPost)) {
                     eventDetailIntent = new Intent(context, EventDetailActivity.class);
+                    eventDetailIntent.putExtra("eventId", eventId);
                 } else {
                     eventDetailIntent = new Intent(context, OtherEventDetailActivity.class);
                     eventDetailIntent.putExtra("otherUserEventPostUid", otherUserEventPost);
+                    eventDetailIntent.putExtra("eventId", eventId);
                 }
                 context.startActivity(eventDetailIntent);
             }
@@ -177,6 +176,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                 public void onClick(View view) {
                     Intent editEventIntent = new Intent(context, EditEventActivity.class);
                     editEventIntent.putExtra("eventId", eventId);
+                    editEventIntent.putExtra("image", event.getImage());
                     context.startActivity(editEventIntent);
                 }
             });

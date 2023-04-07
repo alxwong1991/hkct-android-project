@@ -52,6 +52,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -128,12 +129,20 @@ public class EventActivity extends AppCompatActivity {
 
     } //setNavigationDrawer()
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // Menu
     //   Discover
     public void menu1_click(MenuItem menuItem) {
         Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         startActivity(new Intent(this, DiscoverActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 

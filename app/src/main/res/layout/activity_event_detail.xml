@@ -21,7 +21,7 @@
     <ImageView
         android:id="@+id/event_detail_image"
         android:layout_width="0dp"
-        android:layout_height="240dp"
+        android:layout_height="320dp"
         android:background="@drawable/rectangle"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,22 +36,22 @@
         android:layout_marginStart="16dp"
         android:text="Host Name"
         android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/host_profile_pic_event"
-        app:layout_constraintTop_toTopOf="@+id/host_profile_pic_event" />
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/event_host_profile_pic"
+        app:layout_constraintTop_toTopOf="@+id/event_host_profile_pic" />
 
     <Button
         android:id="@+id/contact_host_btn"
-        android:layout_width="130dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/dark_blue"
         android:text="@string/contact_host"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toEndOf="@+id/host_profile_pic_event"
+        app:layout_constraintStart_toEndOf="@+id/event_host_profile_pic"
         app:layout_constraintTop_toBottomOf="@+id/event_host_name" />
 
     <TextView
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/event_detail_image" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/host_profile_pic_event"
+        android:id="@+id/event_host_profile_pic"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
@@ -87,6 +87,7 @@
         android:backgroundTint="@color/orange"
         android:ems="10"
         android:fontFamily="@font/aldrich"
+        android:textSize="30dp"
         android:hint="@string/enter_event_title"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
@@ -105,6 +106,7 @@
         android:backgroundTint="@color/orange"
         android:ems="10"
         android:fontFamily="@font/aldrich"
+        android:textSize="20dp"
         android:hint="@string/enter_event_location"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
@@ -122,6 +124,7 @@
         android:backgroundTint="@color/orange"
         android:ems="10"
         android:fontFamily="@font/aldrich"
+        android:textSize="20dp"
         android:hint="@string/enter_event_detail"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"

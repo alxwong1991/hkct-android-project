@@ -82,6 +82,7 @@ public class SetUpActivity extends AppCompatActivity {
                     if (task.getResult().exists()){
                         String name = task.getResult().getString("name");
                         String imageUrl = task.getResult().getString("image");
+
                         mProfileName.setText(name);
                         mImageUri = Uri.parse(imageUrl);
 
