@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="395dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/black"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ivory_black">
+
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="31 Dec 2023"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/event_title"
+                app:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+            <TextView
+                android:id="@+id/event_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="12:00PM"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/event_date"
+                app:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Event Title"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.056"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/event_icon_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/event_title"
+                app:layout_constraintTop_toBottomOf="@+id/event_date"
+                app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Location"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/event_icon_pin"
+                app:layout_constraintTop_toBottomOf="@+id/event_date" />
+
+            <ImageView
+                android:id="@+id/user_event"
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="24dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_date"
+                app:srcCompat="@drawable/rectangle" />
+
+            <Button
+                android:id="@+id/event_view_btn"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="@string/view_event"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/member_count_tv" />
+
+            <TextView
+                android:id="@+id/member_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="0 Members"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/user_event"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/user_event"
+                app:layout_constraintTop_toBottomOf="@+id/user_event" />
+
+            <ImageView
+                android:id="@+id/join_icon"
+                app:srcCompat="@drawable/before_join"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/member_count_tv" />
+
+            <ImageView
+                android:id="@+id/leave_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toEndOf="@+id/join_icon"
+                app:layout_constraintTop_toBottomOf="@+id/member_count_tv"
+                app:srcCompat="@drawable/after_leave" />
+
+            <ImageButton
+                android:id="@+id/event_edit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@color/ivory_black"
+                android:clickable="false"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/event_delete_btn"
+                app:layout_constraintTop_toTopOf="@+id/event_delete_btn"
+                app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+            <ImageButton
+                android:id="@+id/event_delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/ivory_black"
+                android:clickable="false"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".OtherEventDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addevent_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ivory_black"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/event_detail_image"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:background="@drawable/rectangle"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addevent_toolbar"/>
+
+    <TextView
+        android:id="@+id/event_host_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Other Host Name"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/event_host_profile_pic"
+        app:layout_constraintTop_toTopOf="@+id/event_host_profile_pic" />
+
+    <Button
+        android:id="@+id/contact_host_btn"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="@string/contact_host"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toEndOf="@+id/event_host_profile_pic"
+        app:layout_constraintTop_toBottomOf="@+id/event_host_name" />
+
+    <TextView
+        android:id="@+id/event_host_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hosted By:"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_image" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/event_host_profile_pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/elcipse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_host_title" />
+
+    <TextView
+        android:id="@+id/event_detail_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="144dp"
+        android:backgroundTint="@color/orange"
+        android:ems="10"
+        android:fontFamily="@font/aldrich"
+        android:textSize="30dp"
+        android:hint="@string/enter_event_title"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_image" />
+
+    <TextView
+        android:id="@+id/event_detail_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:ems="10"
+        android:fontFamily="@font/aldrich"
+        android:textSize="20dp"
+        android:hint="@string/enter_event_location"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_title" />
+
+    <TextView
+        android:id="@+id/event_detail_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:ems="10"
+        android:fontFamily="@font/aldrich"
+        android:textSize="20dp"
+        android:hint="@string/enter_event_detail"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_location" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

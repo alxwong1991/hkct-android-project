@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerLayout"
     android:background="@color/black"
-    tools:context=".DiscoverActivity">
+    android:id="@+id/drawerLayout"
+    tools:context=".EventActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewEventPosts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBaseline_toBottomOf="parent"
@@ -33,7 +33,5 @@
         app:menu="@menu/nav_menu"
         android:background="@drawable/rounded_menu"
         app:itemTextColor="@color/white"/>
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
