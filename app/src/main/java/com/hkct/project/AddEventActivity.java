@@ -156,7 +156,10 @@ public class AddEventActivity extends AppCompatActivity {
                 String time = mEventTimeTextView.getText().toString();
 
                 if (!description.isEmpty() && eventImageUri != null) {
-                    StorageReference eventRef = storageReference.child("event_images").child(FieldValue.serverTimestamp().toString() + ".jpg");
+                    StorageReference eventRef = storageReference
+                            .child("event_images")
+                            .child(FieldValue.serverTimestamp().toString() + ".jpg");
+
                     eventRef.putFile(eventImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
