@@ -18,8 +18,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <ImageView-->
+<!--        android:id="@+id/edit_event_current_image"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:background="@drawable/rectangle"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editevent_toolbar" />-->
+
     <ImageView
-        android:id="@+id/edit_event_current_image"
+        android:id="@+id/edit_event_image"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@drawable/rectangle"
@@ -29,17 +40,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editevent_toolbar" />
 
-    <ImageView
-        android:id="@+id/edit_event_update_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="@drawable/rectangle"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/editevent_toolbar" />
+<!--    <ImageView-->
+<!--        android:id="@+id/edit_event_update_image"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:background="@drawable/rectangle"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editevent_toolbar" />-->
 
     <EditText
         android:id="@+id/edit_event_title"
@@ -57,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_event_update_image" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_event_image" />
 
     <EditText
         android:id="@+id/edit_event_description"
@@ -179,6 +190,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_event_update_image" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_event_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
