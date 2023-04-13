@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,6 +85,7 @@ public class MessageHostActivity extends AppCompatActivity {
                                     Users users = task.getResult().toObject(Users.class);
                                     usersList.add(users);
                                     messagesList.add(messages);
+                                    adapter.notifyDataSetChanged();
                                 } else {
                                     Toast.makeText(MessageHostActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
