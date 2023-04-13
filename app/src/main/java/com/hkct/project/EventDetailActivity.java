@@ -2,7 +2,11 @@ package com.hkct.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +21,9 @@ public class EventDetailActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private String event_id;
     private ImageView mEventDetailHostProfilePic, mEventDetailImage;
+    private Button mMessageHostBtn;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,16 @@ public class EventDetailActivity extends AppCompatActivity {
         mEventDetailTitle = findViewById(R.id.event_detail_title);
         mEventDetailDescription = findViewById(R.id.event_detail_description);
         mEventDetailLocation = findViewById(R.id.event_detail_location);
+        mMessageHostBtn = findViewById(R.id.message_host_btn);
+
+        mMessageHostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent messageHostIntent = new Intent(EventDetailActivity.this, MessageHostActivity.class);
+                messageHostIntent.putExtra("eventId", event_id);
+                startActivity(messageHostIntent);
+            };
+        });
 
         firestore.collection("Events").document(event_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

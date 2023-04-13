@@ -69,13 +69,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public void onBindViewHolder(@NonNull EventAdapter.EventViewHolder holder, int position) {
         Log.d("eventlog","hihi");
         Event event = eventList.get(position);
-        //Log.d("eventlog",event.getEventTitle());
-//        String eventUsername = usersList.get(position).getName();
-//        String image = usersList.get(position).getImage();
-
-//        holder.setProfilePic(image);
-//        holder.setEventUsername(eventUsername);
-
         holder.setEventTitle(event.getTitle());
         holder.setEventDate(event.getDate());
         holder.setEventTime(event.getTime());
@@ -212,8 +205,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
         ImageView eventPic, eventDeleteBtn, eventEditBtn, joinIcon, leaveIcon;
-        CircleImageView hostProfilePic;
-        TextView eventTitle, eventDate, eventTime, eventAddress, eventDescription, eventAttendees, eventUsername;
+        TextView eventTitle, eventDate, eventTime, eventAddress, eventDescription, eventAttendees;
         Button eventDetailBtn;
         View mView;
 
@@ -228,27 +220,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             eventEditBtn = mView.findViewById(R.id.event_edit_btn);
         }
 
-//        public void setProfilePic(String eventHostPic) {
-//            hostProfilePic = mView.findViewById(R.id.host_profile_pic_event);
-//            Glide.with(context).load(eventHostPic).into(hostProfilePic);
-//        }
-
         public void setEventTitle(String title) {
             eventTitle = mView.findViewById(R.id.event_title);
             eventTitle.setText(title);
         }
 
-//        public void setEventUsername(String username) {
-//            eventUsername = mView.findViewById(R.id.event_host_name);
-//            eventUsername.setText(username);
-//        }
-
         public void setEventPic(String image) {
             eventPic = mView.findViewById(R.id.user_event);
             if (image != null) {
                 Glide.with(context).load(image).into(eventPic);
-            } else {
-                Glide.with(context).load(R.drawable.rectangle).into(eventPic);
             }
         }
 

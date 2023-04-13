@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/event_host_profile_pic" />
 
     <Button
-        android:id="@+id/contact_host_btn"
+        android:id="@+id/message_host_btn"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
