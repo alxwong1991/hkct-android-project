@@ -39,7 +39,7 @@
             android:id="@+id/editTextTextPersonName"
             android:layout_width="412dp"
             android:layout_height="45dp"
-            android:background="@drawable/ic_search_light"
+            android:background="@drawable/ic_baseline_search_24"
             android:drawableLeft="@android:drawable/ic_search_category_default"
             android:ems="10"
             android:inputType="textPersonName"

@@ -30,7 +30,6 @@ import java.util.List;
 
 public class LikesActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
     private FirebaseFirestore firestore;
     private RecyclerView mLikeRecyclerView;
     private String post_id;
@@ -42,10 +41,8 @@ public class LikesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likes);
-        Log.d("hello", "bcd");
 
         firestore = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
         mLikeRecyclerView = findViewById(R.id.like_recyclerView);
 
         mList = new ArrayList<>();

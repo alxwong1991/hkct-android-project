@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hkct.project.AttendeesActivity;
 import com.hkct.project.EditEventActivity;
 import com.hkct.project.EventDetailActivity;
 import com.hkct.project.Model.Event;
@@ -105,6 +106,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             }
         });
 
+        // leave event
         holder.leaveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,6 +140,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                     int count = value != null ? value.size() : 0;
                     holder.setEventAttendees(count);
                 }
+            }
+        });
+
+        // view member attending event detail page
+        holder.eventAttendees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent attendeeDetailIntent = new Intent(context, AttendeesActivity.class);
+                attendeeDetailIntent.putExtra("eventId", eventId);
+                context.startActivity(attendeeDetailIntent);
             }
         });
 
