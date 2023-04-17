@@ -505,37 +505,42 @@ public class MembershipActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     } //onOptionsItemSelected()
 
-    public void menu1_click(MenuItem m){
-        Log.d(TAG,"menu1_click()->" + m.getItemId() + ","+ m.getTitle());
-        startActivity(new Intent(this, DiscoverActivity.class));
+    // Menu
+    //   Discover
+    public void menu1_click(MenuItem menuItem) {
+        Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        startActivity(new Intent(this, DiscoverActivity.class));
         drawerLayout.closeDrawers();
     }
-//    public void menu2_click(MenuItem m){
-//        Log.d(TAG,"menu2_click()->" + m.getItemId() + ","+ m.getTitle());
-////        txtOutput.setText(R.string.msg2);
-//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//        drawerLayout.closeDrawers();
-//    }
-    public void menu3_click(MenuItem m){
-        Log.d(TAG,"menu3_click()->" + m.getItemId() + ","+ m.getTitle());
+    //   Profile
+    public void menu2_click(MenuItem menuItem) {
+        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, ProfileActivity.class));
-//        txtOutput.setText(R.string.msg3);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
-    public void menu5_click(MenuItem menuItem) {
-        Log.d(TAG,"menu5_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+    //   Events
+    public void menu3_click(MenuItem menuItem) {
+        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, EventActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
     //    MembershipActivity
-    public void menu6_click(MenuItem menuItem) {
-        Log.d(TAG,"menu6_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+    public void menu4_click(MenuItem menuItem) {
+        Log.d(TAG, "menu4_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
         startActivity(new Intent(this, MembershipActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        drawerLayout.closeDrawers();
+    }
+
+    //   Store
+    public void menu5_click(MenuItem menuItem) {
+        Log.d(TAG, "menu5_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, StoreActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
@@ -556,14 +561,6 @@ public class MembershipActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(MembershipActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
-    }
-
-    //   QR code
-    public void menu7_click(MenuItem menuItem) {
-        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
-        startActivity(new Intent(this, QRcodeActivity.class));
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        drawerLayout.closeDrawers();
     }
 
 

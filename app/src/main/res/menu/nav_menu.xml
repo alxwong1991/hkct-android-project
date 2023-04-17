@@ -7,35 +7,26 @@
         android:onClick="menu1_click"
         android:title="Discover" />
 
-<!--    <item-->
-<!--        android:id="@+id/nav_settings"-->
-<!--        android:onClick="menu2_click"-->
-<!--        android:title="Settings" />-->
-
     <item
         android:id="@+id/nav_profile"
-        android:onClick="menu3_click"
+        android:onClick="menu2_click"
         android:title="Profile" />
 
     <item
         android:id="@+id/nav_event"
-        android:onClick="menu5_click"
+        android:onClick="menu3_click"
         android:title="Event" />
 
     <item
         android:id="@+id/nav_membership"
-        android:onClick="menu6_click"
+        android:onClick="menu4_click"
         android:title="Membership" />
 
-<!--    <item-->
-<!--        android:id="@+id/nav_qrcode"-->
-<!--        android:onClick="menu7_click"-->
-<!--        android:title="QR code" />-->
-
-<!--    <item-->
-<!--        android:id="@+id/nav_logout"-->
-<!--        android:onClick="menu4_click"-->
-<!--        android:title="Logout" />-->
+    <item
+        android:id="@+id/nav_store"
+        android:onClick="menu5_click"
+        android:title="Store"
+        />
 
 
     <!-- NavDemo -->
