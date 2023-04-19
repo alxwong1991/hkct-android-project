@@ -46,7 +46,6 @@ public class DiscoverActivity extends AppCompatActivity {
     private final String TAG="DiscoverActivity===>";
     private TextView txtOutput;
     private DrawerLayout drawerLayout;
-    private NavigationView navView;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private FirebaseFirestore firestore;
@@ -166,12 +165,6 @@ public class DiscoverActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.nav_menu, menu);
-//        return true;
-//    }
-
     // Menu
     //   Discover
     public void menu1_click(MenuItem menuItem) {
@@ -180,45 +173,34 @@ public class DiscoverActivity extends AppCompatActivity {
         startActivity(new Intent(this, DiscoverActivity.class));
         drawerLayout.closeDrawers();
     }
-
-//    public void menu2_click(MenuItem menuItem) {
-//        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-////        txtOutput.setText(R.string.msg2);
-////        txtOutput.setTextColor(Color.RED);
-//        drawerLayout.closeDrawers();
-//    }
-
     //   Profile
-    public void menu3_click(MenuItem menuItem) {
-        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-//        txtOutput.setText(R.string.msg3);
-//        txtOutput.setTextColor(Color.RED);
+    public void menu2_click(MenuItem menuItem) {
+        Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, ProfileActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
     //   Events
-    public void menu5_click(MenuItem menuItem) {
-        Log.d(TAG,"menu5_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+    public void menu3_click(MenuItem menuItem) {
+        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, EventActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
     //    MembershipActivity
-    public void menu6_click(MenuItem menuItem) {
-        Log.d(TAG, "menu6_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+    public void menu4_click(MenuItem menuItem) {
+        Log.d(TAG, "menu4_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
         startActivity(new Intent(this, MembershipActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
-    //   QR code
-    public void menu7_click(MenuItem menuItem) {
-        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
-        startActivity(new Intent(this, QRcodeActivity.class));
+    //   Store
+    public void menu5_click(MenuItem menuItem) {
+        Log.d(TAG, "menu5_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, StoreActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
@@ -245,14 +227,4 @@ public class DiscoverActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(DiscoverActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
-
-    //    public void menu4_click(MenuItem menuItem) {
-//        Log.d(TAG,"menu4_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-//        txtOutput.setTextColor(Color.RED);
-//        FirebaseAuth.getInstance().signOut();
-//        startActivity(new Intent(this, LoginActivity.class));
-//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//        Toast.makeText(DiscoverActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
-//        drawerLayout.closeDrawers();
-//    }
 }

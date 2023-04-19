@@ -55,7 +55,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     @Override
     public void onBindViewHolder(@NonNull MessagesAdapter.MessagesViewHolder holder, int position) {
-        String currentUserId = auth.getCurrentUser().getUid();
+//        String currentUserId = auth.getCurrentUser().getUid();
         Messages userMessages = messagesList.get(position);
         holder.setmMessage(userMessages.getMessage());
         holder.setmMessageTimestamp(userMessages.getTimestamp());
@@ -64,42 +64,42 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         holder.setmUserName(users.getName());
         holder.setCircleImageView(users.getImage());
 
-        if (currentUserId.equals(userMessages.getUser())) {
-            holder.mMessageDeleteBtn.setVisibility(View.VISIBLE);
-            holder.mMessageDeleteBtn.setClickable(true);
-            holder.mMessageDeleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    alert.setTitle("Delete Message")
-                            .setMessage("Are you sure?")
-                            .setNegativeButton("No", null)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    String messageId = userMessages.getMessageId();
-                                    firestore.collection("Events/" + messageId).document().delete()
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Toast.makeText(context, "Message deleted successfully", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(context, "Error deleting message: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                }
-                            })
-                            .show();
-                }
-            });
-        } else {
-            holder.mMessageDeleteBtn.setVisibility(View.GONE);
-            holder.mMessageDeleteBtn.setClickable(false);
-        }
+//        if (currentUserId.equals(userMessages.getUser())) {
+//            holder.mMessageDeleteBtn.setVisibility(View.VISIBLE);
+//            holder.mMessageDeleteBtn.setClickable(true);
+//            holder.mMessageDeleteBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+//                    alert.setTitle("Delete Message")
+//                            .setMessage("Are you sure?")
+//                            .setNegativeButton("No", null)
+//                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    String messageId = userMessages.getMessageId();
+//                                    firestore.collection("Events/" + eventId + "/Messages" + messageId).document().delete()
+//                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                @Override
+//                                                public void onSuccess(Void unused) {
+//                                                    Toast.makeText(context, "Message deleted successfully", Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            })
+//                                            .addOnFailureListener(new OnFailureListener() {
+//                                                @Override
+//                                                public void onFailure(@NonNull Exception e) {
+//                                                    Toast.makeText(context, "Error deleting message: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            });
+//                                }
+//                            })
+//                            .show();
+//                }
+//            });
+//        } else {
+//            holder.mMessageDeleteBtn.setVisibility(View.INVISIBLE);
+//            holder.mMessageDeleteBtn.setClickable(false);
+//        }
     }
 
     @Override
@@ -115,8 +115,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         public MessagesViewHolder(@NonNull View itemView) {
             super(itemView);
-            mMessageDeleteBtn = mView.findViewById(R.id.delete_message_btn);
             mView = itemView;
+//            mMessageDeleteBtn = mView.findViewById(R.id.delete_message_btn);
         }
 
         public void setCircleImageView(String profilePic) {

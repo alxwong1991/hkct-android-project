@@ -19,6 +19,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".StoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AttendeesActivity"
+            android:exported="false" />
+        <activity
             android:name=".MessageHostActivity"
             android:exported="false">
             <meta-data

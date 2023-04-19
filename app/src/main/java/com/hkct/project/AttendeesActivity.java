@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,42 +19,40 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
-import com.hkct.project.Adapter.LikeAdapter;
-import com.hkct.project.Model.Comments;
-import com.hkct.project.Model.Likes;
+import com.hkct.project.Adapter.AttendeesAdapter;
+import com.hkct.project.Model.Attendees;
 import com.hkct.project.Model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikesActivity extends AppCompatActivity {
+public class AttendeesActivity extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
-    private RecyclerView mLikeRecyclerView;
-    private String post_id;
-    private List<Likes> mList;
+    private RecyclerView mAttendeeRecyclerView;
+    private String event_id;
+    private List<Attendees> attendeesList;
     private List<Users> usersList;
-    private LikeAdapter adapter;
+    private AttendeesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_likes);
+        setContentView(R.layout.activity_attendees);
 
         firestore = FirebaseFirestore.getInstance();
-        mLikeRecyclerView = findViewById(R.id.like_recyclerView);
+        mAttendeeRecyclerView = findViewById(R.id.attendee_recyclerView);
 
-        mList = new ArrayList<>();
+        attendeesList = new ArrayList<>();
         usersList = new ArrayList<>();
-        adapter = new LikeAdapter(LikesActivity.this, mList, usersList);
+        adapter = new AttendeesAdapter(AttendeesActivity.this, usersList, attendeesList);
 
-        post_id = getIntent().getStringExtra("postid");
-        mLikeRecyclerView.setHasFixedSize(true);
-        mLikeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mLikeRecyclerView.setAdapter(adapter);
+        event_id = getIntent().getStringExtra("eventId");
+        mAttendeeRecyclerView.setHasFixedSize(true);
+        mAttendeeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAttendeeRecyclerView.setAdapter(adapter);
 
-        firestore.collection("Posts/" + post_id + "/Likes").addSnapshotListener(LikesActivity.this, new EventListener<QuerySnapshot>() {
+        firestore.collection("Events/" + event_id + "/Attendees").addSnapshotListener(AttendeesActivity.this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -62,7 +60,7 @@ public class LikesActivity extends AppCompatActivity {
                 } else {
                     for (DocumentChange documentChange : value.getDocumentChanges()) {
                         if (documentChange.getType() == DocumentChange.Type.ADDED) {
-                            Likes likes = documentChange.getDocument().toObject(Likes.class);
+                            Attendees attendees = documentChange.getDocument().toObject(Attendees.class);
                             String userId = documentChange.getDocument().getString("user");
 
                             firestore.collection("Users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -71,10 +69,10 @@ public class LikesActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Users users = task.getResult().toObject(Users.class);
                                         usersList.add(users);
-                                        mList.add(likes);
+                                        attendeesList.add(attendees);
                                         adapter.notifyDataSetChanged();
                                     } else {
-                                        Toast.makeText(LikesActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AttendeesActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
