@@ -35,6 +35,14 @@ public class StoreActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // Menu
     //   Discover
     public void menu1_click(MenuItem menuItem) {

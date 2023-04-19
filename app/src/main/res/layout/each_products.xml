@@ -112,7 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:background=""
                 android:clickable="false"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"

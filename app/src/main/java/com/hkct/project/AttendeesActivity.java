@@ -35,7 +35,6 @@ public class AttendeesActivity extends AppCompatActivity {
     private List<Users> usersList;
     private AttendeesAdapter adapter;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +69,7 @@ public class AttendeesActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Users users = task.getResult().toObject(Users.class);
                                         usersList.add(users);
+                                        attendeesList.add(attendees);
                                         adapter.notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(AttendeesActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
