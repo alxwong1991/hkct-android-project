@@ -2,13 +2,8 @@ package com.hkct.project.Model;
 
 import java.util.Date;
 
-public class Messages {
-    private String message, user, messageId;
+public class Messages { private String message, user;
     private Date timestamp;
-
-    public String getMessageId() {
-        return messageId;
-    }
 
     public String getUser() {
         return user;
