@@ -46,6 +46,7 @@ public class EventDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent messageHostIntent = new Intent(EventDetailActivity.this, MessageHostActivity.class);
                 messageHostIntent.putExtra("eventId", event_id);
+                messageHostIntent.putExtra("eventTitle", mEventDetailTitle.getText().toString());
                 startActivity(messageHostIntent);
             };
         });

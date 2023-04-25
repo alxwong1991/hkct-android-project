@@ -98,7 +98,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/event_date" />
 
             <ImageView
-                android:id="@+id/user_event"
+                android:id="@+id/event_image"
                 android:layout_width="0dp"
                 android:layout_height="230dp"
                 android:layout_marginTop="32dp"
@@ -129,10 +129,10 @@
                 android:text="0 Member Joined"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/user_event"
+                app:layout_constraintEnd_toEndOf="@+id/event_image"
                 app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="@+id/user_event"
-                app:layout_constraintTop_toBottomOf="@+id/user_event" />
+                app:layout_constraintStart_toStartOf="@+id/event_image"
+                app:layout_constraintTop_toBottomOf="@+id/event_image" />
 
             <ImageView
                 android:id="@+id/join_icon"

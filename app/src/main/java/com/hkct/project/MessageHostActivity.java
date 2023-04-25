@@ -47,6 +47,8 @@ public class MessageHostActivity extends AppCompatActivity {
     private List<Users> usersList;
     private String currentUserId;
     private String event_id;
+    private String eventTitle;
+    private String notificationEventTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,9 @@ public class MessageHostActivity extends AppCompatActivity {
         adapter = new MessagesAdapter(MessageHostActivity.this, messagesList, usersList);
 
         event_id = getIntent().getStringExtra("eventId");
+        eventTitle = getIntent().getStringExtra("eventTitle");
+        notificationEventTitle = getIntent().getStringExtra("notificationEventTitle");
+
         mMessageRecyclerView.setHasFixedSize(true);
         mMessageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMessageRecyclerView.setAdapter(adapter);
@@ -86,6 +91,19 @@ public class MessageHostActivity extends AppCompatActivity {
                                     usersList.add(users);
                                     messagesList.add(messages);
                                     adapter.notifyDataSetChanged();
+
+                                    if (!userId.equals(currentUserId)) {
+                                        firestore.collection("Events").document(event_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    eventTitle = task.getResult().getString("title");
+                                                } else {
+                                                    Toast.makeText(MessageHostActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
                                 } else {
                                     Toast.makeText(MessageHostActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -107,6 +125,31 @@ public class MessageHostActivity extends AppCompatActivity {
                     messagesMap.put("message", message);
                     messagesMap.put("timestamp", FieldValue.serverTimestamp());
                     messagesMap.put("user", currentUserId);
+
+                    final String[] receiver = {null};
+                    firestore.collection("Events").document(event_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                if (documentSnapshot.exists()) {
+                                    receiver[0] = documentSnapshot.getString("user");
+                                    String sender = currentUserId;
+                                    String title = eventTitle;
+                                    String type = "event";
+
+                                    Map<String, Object> notificaitonsMap = new HashMap<>();
+                                    notificaitonsMap.put("receiver", receiver[0]);
+                                    notificaitonsMap.put("sender", sender);
+                                    notificaitonsMap.put("time", FieldValue.serverTimestamp());
+                                    notificaitonsMap.put("title", title);
+                                    notificaitonsMap.put("type", type);
+                                    firestore.collection("Notifications").add(notificaitonsMap);
+                                }
+                            }
+                        }
+                    });
+
                     firestore.collection("Events/" + event_id + "/Messages").add(messagesMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {

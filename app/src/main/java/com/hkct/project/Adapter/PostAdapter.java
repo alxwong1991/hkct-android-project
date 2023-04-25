@@ -71,7 +71,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         Post post = postList.get(position);
-        //Log.d("eventlog",post.getCaption());
         holder.setPostPic(post.getImage());
         holder.setPostCaption(post.getCaption());
         long milliseconds = post.getTime().getTime();

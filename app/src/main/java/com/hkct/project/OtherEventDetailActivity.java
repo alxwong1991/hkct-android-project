@@ -27,7 +27,6 @@ public class OtherEventDetailActivity extends AppCompatActivity {
     private ImageView mOtherEventDetailHostProfilePic, mOtherEventDetailImage;
     private Button mMessageHostBtn;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

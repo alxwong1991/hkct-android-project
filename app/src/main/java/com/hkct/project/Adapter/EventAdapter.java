@@ -238,7 +238,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         }
 
         public void setEventPic(String image) {
-            eventPic = mView.findViewById(R.id.user_event);
+            eventPic = mView.findViewById(R.id.event_image);
             if (image != null) {
                 Glide.with(context).load(image).into(eventPic);
             }
