@@ -181,6 +181,7 @@ public class EventActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.events_add, menu);
         getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.notifications, menu);
         getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -191,6 +192,10 @@ public class EventActivity extends AppCompatActivity {
 
     public void menu_add_event_click(MenuItem m) {
         startActivity(new Intent(EventActivity.this, AddEventActivity.class));
+    }
+
+    public void menu_notification_click(MenuItem m) {
+        startActivity(new Intent(EventActivity.this, NotificationActivity.class));
     }
 
     public void menu_logout_click(MenuItem m) {

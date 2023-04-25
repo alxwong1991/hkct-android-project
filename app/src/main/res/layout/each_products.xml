@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
@@ -19,9 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="420dp"
-            android:background="#5C8841"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-14dp">
+            android:background="#5C8841">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_pic"
@@ -32,11 +29,11 @@
                 android:src="@drawable/elcipse"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_post"
+                app:layout_constraintTop_toBottomOf="@+id/productimage"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/user_post"
+                android:id="@+id/productimage"
                 android:layout_width="395dp"
                 android:layout_height="230dp"
                 android:adjustViewBounds="true"
@@ -46,15 +43,15 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.005"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/rectangle" />
 
             <ImageView
-                android:id="@+id/product_like"
+                android:id="@+id/productlikebtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/user_post"
+                app:layout_constraintBottom_toBottomOf="@+id/productimage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.83"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +66,9 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/user_post"
-                app:layout_constraintStart_toEndOf="@+id/product_like"
-                app:layout_constraintTop_toTopOf="@+id/product_like" />
+                app:layout_constraintEnd_toEndOf="@+id/productimage"
+                app:layout_constraintStart_toEndOf="@+id/productlikebtn"
+                app:layout_constraintTop_toTopOf="@+id/productlikebtn" />
 
             <TextView
                 android:id="@+id/username_tv"
@@ -83,7 +80,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintStart_toEndOf="@+id/profile_pic"
-                app:layout_constraintTop_toBottomOf="@+id/user_post" />
+                app:layout_constraintTop_toBottomOf="@+id/productimage" />
 
             <TextView
                 android:id="@+id/date_tv"
@@ -131,6 +128,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/profile_pic" />
 
             <TextView
+                android:id="@+id/productprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="ProductPrice"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/profile_pic"
+                app:layout_constraintTop_toBottomOf="@+id/productname" />
+
+            <TextView
                 android:id="@+id/productdetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -142,17 +151,7 @@
                 app:layout_constraintStart_toStartOf="@+id/profile_pic"
                 app:layout_constraintTop_toBottomOf="@+id/productprice" />
 
-            <TextView
-                android:id="@+id/productprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="ProductPrice"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/profile_pic"
-                app:layout_constraintTop_toBottomOf="@+id/productname" />
+
 
             <ImageView
                 android:id="@+id/productcomment"

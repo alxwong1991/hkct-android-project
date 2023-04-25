@@ -31,9 +31,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessagesViewHolder> {
 
     private Activity context;
-    private String Uid;
-    private FirebaseAuth auth;
-    private FirebaseFirestore firestore;
+//    private String Uid;
+//    private FirebaseAuth auth;
+//    private FirebaseFirestore firestore;
     private List<Users> usersList;
     private List<Messages> messagesList;
 
@@ -47,9 +47,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     @Override
     public MessagesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.each_message, parent, false);
-        auth = FirebaseAuth.getInstance();
-        firestore = FirebaseFirestore.getInstance();
-        Uid = auth.getCurrentUser().getUid();
+//        auth = FirebaseAuth.getInstance();
+//        firestore = FirebaseFirestore.getInstance();
+//        Uid = auth.getCurrentUser().getUid();
         return new MessagesViewHolder(view);
     }
 
@@ -109,7 +109,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     public class MessagesViewHolder extends RecyclerView.ViewHolder {
         TextView mMessage, mUserName, mMessageTimestamp;
-        ImageView mMessageDeleteBtn;
+//        ImageView mMessageDeleteBtn;
         CircleImageView circleImageView;
         View mView;
 

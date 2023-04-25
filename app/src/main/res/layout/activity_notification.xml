@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".AttendeesActivity">
+    tools:context=".NotificationActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
-        android:text="Attendees"
+        android:text="Notifications"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/attendee_recyclerView"
+        android:id="@+id/notification_recyclerView"
         android:layout_width="409dp"
         android:layout_height="597dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,10 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/aldrich"
-        android:text="Members that are attending"
+        android:text="Users messaged you"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/attendee_recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/notification_recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

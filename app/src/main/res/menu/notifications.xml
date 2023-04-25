@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:onClick="menu_profile_click"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        app:showAsAction="always"
-        android:title=""/>
+        android:onClick="menu_notification_click"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title=""
+        app:showAsAction="always"/>
+
 </menu>

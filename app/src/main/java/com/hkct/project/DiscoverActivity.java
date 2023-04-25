@@ -209,6 +209,7 @@ public class DiscoverActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.posts_add, menu);
         getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.notifications, menu);
         getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -219,6 +220,10 @@ public class DiscoverActivity extends AppCompatActivity {
 
     public void menu_add_post_click(MenuItem m) {
         startActivity(new Intent(DiscoverActivity.this, AddPostActivity.class));
+    }
+
+    public void menu_notification_click(MenuItem m) {
+        startActivity(new Intent(DiscoverActivity.this, NotificationActivity.class));
     }
 
     public void menu_logout_click(MenuItem m) {

@@ -548,6 +548,7 @@ public class MembershipActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.notifications, menu);
         getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -556,13 +557,16 @@ public class MembershipActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),SetUpActivity.class));
     }
 
+    public void menu_notification_click(MenuItem m) {
+        startActivity(new Intent(MembershipActivity.this, NotificationActivity.class));
+    }
+
     public void menu_logout_click(MenuItem m) {
         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         FirebaseAuth.getInstance().signOut();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(MembershipActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
-
 
     // myQRcode  btn
     public void myQRcode(View v){
