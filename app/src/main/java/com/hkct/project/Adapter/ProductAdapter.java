@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -135,6 +136,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
         });
 
+        //chat with seller implementation
+
+
         if (currentUserId.equals(product.getUser())) {
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setClickable(true);
@@ -177,6 +181,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         TextView productName, productPrice, productDetail, productDate, productUsername, postLikes;
         ImageView productPic, likeProduct, deleteBtn;
         CircleImageView profilePic;
+        Button productChat;
         View mView;
 
         public ProductViewHolder(@NonNull View itemView) {
@@ -185,6 +190,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             likeProduct = mView.findViewById(R.id.productlikebtn);
             postLikes = mView.findViewById(R.id.like_count_tv);
             deleteBtn = mView.findViewById(R.id.product_delete_btn);
+            productChat = mView.findViewById(R.id.product_chat_btn);
         }
 
         public void setPostLikes(int count) {
