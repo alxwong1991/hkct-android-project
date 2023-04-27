@@ -13,12 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.MessageHostActivity;
 import com.hkct.project.Model.Event;
@@ -35,6 +39,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private Activity context;
     private List<Users> usersList;
     private List<Notification> notificationList;
+    private String eventId;
 
     public NotificationAdapter(Activity context, List<Users> usersList, List<Notification> notificationList) {
         this.context = context;
@@ -55,6 +60,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.setmNotificationType(notification.getType());
         holder.setmNotificationTitle(notification.getTitle());
         holder.setmNotificationTimeStamp(notification.getTime());
+        holder.setmNotificationMsgFromUser(notification.getContent());
 
         Users users = usersList.get(position);
         if (users != null) {
@@ -67,10 +73,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 String notificationType = notification.getType();
                 String notificationTitle = notification.getTitle();
 
+//                FirebaseFirestore.getInstance().collection("Notification").addSnapshotListener(NotificationAdapter.this, new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                        for (DocumentSnapshot documentSnapshot : value.getDocumentChanges())
+//                    }
+//                })
+
                 FirebaseFirestore.getInstance()
                         .collection("Notification")
                         .whereEqualTo("type", notificationType)
                         .whereEqualTo("title", notificationTitle)
+                        .whereEqualTo("reference", eventId)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -106,7 +120,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class NotificationViewHolder extends RecyclerView.ViewHolder {
-        TextView mNotificationType, mNotificationSender, mNotificationTitle, mNotificationTimeStamp;
+        TextView mNotificationType, mNotificationSender, mNotificationTitle, mNotificationTimeStamp, mNotificationMsgFromUser;
         ImageView mNotificationDelBtn;
         View mView;
 
@@ -138,6 +152,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 String formattedDate = dateFormat.format(timestamp);
                 mNotificationTimeStamp.setText(formattedDate);
             }
+        }
+
+        public void setmNotificationMsgFromUser(String usermessage) {
+            mNotificationMsgFromUser = mView.findViewById(R.id.notification_message_from_user);
+            mNotificationMsgFromUser.setText("Message: " + usermessage);
         }
     }
 }

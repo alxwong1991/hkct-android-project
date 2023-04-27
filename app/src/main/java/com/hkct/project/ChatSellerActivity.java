@@ -127,6 +127,7 @@ public class ChatSellerActivity extends AppCompatActivity {
                                     notificaitonsMap.put("time", FieldValue.serverTimestamp());
                                     notificaitonsMap.put("title", title);
                                     notificaitonsMap.put("type", type);
+                                    notificaitonsMap.put("content", message);
                                     firestore.collection("Notifications").add(notificaitonsMap);
                                 }
                             }

@@ -48,6 +48,7 @@ public class MessageHostActivity extends AppCompatActivity {
     private String currentUserId;
     private String event_id;
     private String eventTitle;
+    private String eventMessage;
     private String notificationEventTitle;
 
     @Override
@@ -69,6 +70,7 @@ public class MessageHostActivity extends AppCompatActivity {
 
         event_id = getIntent().getStringExtra("eventId");
         eventTitle = getIntent().getStringExtra("eventTitle");
+        eventMessage = getIntent().getStringExtra("eventMessage");
         notificationEventTitle = getIntent().getStringExtra("notificationEventTitle");
 
         mMessageRecyclerView.setHasFixedSize(true);
@@ -103,6 +105,17 @@ public class MessageHostActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
+
+//                                        firestore.collection("Events/" + event_id + "/Messages").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                                            @Override
+//                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                                if (task.isSuccessful()) {
+//                                                    eventMessage = task.getResult().getString("message");
+//                                                } else {
+//                                                    Toast.makeText(MessageHostActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            }
+//                                        });
                                     }
                                 } else {
                                     Toast.makeText(MessageHostActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -143,7 +156,9 @@ public class MessageHostActivity extends AppCompatActivity {
                                     notificaitonsMap.put("sender", sender);
                                     notificaitonsMap.put("time", FieldValue.serverTimestamp());
                                     notificaitonsMap.put("title", title);
+                                    notificaitonsMap.put("reference", event_id);
                                     notificaitonsMap.put("type", type);
+                                    notificaitonsMap.put("content", message);
                                     firestore.collection("Notifications").add(notificaitonsMap);
                                 }
                             }
