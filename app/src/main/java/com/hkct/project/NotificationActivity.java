@@ -63,7 +63,8 @@ public class NotificationActivity extends AppCompatActivity {
                 } else {
                     for (DocumentChange documentChange : value.getDocumentChanges()) {
                         if (documentChange.getType() == DocumentChange.Type.ADDED) {
-                            Notification notification = documentChange.getDocument().toObject(Notification.class);
+                            String notificationId = documentChange.getDocument().getId();
+                            Notification notification = documentChange.getDocument().toObject(Notification.class).withId(notificationId);
                             String senderId = documentChange.getDocument().getString("sender");
 
                                 firestore.collection("Users").document(senderId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
