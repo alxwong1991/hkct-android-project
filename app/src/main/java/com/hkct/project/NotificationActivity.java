@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.Adapter.NotificationAdapter;
+import com.hkct.project.Model.Event;
 import com.hkct.project.Model.Notification;
 import com.hkct.project.Model.Users;
 

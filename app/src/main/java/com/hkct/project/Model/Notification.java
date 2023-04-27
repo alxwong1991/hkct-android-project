@@ -3,7 +3,7 @@ package com.hkct.project.Model;
 import java.util.Date;
 
 public class Notification extends NotificationId {
-    private String title, type, user, content;
+    private String title, type, user, content, reference;
 
     private Date time;
 
@@ -25,5 +25,9 @@ public class Notification extends NotificationId {
 
     public String getContent() {
         return content;
+    }
+
+    public String getReference() {
+        return reference;
     }
 }

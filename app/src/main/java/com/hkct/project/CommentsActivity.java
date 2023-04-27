@@ -39,6 +39,7 @@ public class CommentsActivity extends AppCompatActivity {
     private RecyclerView mCommentRecyclerView;
     private FirebaseFirestore firestore;
     private String post_id;
+    private String postCaption;
     private String currentUserId;
     private FirebaseAuth auth;
     private CommentsAdapter adapter;
@@ -63,6 +64,8 @@ public class CommentsActivity extends AppCompatActivity {
         adapter = new CommentsAdapter(CommentsActivity.this, mList, usersList);
 
         post_id = getIntent().getStringExtra("postid");
+
+
         mCommentRecyclerView.setHasFixedSize(true);
         mCommentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mCommentRecyclerView.setAdapter(adapter);
@@ -104,6 +107,32 @@ public class CommentsActivity extends AppCompatActivity {
                     commentsMap.put("comment", comment);
                     commentsMap.put("time", FieldValue.serverTimestamp());
                     commentsMap.put("user", currentUserId);
+
+                    final String[] receiver = {null};
+                    firestore.collection("Posts").document(post_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                if (documentSnapshot.exists()) {
+                                    receiver[0] = documentSnapshot.getString("user");
+                                    String sender = currentUserId;
+                                    String title = postCaption;
+                                    String type = "post";
+
+                                    Map<String, Object> notificaitonsMap = new HashMap<>();
+                                    notificaitonsMap.put("receiver", receiver[0]);
+                                    notificaitonsMap.put("sender", sender);
+                                    notificaitonsMap.put("time", FieldValue.serverTimestamp());
+                                    notificaitonsMap.put("title", title);
+                                    notificaitonsMap.put("reference", post_id);
+                                    notificaitonsMap.put("type", type);
+                                    firestore.collection("Notifications").add(notificaitonsMap);
+                                }
+                            }
+                        }
+                    });
+
                     firestore.collection("Posts/" + post_id + "/Comments").add(commentsMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {

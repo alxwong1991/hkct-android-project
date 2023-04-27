@@ -19,11 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hkct.project.ChatSellerActivity;
+import com.hkct.project.CommentsActivity;
 import com.hkct.project.MessageHostActivity;
 import com.hkct.project.Model.Event;
 import com.hkct.project.Model.Notification;
@@ -31,6 +34,7 @@ import com.hkct.project.Model.Users;
 import com.hkct.project.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +43,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private Activity context;
     private List<Users> usersList;
     private List<Notification> notificationList;
-    private String eventId;
 
     public NotificationAdapter(Activity context, List<Users> usersList, List<Notification> notificationList) {
         this.context = context;
@@ -60,47 +63,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.setmNotificationType(notification.getType());
         holder.setmNotificationTitle(notification.getTitle());
         holder.setmNotificationTimeStamp(notification.getTime());
-        holder.setmNotificationMsgFromUser(notification.getContent());
 
         Users users = usersList.get(position);
         if (users != null) {
             holder.setmNotificationSender(users.getName());
         }
-
-        holder.mNotificationTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String notificationType = notification.getType();
-                String notificationTitle = notification.getTitle();
-
-//                FirebaseFirestore.getInstance().collection("Notification").addSnapshotListener(NotificationAdapter.this, new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        for (DocumentSnapshot documentSnapshot : value.getDocumentChanges())
-//                    }
-//                })
-
-                FirebaseFirestore.getInstance()
-                        .collection("Notification")
-                        .whereEqualTo("type", notificationType)
-                        .whereEqualTo("title", notificationTitle)
-                        .whereEqualTo("reference", eventId)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("notification adapter", "testing");
-                                    Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
-                                    messageHostIntent.putExtra("notificationEventTitle", notificationTitle);
-                                    context.startActivity(messageHostIntent);
-                                } else {
-                                    Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
 
         String notificationId = notification.NotificationId;
         holder.mNotificationDelBtn.setClickable(true);
@@ -112,6 +79,121 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 notifyDataSetChanged();
             }
         });
+
+        String notificationType = notification.getType();
+        String notificationRef = notification.getReference();
+
+//        holder.mNotificationType.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (notificationType.equalsIgnoreCase("event")) {
+//                    FirebaseFirestore.getInstance().collection("Events").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                            if (task.isSuccessful()) {
+//                                DocumentSnapshot documentSnapshot = task.getResult();
+//                                if (documentSnapshot.exists()) {
+//                                    Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
+//                                    messageHostIntent.putExtra("eventId", notificationRef);
+//                                    context.startActivity(messageHostIntent);
+//                                } else {
+//                                    Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
+//                                }
+//                            } else {
+//                                Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                } else if (notificationType.equalsIgnoreCase("product")) {
+//                    FirebaseFirestore.getInstance().collection("Products").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                            if (task.isSuccessful()) {
+//                                DocumentSnapshot documentSnapshot = task.getResult();
+//                                if (documentSnapshot.exists()) {
+//                                    Intent chatSellerIntent = new Intent(context, ChatSellerActivity.class);
+//                                    chatSellerIntent.putExtra("productId", notificationRef);
+//                                    context.startActivity(chatSellerIntent);
+//                                } else {
+//                                    Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
+//                                }
+//                            } else {
+//                                Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+
+        holder.mNotificationType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (notificationType.toLowerCase()) {
+                    case "event":
+                        FirebaseFirestore.getInstance().collection("Events").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot documentSnapshot = task.getResult();
+                                    if (documentSnapshot.exists()) {
+                                        Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
+                                        messageHostIntent.putExtra("eventId", notificationRef);
+                                        context.startActivity(messageHostIntent);
+                                    } else {
+                                        Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        break;
+                    case "product":
+                        FirebaseFirestore.getInstance().collection("Products").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot documentSnapshot = task.getResult();
+                                    if (documentSnapshot.exists()) {
+                                        Intent chatSellerIntent = new Intent(context, ChatSellerActivity.class);
+                                        chatSellerIntent.putExtra("productId", notificationRef);
+                                        context.startActivity(chatSellerIntent);
+                                    } else {
+                                        Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        break;
+                    case "post":
+                        FirebaseFirestore.getInstance().collection("Posts").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot documentSnapshot = task.getResult();
+                                    if (documentSnapshot.exists()) {
+                                        Intent viewPostIntent = new Intent(context, CommentsActivity.class);
+                                        viewPostIntent.putExtra("postId", notificationRef);
+                                        context.startActivity(viewPostIntent);
+                                    } else {
+                                        Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        break;
+                    default:
+                        // do something when the notificationType is neither "event" nor "product"
+                        break;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -120,7 +202,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class NotificationViewHolder extends RecyclerView.ViewHolder {
-        TextView mNotificationType, mNotificationSender, mNotificationTitle, mNotificationTimeStamp, mNotificationMsgFromUser;
+        TextView mNotificationType, mNotificationSender, mNotificationTitle, mNotificationTimeStamp;
         ImageView mNotificationDelBtn;
         View mView;
 
@@ -152,11 +234,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 String formattedDate = dateFormat.format(timestamp);
                 mNotificationTimeStamp.setText(formattedDate);
             }
-        }
-
-        public void setmNotificationMsgFromUser(String usermessage) {
-            mNotificationMsgFromUser = mView.findViewById(R.id.notification_message_from_user);
-            mNotificationMsgFromUser.setText("Message: " + usermessage);
         }
     }
 }

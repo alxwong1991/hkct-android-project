@@ -48,8 +48,6 @@ public class MessageHostActivity extends AppCompatActivity {
     private String currentUserId;
     private String event_id;
     private String eventTitle;
-    private String eventMessage;
-    private String notificationEventTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +67,6 @@ public class MessageHostActivity extends AppCompatActivity {
         adapter = new MessagesAdapter(MessageHostActivity.this, messagesList, usersList);
 
         event_id = getIntent().getStringExtra("eventId");
-        eventTitle = getIntent().getStringExtra("eventTitle");
-        eventMessage = getIntent().getStringExtra("eventMessage");
-        notificationEventTitle = getIntent().getStringExtra("notificationEventTitle");
 
         mMessageRecyclerView.setHasFixedSize(true);
         mMessageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -158,7 +153,6 @@ public class MessageHostActivity extends AppCompatActivity {
                                     notificaitonsMap.put("title", title);
                                     notificaitonsMap.put("reference", event_id);
                                     notificaitonsMap.put("type", type);
-                                    notificaitonsMap.put("content", message);
                                     firestore.collection("Notifications").add(notificaitonsMap);
                                 }
                             }

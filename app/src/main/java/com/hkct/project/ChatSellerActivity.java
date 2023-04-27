@@ -64,8 +64,8 @@ public class ChatSellerActivity extends AppCompatActivity {
         usersList = new ArrayList<>();
         adapter = new ChatAdapter(ChatSellerActivity.this, chatList, usersList);
 
-        productName = getIntent().getStringExtra("productName");
         product_id = getIntent().getStringExtra("productId");
+        productName = getIntent().getStringExtra("productName");
 
         mChatRecyclerView.setHasFixedSize(true);
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -126,8 +126,8 @@ public class ChatSellerActivity extends AppCompatActivity {
                                     notificaitonsMap.put("sender", sender);
                                     notificaitonsMap.put("time", FieldValue.serverTimestamp());
                                     notificaitonsMap.put("title", title);
+                                    notificaitonsMap.put("reference", product_id);
                                     notificaitonsMap.put("type", type);
-                                    notificaitonsMap.put("content", message);
                                     firestore.collection("Notifications").add(notificaitonsMap);
                                 }
                             }
