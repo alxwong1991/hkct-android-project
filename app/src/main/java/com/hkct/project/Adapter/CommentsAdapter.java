@@ -72,5 +72,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
             circleImageView = mView.findViewById(R.id.comment_profile_pic);
             Glide.with(context).load(profilePic).into(circleImageView);
         }
+        
     }
 }

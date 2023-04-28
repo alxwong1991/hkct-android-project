@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.ChatSellerActivity;
 import com.hkct.project.Model.Product;
 import com.hkct.project.Model.Users;
+import com.hkct.project.ProductLikesActivity;
 import com.hkct.project.R;
 
 import java.text.DateFormat;
@@ -133,6 +134,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
         });
 
+        //product likes detail implementation
+        holder.postLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent productLikeIntent = new Intent(context, ProductLikesActivity.class);
+                productLikeIntent.putExtra("productId", productId);
+                context.startActivity(productLikeIntent);
+            }
+        });
+
         //chat with seller implementation
         holder.productChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,7 +204,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             super(itemView);
             mView = itemView;
             likeProduct = mView.findViewById(R.id.productlikebtn);
-            postLikes = mView.findViewById(R.id.like_count_tv);
+            postLikes = mView.findViewById(R.id.like_product_count_tv);
             deleteBtn = mView.findViewById(R.id.product_delete_btn);
             productChat = mView.findViewById(R.id.product_chat_btn);
         }

@@ -87,9 +87,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         // get a reference to the ConstraintLayout
         ConstraintLayout layout = holder.itemView.findViewById(R.id.notification_background);
 
-//        // set the initial background color to dark_blue
-//        layout.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_blue));
-
         String notificationType = notification.getType();
         String notificationRef = notification.getReference();
         firestore = FirebaseFirestore.getInstance();
@@ -107,7 +104,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                         Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
                                         messageHostIntent.putExtra("eventId", notificationRef);
                                         context.startActivity(messageHostIntent);
-                                        // update the background color to ivory_black
+                                        // update the background color
                                         layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
@@ -128,7 +125,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                         Intent chatSellerIntent = new Intent(context, ChatSellerActivity.class);
                                         chatSellerIntent.putExtra("productId", notificationRef);
                                         context.startActivity(chatSellerIntent);
-                                        // update the background color to ivory_black
+                                        // update the background color
                                         layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
@@ -149,7 +146,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                         Intent viewPostIntent = new Intent(context, CommentsActivity.class);
                                         viewPostIntent.putExtra("postid", notificationRef);
                                         context.startActivity(viewPostIntent);
-                                        // update the background color to ivory_black
+                                        // update the background color
                                         layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
@@ -162,6 +159,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         break;
                     default:
                         // do something when the notificationType is neither "event" nor "product"
+                        Toast.makeText(context, "Notification not match with type", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

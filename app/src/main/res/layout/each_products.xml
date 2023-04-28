@@ -59,7 +59,7 @@
                 app:srcCompat="@drawable/before_liked" />
 
             <TextView
-                android:id="@+id/like_count_tv"
+                android:id="@+id/like_product_count_tv"
                 android:layout_width="69dp"
                 android:layout_height="23dp"
                 android:layout_marginTop="4dp"
