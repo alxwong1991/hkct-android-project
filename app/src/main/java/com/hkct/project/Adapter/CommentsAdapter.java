@@ -14,6 +14,8 @@ import com.hkct.project.Model.Comments;
 import com.hkct.project.Model.Users;
 import com.hkct.project.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -41,6 +43,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
     public void onBindViewHolder(@NonNull CommentsViewHolder holder, int position) {
         Comments comments = commentsList.get(position);
         holder.setmComment(comments.getComment());
+        holder.setmTimeStamp(comments.getTime());
 
         Users users = usersList.get(position);
         holder.setmUserName(users.getName());
@@ -53,7 +56,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
     }
 
     public class CommentsViewHolder extends RecyclerView.ViewHolder {
-        TextView mComment, mUserName;
+        TextView mComment, mUserName, mTimeStamp;
         CircleImageView circleImageView;
         View mView;
         public CommentsViewHolder(@NonNull View itemView) {
@@ -72,6 +75,14 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
             circleImageView = mView.findViewById(R.id.comment_profile_pic);
             Glide.with(context).load(profilePic).into(circleImageView);
         }
-        
+
+        public void setmTimeStamp(Date timestamp) {
+            mTimeStamp = mView.findViewById(R.id.comment_timestamp);
+            if (timestamp != null) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd 'at' hh:mm a");
+                String formattedDate = dateFormat.format(timestamp);
+                mTimeStamp.setText(formattedDate);
+            }
+        }
     }
 }
