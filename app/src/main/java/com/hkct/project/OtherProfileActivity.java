@@ -47,7 +47,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-    private Button mFollowBtn;
+//    private Button mFollowBtn;
 
     private RecyclerView mRecyclerView;
     private List<Post> posts;
@@ -75,7 +75,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         mOtherProfileImage = findViewById(R.id.other_profile_pic_personal);
         mOtherProfileName = findViewById(R.id.other_profile_name_personal);
         mOtherMembershipIcon = findViewById(R.id.other_membership_icon);
-        mFollowBtn = findViewById(R.id.follow_btn);
+//        mFollowBtn = findViewById(R.id.follow_btn);
 
         mRecyclerView = findViewById(R.id.recyclerViewPosts);
         mRecyclerView.setHasFixedSize(true);

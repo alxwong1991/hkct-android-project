@@ -86,6 +86,19 @@ public class CommentsActivity extends AppCompatActivity {
                                     usersList.add(users);
                                     mList.add(comments);
                                     adapter.notifyDataSetChanged();
+
+                                    if (!userId.equals(currentUserId)) {
+                                        firestore.collection("Posts").document(post_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    postCaption = task.getResult().getString("caption");
+                                                } else {
+                                                    Toast.makeText(CommentsActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
                                 } else {
                                     Toast.makeText(CommentsActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }

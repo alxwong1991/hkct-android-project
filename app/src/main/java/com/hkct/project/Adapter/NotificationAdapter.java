@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +45,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private Activity context;
     private List<Users> usersList;
     private List<Notification> notificationList;
+    private FirebaseFirestore firestore;
 
     public NotificationAdapter(Activity context, List<Users> usersList, List<Notification> notificationList) {
         this.context = context;
@@ -80,58 +83,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
         });
 
+        // check which notification type
+        // get a reference to the ConstraintLayout
+        ConstraintLayout layout = holder.itemView.findViewById(R.id.notification_background);
+
+//        // set the initial background color to dark_blue
+//        layout.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_blue));
+
         String notificationType = notification.getType();
         String notificationRef = notification.getReference();
-
-//        holder.mNotificationType.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (notificationType.equalsIgnoreCase("event")) {
-//                    FirebaseFirestore.getInstance().collection("Events").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                DocumentSnapshot documentSnapshot = task.getResult();
-//                                if (documentSnapshot.exists()) {
-//                                    Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
-//                                    messageHostIntent.putExtra("eventId", notificationRef);
-//                                    context.startActivity(messageHostIntent);
-//                                } else {
-//                                    Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
-//                                }
-//                            } else {
-//                                Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                } else if (notificationType.equalsIgnoreCase("product")) {
-//                    FirebaseFirestore.getInstance().collection("Products").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                DocumentSnapshot documentSnapshot = task.getResult();
-//                                if (documentSnapshot.exists()) {
-//                                    Intent chatSellerIntent = new Intent(context, ChatSellerActivity.class);
-//                                    chatSellerIntent.putExtra("productId", notificationRef);
-//                                    context.startActivity(chatSellerIntent);
-//                                } else {
-//                                    Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
-//                                }
-//                            } else {
-//                                Toast.makeText(context, "Error getting document: " + task.getException(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//        });
-
+        firestore = FirebaseFirestore.getInstance();
         holder.mNotificationType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (notificationType.toLowerCase()) {
                     case "event":
-                        FirebaseFirestore.getInstance().collection("Events").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        firestore.collection("Events").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
@@ -140,6 +107,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                         Intent messageHostIntent = new Intent(context, MessageHostActivity.class);
                                         messageHostIntent.putExtra("eventId", notificationRef);
                                         context.startActivity(messageHostIntent);
+                                        // update the background color to ivory_black
+                                        layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
                                     }
@@ -150,7 +119,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         });
                         break;
                     case "product":
-                        FirebaseFirestore.getInstance().collection("Products").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        firestore.collection("Products").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
@@ -159,6 +128,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                         Intent chatSellerIntent = new Intent(context, ChatSellerActivity.class);
                                         chatSellerIntent.putExtra("productId", notificationRef);
                                         context.startActivity(chatSellerIntent);
+                                        // update the background color to ivory_black
+                                        layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
                                     }
@@ -169,15 +140,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         });
                         break;
                     case "post":
-                        FirebaseFirestore.getInstance().collection("Posts").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        firestore.collection("Posts").document(notificationRef).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot documentSnapshot = task.getResult();
                                     if (documentSnapshot.exists()) {
                                         Intent viewPostIntent = new Intent(context, CommentsActivity.class);
-                                        viewPostIntent.putExtra("postId", notificationRef);
+                                        viewPostIntent.putExtra("postid", notificationRef);
                                         context.startActivity(viewPostIntent);
+                                        // update the background color to ivory_black
+                                        layout.setBackgroundColor(ContextCompat.getColor(context, R.color.ivory_black));
                                     } else {
                                         Toast.makeText(context, "No matching document found", Toast.LENGTH_SHORT).show();
                                     }
@@ -224,7 +197,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         public void setmNotificationTitle(String title) {
             mNotificationTitle = mView.findViewById(R.id.notification_title);
-            mNotificationTitle.setText(title);
+            mNotificationTitle.setText("From your post, " + title);
         }
 
         public void setmNotificationTimeStamp(Date timestamp) {

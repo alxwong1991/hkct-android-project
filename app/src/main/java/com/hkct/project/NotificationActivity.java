@@ -68,6 +68,10 @@ public class NotificationActivity extends AppCompatActivity {
                             Notification notification = documentChange.getDocument().toObject(Notification.class).withId(notificationId);
                             String senderId = documentChange.getDocument().getString("sender");
 
+                            if (senderId.equals(auth.getCurrentUser().getUid())) {
+                                continue; // don't query if receiver and sender are the same
+                            }
+
                                 firestore.collection("Users").document(senderId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
