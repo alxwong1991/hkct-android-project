@@ -1,74 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.drawerlayout.widget.DrawerLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:id="@+id/drawerLayout"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/member"
+    android:id="@+id/drawerLayout"
 
-        tools:context=".MembershipActivity">
+    tools:context=".MembershipActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_pic_personal"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/elcipse"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/profile_name_personal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Username"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
-            app:layout_constraintTop_toTopOf="@+id/profile_pic_personal" />
-
-<!--        <Button-->
-<!--            android:id="@+id/test_member_btn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="15dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:text="Test Member"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/profile_name_personal"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/profile_name_personal" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/test_cancel_member_btn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="92dp"-->
-<!--            android:text="Cancel Member"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.146"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <ImageView
-            android:id="@+id/membership_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/membership_icon"
-            android:visibility="invisible"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/user"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            app:cardBackgroundColor="#ECE9E9"
+            app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.057"
-            app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
-            app:layout_constraintTop_toBottomOf="@+id/profile_name_personal" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic_personal"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/elcipse" />
+
+            <TextView
+                android:id="@+id/profile_name_personal"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/aldrich"
+                android:text="Username"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
+                app:layout_constraintTop_toTopOf="@+id/profile_pic_personal" />
+
+            <ImageView
+                android:id="@+id/membership_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/membership_icon"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintStart_toEndOf="@+id/profile_pic_personal"
+                app:layout_constraintTop_toBottomOf="@+id/profile_name_personal" />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPosts"
@@ -78,87 +74,44 @@
             app:layout_constraintBaseline_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="parent" />
+            app:layout_constraintStart_toEndOf="parent">
 
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_gravity="center"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:cardCornerRadius="20dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewPosts"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.455"
-            android:onClick="myQRcode"
-            >
-
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="80dp"
-                android:background="#808A87"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_qr_code_2_24"></ImageView>
-
-        </androidx.cardview.widget.CardView>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        </androidx.recyclerview.widget.RecyclerView>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="414dp"
+            android:layout_height="461dp"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_marginTop="150dp"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/user"
+            tools:ignore="MissingConstraints">
 
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:text="Current Plan"
+                android:fontFamily="@font/aldrich"
                 android:gravity="center"
-                >
-            </TextView>
+                android:text="Current Plan"
+                android:textColor="@color/black"
+                android:textSize="20dp"></TextView>
 
             <TextView
                 android:id="@+id/plan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:text="Free Member"
+                android:fontFamily="@font/aldrich"
                 android:gravity="center"
-                >
-            </TextView>
-
-
-
-
+                android:text="Free Member"
+                android:textColor="@color/black"
+                android:textSize="34sp"></TextView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/planCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
@@ -166,24 +119,26 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/title_plan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#808A87"
-                    android:gravity="center"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="30dp"
-                    android:text="Become Premium"
-                    android:textColor="#FFE384"
-                    android:textSize="20dp" />
 
+                    <TextView
+                        android:id="@+id/title_plan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#808A87"
+                        android:fontFamily="@font/aldrich"
+                        android:gravity="center"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
+                        android:text="Become Premium"
+                        android:textColor="#FFE384"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/monthplan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
+                        android:fontFamily="@font/aldrich"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:paddingBottom="20dp"
@@ -193,16 +148,15 @@
 
                     <TextView
                         android:id="@+id/planDate"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:textColor="@color/ivory_black"
-                        android:text="$ 299"
+                        android:fontFamily="@font/aldrich"
                         android:gravity="center"
-                        >
-                    </TextView>
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:text="$ 299"
+                        android:textColor="@color/ivory_black"
+                        android:textSize="20dp"></TextView>
 
 
                 </LinearLayout>
@@ -211,26 +165,28 @@
 
 
             <Button
+                android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:id="@+id/btn"
-                android:text="pay"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_button"
-                >
-            </Button>
-
-
+                android:fontFamily="@font/aldrich"
+                android:text="pay"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"></Button>
 
         </LinearLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="350px"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:alpha="0.96"
-            app:menu="@menu/nav_menu"
-            android:background="@drawable/rounded_menu"
-            app:itemTextColor="@color/white"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="350px"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:alpha="0.96"
+        app:menu="@menu/nav_menu"
+        android:background="@drawable/rounded_menu"
+        app:itemTextColor="@color/white"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

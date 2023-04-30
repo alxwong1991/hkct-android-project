@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -13,6 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/black"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,15 +22,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/notification_background"
             android:layout_width="match_parent"
-            android:background="@color/dark_blue"
+            android:background="#4D5C3D"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/notification_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/aldrich"
                 android:text="New Notification"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -40,7 +42,9 @@
                 android:id="@+id/notification_message_timestamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/aldrich"
                 android:text="December 31 2023 at 00:00 AM"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -51,8 +55,9 @@
                 android:id="@+id/notification_message_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/aldrich"
                 android:text="New message from username"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -61,26 +66,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/notification_title"
                 app:layout_constraintVertical_bias="0.0" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/notification_message_from_user"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginBottom="8dp"-->
-<!--                android:text="Message:"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="12sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/notification_message_tv"-->
-<!--                app:layout_constraintVertical_bias="0.0" />-->
-
             <TextView
                 android:id="@+id/notification_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="From your post"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/aldrich"
+                android:text="Notification title"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,9 +82,9 @@
                 android:id="@+id/notification_delete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:background="@color/dark_blue"
+                android:background="#4D5C3D"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notification_message_timestamp"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />

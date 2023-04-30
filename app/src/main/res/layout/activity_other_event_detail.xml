@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="#C0C1C3"
     tools:context=".OtherEventDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,9 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/aldrich"
         android:text="Other Host Name"
-        android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textSize="28sp"
         app:layout_constraintStart_toEndOf="@+id/event_host_profile_pic"
         app:layout_constraintTop_toTopOf="@+id/event_host_profile_pic" />
 
@@ -59,8 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/aldrich"
         android:text="Hosted By:"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.101"
@@ -90,7 +92,7 @@
         android:textSize="30dp"
         android:hint="@string/enter_event_title"
         android:inputType="textEmailAddress"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -109,7 +111,7 @@
         android:textSize="20dp"
         android:hint="@string/enter_event_location"
         android:inputType="textEmailAddress"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
