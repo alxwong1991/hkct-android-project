@@ -99,11 +99,22 @@
                 android:id="@+id/membership_icon_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/membership_icon"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/username_tv"
                 app:layout_constraintTop_toTopOf="@+id/username_tv" />
+
+            <ImageButton
+                android:id="@+id/product_edit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:clickable="false"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/product_delete_btn"
+                app:layout_constraintTop_toTopOf="@+id/username_tv"
+                app:srcCompat="@drawable/ic_baseline_edit_24" />
 
             <ImageButton
                 android:id="@+id/product_delete_btn"

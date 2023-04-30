@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -43,12 +46,10 @@ public class EditEventActivity extends AppCompatActivity {
     private Button mEditEventBtn;
     private TextView mEditEventDateTextView, mEditEventTimeTextView;
     private EditText mEditEventDescription, mEditEventLocation, mEditEventTitle;
-    private ImageView mEditEventCurrentImage, mEditEventUpdateImage, mEditEventImage;
+    private ImageView mEditEventImage;
     private ProgressBar mProgressBar;
     private FirebaseFirestore firestore;
-    private StorageReference storageReference;
     private String mEditEventImageUrl;
-    private Uri mEventImageUri = null;
 
     private Calendar selectedDate = Calendar.getInstance();
     private Calendar selectedTime = Calendar.getInstance();
@@ -64,23 +65,18 @@ public class EditEventActivity extends AppCompatActivity {
 
         mEditEventBtn = findViewById(R.id.edit_event_btn);
 
-//        mEditEventCurrentImage = findViewById(R.id.edit_event_current_image);
-//        mEditEventUpdateImage = findViewById(R.id.edit_event_update_image);
-
         mEditEventTitle = findViewById(R.id.edit_event_title);
         mEditEventDescription = findViewById(R.id.edit_event_description);
         mEditEventLocation = findViewById(R.id.edit_event_location);
         mEditEventDateTextView = findViewById(R.id.edit_event_date);
         mEditEventTimeTextView = findViewById(R.id.edit_event_time);
 
-        storageReference = FirebaseStorage.getInstance().getReference();
         firestore = FirebaseFirestore.getInstance();
 
         firestore.collection("Events").document(eventId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-//                    mCurrentImageUrl = documentSnapshot.getString("image");
                     mEditEventImageUrl = documentSnapshot.getString("image");
                     mEditEventTitle.setText(documentSnapshot.getString("title"));
                     mEditEventDescription.setText(documentSnapshot.getString("description"));
@@ -149,108 +145,6 @@ public class EditEventActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.edit_event_progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
 
-//        mEditEventCurrentImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CropImage.activity()
-//                        .setGuidelines(CropImageView.Guidelines.ON)
-//                        .setAspectRatio(3,2)
-//                        .setMinCropResultSize(512, 512)
-//                        .start(EditEventActivity.this);
-//            }
-//        });
-
-//        mEditEventBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mProgressBar.setVisibility(View.VISIBLE);
-//                String title = mEditEventTitle.getText().toString();
-//                String description = mEditEventDescription.getText().toString();
-//                String location = mEditEventLocation.getText().toString();
-//                String date = mEditEventDateTextView.getText().toString();
-//                String time = mEditEventTimeTextView.getText().toString();
-//
-//                if (!description.isEmpty() && mEventImageUri != null) {
-////                    // Upload new image
-////                    StorageReference eventRef = storageReference
-////                            .child("update_event_images")
-////                            .child(FieldValue.serverTimestamp().toString() + ".jpg");
-//
-////                    // Set metadata for the uploaded file
-////                    StorageMetadata metadata = new StorageMetadata.Builder()
-////                            .setContentType("image/jpeg")
-////                            .setCustomMetadata("eventId", eventId)
-////                            .build();
-//
-//                    eventRef.putFile(mEventImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                        @Override
-//                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                            if (!task.isSuccessful()) {
-//                                throw task.getException();
-//                            }
-//                            return eventRef.getDownloadUrl();
-//                        }
-//                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Uri> task) {
-//                            if (task.isSuccessful()) {
-////                                // Delete previous image
-////                                if (mCurrentImageUrl != null && !mCurrentImageUrl.isEmpty()) {
-////                                    StorageReference prevEventRef = FirebaseStorage.getInstance().getReferenceFromUrl(mCurrentImageUrl);
-////                                    prevEventRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-////                                        @Override
-////                                        public void onSuccess(Void aVoid) {
-////                                            Log.d(TAG, "Previous image deleted successfully.");
-////                                        }
-////                                    }).addOnFailureListener(new OnFailureListener() {
-////                                        @Override
-////                                        public void onFailure(@NonNull Exception e) {
-////                                            Log.e(TAG, "Failed to delete previous image.", e);
-////                                        }
-////                                    });
-////                                }
-//                                // Update event with new image URL
-//                                Uri downloadUri = task.getResult();
-//                                DocumentReference updateEvent = firestore.collection("Events").document(eventId);
-////                                if (mEventImageUri.toString().equals(mCurrentImageUrl)) {
-////                                    updateEvent
-////                                            .update(
-////                                                    "image", downloadUri.toString(),
-////                                                    "title", title,
-////                                                    "description", description,
-////                                                    "location", location,
-////                                                    "date", date,
-////                                                    "time", time,
-////                                                    "timestamp", FieldValue.serverTimestamp()
-////                                            ).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                                                @Override
-////                                                public void onComplete(@NonNull Task<Void> task) {
-////                                                    if (task.isSuccessful()) {
-////                                                        mProgressBar.setVisibility(View.INVISIBLE);
-////                                                        Toast.makeText(EditEventActivity.this, "Event Updated Successfully!!", Toast.LENGTH_SHORT).show();
-////                                                        startActivity(new Intent(EditEventActivity.this, EventActivity.class));
-////                                                    } else {
-////                                                        mProgressBar.setVisibility(View.INVISIBLE);
-////                                                        Toast.makeText(EditEventActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-////                                                    }
-////                                                }
-////                                            });
-////                                }
-//                            } else {
-//                                mProgressBar.setVisibility(View.INVISIBLE);
-//                                Toast.makeText(EditEventActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    mProgressBar.setVisibility(View.INVISIBLE);
-//                    Toast.makeText(EditEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//        Log.d(TAG,"===>editEventActivity!!!");
-
         mEditEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -288,23 +182,6 @@ public class EditEventActivity extends AppCompatActivity {
         Log.d(TAG,"===>editEventActivity!!!");
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-
-                mEventImageUri = result.getUri();
-                mEditEventUpdateImage.setImageURI(mEventImageUri);
-
-                mEditEventUpdateImage.setVisibility(View.VISIBLE);
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, result.getError().toString(), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
     private String formatDate(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         return dateFormat.format(date);
@@ -313,5 +190,18 @@ public class EditEventActivity extends AppCompatActivity {
     private String formatTime(Date date) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
         return timeFormat.format(date);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void menu_logout_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Toast.makeText(EditEventActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
 }

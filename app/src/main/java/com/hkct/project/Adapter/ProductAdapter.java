@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hkct.project.ChatSellerActivity;
+import com.hkct.project.EditProductActivity;
 import com.hkct.project.Model.Product;
 import com.hkct.project.Model.Users;
 import com.hkct.project.ProductLikesActivity;
@@ -156,9 +157,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         });
 
         if (currentUserId.equals(product.getUser())) {
-            holder.deleteBtn.setVisibility(View.VISIBLE);
-            holder.deleteBtn.setClickable(true);
-            holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            // edit product
+            holder.productEditBtn.setVisibility(View.VISIBLE);
+            holder.productEditBtn.setClickable(true);
+            holder.productEditBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent editProductIntent = new Intent(context, EditProductActivity.class);
+                    editProductIntent.putExtra("productId", productId);
+                    editProductIntent.putExtra("image", product.getImage());
+                    context.startActivity(editProductIntent);
+                }
+            });
+
+            // delete product
+            holder.productDeleteBtn.setVisibility(View.VISIBLE);
+            holder.productDeleteBtn.setClickable(true);
+            holder.productDeleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -195,7 +210,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView productName, productPrice, productDetail, productDate, productUsername, postLikes;
-        ImageView productPic, likeProduct, deleteBtn;
+        ImageView productPic, likeProduct, productDeleteBtn, productEditBtn;
         CircleImageView profilePic;
         Button productChat;
         View mView;
@@ -205,7 +220,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             mView = itemView;
             likeProduct = mView.findViewById(R.id.productlikebtn);
             postLikes = mView.findViewById(R.id.like_product_count_tv);
-            deleteBtn = mView.findViewById(R.id.product_delete_btn);
+            productEditBtn = mView.findViewById(R.id.product_edit_btn);
+            productDeleteBtn = mView.findViewById(R.id.product_delete_btn);
             productChat = mView.findViewById(R.id.product_chat_btn);
         }
 

@@ -174,6 +174,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         });
 
         if (currentUserId.equals(event.getUser())) {
+            // edit event
             holder.eventEditBtn.setVisibility(View.VISIBLE);
             holder.eventEditBtn.setClickable(true);
             holder.eventEditBtn.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +187,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                 }
             });
 
+            // delete event
             holder.eventDeleteBtn.setVisibility(View.VISIBLE);
             holder.eventDeleteBtn.setClickable(true);
             holder.eventDeleteBtn.setOnClickListener(new View.OnClickListener() {
