@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +12,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/black"
+        android:background="#5C8841"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@color/ivory_black">
+            android:background="#5C8841">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/like_product_profile_pic"

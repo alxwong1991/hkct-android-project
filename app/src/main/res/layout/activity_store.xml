@@ -46,7 +46,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProductPosts"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="649dp"
             app:layout_constraintBaseline_toBottomOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

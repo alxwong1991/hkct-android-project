@@ -79,12 +79,6 @@ public class EditProductActivity extends AppCompatActivity {
                 String price = mEditProductPrice.getText().toString();
                 String detail = mEditProductDetail.getText().toString();
 
-                if (!isValidPrice(price)) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(EditProductActivity.this, "Please enter a valid price", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 DocumentReference updateProduct = firestore.collection("Products").document(productId);
                 updateProduct.update(
                         "name", name,
@@ -108,15 +102,6 @@ public class EditProductActivity extends AppCompatActivity {
         });
 
         Log.d(TAG,"===>editProductActivity!!!");
-    }
-
-    private boolean isValidPrice(String price) {
-        try {
-            Double.parseDouble(price);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     @Override

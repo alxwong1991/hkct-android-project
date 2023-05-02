@@ -4,25 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="#E65F5C5C"
     tools:context=".CommentsActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="203dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:height="50dp"
+        android:fontFamily="@font/aldrich"
+        android:text="Comments"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comment_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/comment_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/comment_edittext"
-        android:fontFamily="@font/aldrich"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="354dp"
+        android:layout_height="45dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/orange"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/ic_baseline_white_btn"
         android:ems="10"
         android:hint="@string/write_comment"
         android:inputType="textEmailAddress"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/add_comment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -30,24 +59,14 @@
         android:layout_width="302dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/dark_blue"
+        android:background="@drawable/comment_btn"
         android:text="@string/add_comment"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comment_recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/comment_edittext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

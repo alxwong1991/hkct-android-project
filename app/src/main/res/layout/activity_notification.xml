@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#976C785E"
+    android:background="@drawable/notification"
     tools:context=".NotificationActivity">
 
     <TextView
@@ -49,33 +49,18 @@
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_notifications_24" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/planCard"
-        android:layout_width="390dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginTop="130dp"
-        app:cardCornerRadius="40dp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notification_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notification_recyclerView"
-            android:layout_width="365dp"
-            android:layout_height="560dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="1.0" />
-
-    </androidx.cardview.widget.CardView>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

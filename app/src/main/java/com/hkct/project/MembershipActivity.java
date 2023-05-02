@@ -80,7 +80,7 @@ public class MembershipActivity extends AppCompatActivity {
     private ListenerRegistration listenerRegistration;
     private List<Post> posts;
     private List<Users> user;
-    private PostAdapter adapter;
+    private ImageView mMembershipQrBtn;
 
     //Membership
     private TextView plan;
@@ -130,25 +130,16 @@ public class MembershipActivity extends AppCompatActivity {
         mProfileName = findViewById(R.id.profile_name_personal);
         mProfileImage = findViewById(R.id.profile_pic_personal);
 
+        mMembershipQrBtn = findViewById(R.id.membership_qrcode_btn);
 
         // test member
 //        mTestBtn = findViewById(R.id.test_member_btn);
 //        mCancelTestBtn = findViewById(R.id.test_cancel_member_btn);
         mMembershipIcon = findViewById(R.id.membership_icon);
 
-        mRecyclerView = findViewById(R.id.recyclerViewPosts);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(MembershipActivity.this));
 //        int numberOfColumns = 3;
 //        LinearLayoutManager linearLayoutManager = new GridLayoutManager(ProfileActivity.this, numberOfColumns);
 //        mRecyclerView.setLayoutManager(linearLayoutManager);
-
-        posts = new ArrayList<>();
-        user = new ArrayList<>();
-        adapter = new PostAdapter(MembershipActivity.this, posts, user);
-        mRecyclerView.setAdapter(adapter);
-
 
         //planDate
         Calendar rightNow = Calendar.getInstance();
@@ -202,7 +193,18 @@ public class MembershipActivity extends AppCompatActivity {
 //                });
 //            }
 //        });
-//
+
+        mMembershipQrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qrCodeIntent = new Intent(MembershipActivity.this, QRcodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("uidQR", Uid);
+                qrCodeIntent.putExtras(bundle);
+                startActivity(qrCodeIntent);
+            }
+        });
+
         firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -567,20 +569,4 @@ public class MembershipActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(MembershipActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
-
-    // myQRcode  btn
-    public void myQRcode(View v){
-
-        Intent intent = new Intent(MembershipActivity.this, QRcodeActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("uidQR", Uid);
-        intent.putExtras(bundle);
-
-        startActivity(intent);
-
-
-//        startActivity(new Intent(MembershipActivity.this, QRcodeActivity.class));
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
-
 }//MembershipActivity

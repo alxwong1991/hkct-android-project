@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,12 +82,6 @@ public class AddProductActivity extends AppCompatActivity {
                 String price = mProductPrice.getText().toString();
                 String detail = mProductDetail.getText().toString();
 
-                if (!isValidPrice(price)) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(AddProductActivity.this, "Please enter a valid price", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 if (!detail.isEmpty() && productImageUri != null) {
                     StorageReference productRef = storageReference
                             .child("product_images")
@@ -136,15 +129,6 @@ public class AddProductActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private boolean isValidPrice(String price) {
-        try {
-            Double.parseDouble(price);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     @Override

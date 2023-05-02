@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 
@@ -94,7 +97,7 @@ public class QRscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+                Intent intent = new Intent(QRscanActivity.this, OtherProfileActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("uidQR", textView.getText().toString());
 //                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
@@ -203,16 +206,29 @@ public class QRscanActivity extends AppCompatActivity {
                 break;
         }
     }
-//    public void backClick(View v){
-//        startActivity(new Intent(this,EventsActivity.class));
-//
-//        int version = Integer.valueOf(android.os.Build.VERSION.SDK);
-//        if(version >=5){
-//
-////            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-//        }
-//        this.finish();
-//    }
+    public void backClick(View v){
+        startActivity(new Intent(this,QRcodeActivity.class));
+
+        int version = Integer.valueOf(android.os.Build.VERSION.SDK);
+        if(version >=5){
+
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        }
+        this.finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void menu_logout_click(MenuItem m) {
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Toast.makeText(QRscanActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+    }
 
 }

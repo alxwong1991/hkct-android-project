@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
-        android:text="Edit Commodity"
+        android:text="Edit Product"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold"
