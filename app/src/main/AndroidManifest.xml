@@ -19,6 +19,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ScanOtherUserActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditProductActivity"
             android:exported="false">
             <meta-data
@@ -103,13 +110,6 @@
         <activity
             android:name=".LikesActivity"
             android:exported="false" />
-        <activity
-            android:name=".OtherUsersActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <activity
             android:name=".ProfileActivity"
             android:exported="false">

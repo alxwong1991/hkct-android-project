@@ -48,7 +48,7 @@ public class QRscanActivity extends AppCompatActivity {
 //            @Override
 //            public void onClick(View v) {
 //
-//                Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+//                Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
 //                Bundle bundle = new Bundle();
 //                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
 //                intent.putExtras(bundle);
@@ -83,7 +83,7 @@ public class QRscanActivity extends AppCompatActivity {
                 if(qrCodes.size()!=0){
                     textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
 
-//                    Intent intent = new Intent(QRscanActivity.this, OtherUsersActivity.class);
+//                    Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
 //                    Bundle bundle = new Bundle();
 //                    bundle.putString("uidQR", textView.toString());
 //                    intent.putExtras(bundle);
@@ -97,7 +97,7 @@ public class QRscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(QRscanActivity.this, OtherProfileActivity.class);
+                Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("uidQR", textView.getText().toString());
 //                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
@@ -207,7 +207,7 @@ public class QRscanActivity extends AppCompatActivity {
         }
     }
     public void backClick(View v){
-        startActivity(new Intent(this,QRcodeActivity.class));
+        startActivity(new Intent(this,MembershipActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
         if(version >=5){

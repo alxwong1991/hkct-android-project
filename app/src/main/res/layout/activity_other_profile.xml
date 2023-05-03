@@ -45,7 +45,7 @@
         android:id="@+id/recyclerViewPosts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="150dp"
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

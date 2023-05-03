@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ import com.hkct.project.LikesActivity;
 import com.hkct.project.Model.Post;
 import com.hkct.project.Model.Users;
 import com.hkct.project.OtherProfileActivity;
-import com.hkct.project.OtherUsersActivity;
 import com.hkct.project.ProfileActivity;
 import com.hkct.project.R;
 

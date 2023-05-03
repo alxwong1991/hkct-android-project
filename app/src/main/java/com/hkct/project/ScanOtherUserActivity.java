@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,9 +42,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OtherUsersActivity extends AppCompatActivity {
+public class ScanOtherUserActivity extends AppCompatActivity {
 
-    private final String TAG="OtherUsersActivity===>";
+    private final String TAG="ScanOtherUserActivity===>";
     private TextView txtOutput, mProfileName;
     private CircleImageView mProfileImage;
     private DrawerLayout drawerLayout;
@@ -67,12 +67,11 @@ public class OtherUsersActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setContentView(R.layout.activity_scan_other_user);
         Bundle bundle = getIntent().getExtras();
         String Uid = bundle.getString("uidQR");
 
@@ -97,14 +96,14 @@ public class OtherUsersActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerViewPosts);
 
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(OtherUsersActivity.this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ScanOtherUserActivity.this));
 //        int numberOfColumns = 3;
 //        LinearLayoutManager linearLayoutManager = new GridLayoutManager(ProfileActivity.this, numberOfColumns);
 //        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         posts = new ArrayList<>();
         user = new ArrayList<>();
-        adapter = new PostAdapter(OtherUsersActivity.this, posts, user);
+        adapter = new PostAdapter(ScanOtherUserActivity.this, posts, user);
         mRecyclerView.setAdapter(adapter);
 
 //        mRecyclerView.setAdapter(profilePostAdapter);
@@ -116,18 +115,18 @@ public class OtherUsersActivity extends AppCompatActivity {
                     super.onScrolled(recyclerView, dx, dy);
                     Boolean isBottom = !mRecyclerView.canScrollVertically(1);
                     if (isBottom)
-                        Toast.makeText(OtherUsersActivity.this, "Reached Bottom", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScanOtherUserActivity.this, "Reached Bottom", Toast.LENGTH_SHORT).show();
                 }
             });
 
             // get current user posts
             query = firestore.collection("Posts").whereEqualTo("user", Uid).orderBy("time", Query.Direction.DESCENDING);
 
-            listenerRegistration = query.addSnapshotListener(OtherUsersActivity.this, new EventListener<QuerySnapshot>() {
+            listenerRegistration = query.addSnapshotListener(ScanOtherUserActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                     if (error != null) {
-                        Toast.makeText(OtherUsersActivity.this, "No Posts", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScanOtherUserActivity.this, "No Posts", Toast.LENGTH_SHORT).show();
                     } else {
                         for (DocumentChange doc : value.getDocumentChanges()) {
                             if (doc.getType() == DocumentChange.Type.ADDED) {
@@ -143,7 +142,7 @@ public class OtherUsersActivity extends AppCompatActivity {
                                             posts.add(post);
                                             adapter.notifyDataSetChanged();
                                         } else {
-                                            Toast.makeText(OtherUsersActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ScanOtherUserActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -166,10 +165,10 @@ public class OtherUsersActivity extends AppCompatActivity {
 //                    @Override
 //                    public void onComplete(@NonNull Task<Void> task) {
 //                        if (task.isSuccessful()) {
-//                            Toast.makeText(OtherUsersActivity.this, "Subscribe!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ScanOtherUserActivity.this, "Subscribe!", Toast.LENGTH_SHORT).show();
 //                            refreshPage();
 //                        } else {
-//                            Toast.makeText(OtherUsersActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ScanOtherUserActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                        }
 //                    }
 //                });
@@ -184,10 +183,10 @@ public class OtherUsersActivity extends AppCompatActivity {
 //                    @Override
 //                    public void onComplete(@NonNull Task<Void> task) {
 //                        if (task.isSuccessful()) {
-//                            Toast.makeText(OtherUsersActivity.this, "Unsubscribe!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ScanOtherUserActivity.this, "Unsubscribe!", Toast.LENGTH_SHORT).show();
 //                            refreshPage();
 //                        } else {
-//                            Toast.makeText(OtherUsersActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ScanOtherUserActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                        }
 //                    }
 //                });
@@ -212,7 +211,7 @@ public class OtherUsersActivity extends AppCompatActivity {
                             mMembershipIcon.setVisibility(View.VISIBLE);
                         }
 
-                        Glide.with(OtherUsersActivity.this).load(imageUrl).into(mProfileImage);
+                        Glide.with(ScanOtherUserActivity.this).load(imageUrl).into(mProfileImage);
                     }
                 }
             }
@@ -246,7 +245,7 @@ public class OtherUsersActivity extends AppCompatActivity {
 
     // test membership
     private void refreshPage() {
-        Intent intent = new Intent(OtherUsersActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(ScanOtherUserActivity.this, ProfileActivity.class);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         startActivity(intent);
     }
@@ -279,6 +278,7 @@ public class OtherUsersActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Menu
     //   Discover
     public void menu1_click(MenuItem menuItem) {
         Log.d(TAG,"menu1_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
@@ -286,51 +286,42 @@ public class OtherUsersActivity extends AppCompatActivity {
         startActivity(new Intent(this, DiscoverActivity.class));
         drawerLayout.closeDrawers();
     }
-
+    //   Profile
     public void menu2_click(MenuItem menuItem) {
         Log.d(TAG,"menu2_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//        txtOutput.setText(R.string.msg2);
-//        txtOutput.setTextColor(Color.RED);
-        drawerLayout.closeDrawers();
-    }
-
-    public void menu3_click(MenuItem menuItem) {
-        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
-//        txtOutput.setText(R.string.msg3);
-//        txtOutput.setTextColor(Color.RED);
         startActivity(new Intent(this, ProfileActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
-    public void menu5_click(MenuItem menuItem) {
-        Log.d(TAG,"menu5_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
+    //   Events
+    public void menu3_click(MenuItem menuItem) {
+        Log.d(TAG,"menu3_click()->" + menuItem.getItemId() + ","+ menuItem.getTitle());
         startActivity(new Intent(this, EventActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
     //    MembershipActivity
-    public void menu6_click(MenuItem menuItem) {
-        Log.d(TAG, "menu6_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+    public void menu4_click(MenuItem menuItem) {
+        Log.d(TAG, "menu4_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
         startActivity(new Intent(this, MembershipActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
-    //   QR code
-    public void menu7_click(MenuItem menuItem) {
-        Log.d(TAG, "menu7_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
-        startActivity(new Intent(this, QRcodeActivity.class));
+    //   Store
+    public void menu5_click(MenuItem menuItem) {
+        Log.d(TAG, "menu5_click()->" + menuItem.getItemId() + "," + menuItem.getTitle());
+        startActivity(new Intent(this, StoreActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         drawerLayout.closeDrawers();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.posts_add, menu);
         getMenuInflater().inflate(R.menu.profile, menu);
+        getMenuInflater().inflate(R.menu.notifications, menu);
         getMenuInflater().inflate(R.menu.logout, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -339,14 +330,10 @@ public class OtherUsersActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),SetUpActivity.class));
     }
 
-    public void menu_add_post_click(MenuItem m) {
-        startActivity(new Intent(OtherUsersActivity.this, AddPostActivity.class));
-    }
-
     public void menu_logout_click(MenuItem m) {
         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         FirebaseAuth.getInstance().signOut();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        Toast.makeText(OtherUsersActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ScanOtherUserActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();
     }
 }
