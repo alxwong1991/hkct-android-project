@@ -173,19 +173,30 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         if (currentUserId.equals(post.getUser())) {
 
-            firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        if (task.getResult().exists()) {
-                            String memberShip = task.getResult().getString("membership");
-                            if (memberShip.equals("1")) {
-                                holder.membershipIcon.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    }
-                }
-            });
+//            // Get the current user's membership level
+//            firestore.collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        if (task.getResult().exists()) {
+//                            String currentMembership = task.getResult().getString("membership");
+//                            // Get the post user's membership level
+//                            firestore.collection("Users").document(post.getUser()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                    if (task.getResult().exists()) {
+//                                        String postMembership = task.getResult().getString("membership");
+//                                        // Check if the post user's membership level is higher than the current user's membership level
+//                                        if (postMembership.equals("1") || postMembership.compareTo(currentMembership) > 0) {
+//                                            holder.membershipIcon.setVisibility(View.VISIBLE);
+//                                        }
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    }
+//                }
+//            });
 
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setClickable(true);

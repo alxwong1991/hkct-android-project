@@ -56,16 +56,16 @@
                 app:layout_constraintStart_toEndOf="@+id/profile_pic"
                 app:layout_constraintTop_toBottomOf="@+id/username_tv" />
 
-            <ImageView
-                android:id="@+id/membership_icon_post"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/membership_icon"
-                android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/username_tv"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <ImageView-->
+<!--                android:id="@+id/membership_icon_post"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:src="@drawable/membership_icon"-->
+<!--                android:visibility="invisible"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/username_tv"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <ImageView
                 android:id="@+id/user_post"

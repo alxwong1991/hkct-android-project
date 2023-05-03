@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -179,10 +180,24 @@ public class EventActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.events_add, menu);
-        getMenuInflater().inflate(R.menu.profile, menu);
-        getMenuInflater().inflate(R.menu.notifications, menu);
-        getMenuInflater().inflate(R.menu.logout, menu);
+        String currentUserId = FirebaseAuth.getInstance().getUid();
+
+        if (currentUserId != null) {
+            firestore.collection("Users").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        String memberShip = task.getResult().getString("membership");
+                        if (memberShip.equals("1")) {
+                            getMenuInflater().inflate(R.menu.events_add, menu);
+                        }
+                    }
+                    getMenuInflater().inflate(R.menu.profile, menu);
+                    getMenuInflater().inflate(R.menu.notifications, menu);
+                    getMenuInflater().inflate(R.menu.logout, menu);
+                }
+            });
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

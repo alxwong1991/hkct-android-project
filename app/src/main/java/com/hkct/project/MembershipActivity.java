@@ -94,8 +94,8 @@ public class MembershipActivity extends AppCompatActivity {
 
     //Stripe 1
     Button button;
-    String SECRET_KEY = "sk_test_51MBVL8FlCzf4JXifpD5y1j0SW5rk5d5UwFWbcCiUWc3hg5x6mxj8BrNaH05bmOKkO6iCLH7fh6AIJ8QNZyRn7Wjh00fSefZas4";
-    String PUBLISH_KEY = "pk_test_51MBVL8FlCzf4JXifoVqhKPCcwCNvM32gwfs3p34f0c4ZzSG4MROMPDBfIQdQReaq6bIbBi0ZlQJt4s0d25jqlSE100CYMwm02F";
+    String SECRET_KEY = "sk_test_51N3ghJIC1CWaT74qFNGFieJc6TXEHHcrnCHzYxQzrHXSJa28exXrEpBAbdeGkOrSQXwlx4FtnVhTKmhVB0vd9hIw005dbmNTD8";
+    String PUBLISH_KEY = "pk_test_51N3ghJIC1CWaT74qoiBrpFvBGkaF1DF7RkKR6xc5ogX7OAbRdq3cVt36pBwCbmMsU9CR3zGSidKT1GsHACIr7CX000GPnD7pTH";
     PaymentSheet paymentSheet;
 
     String customerID;
@@ -352,7 +352,7 @@ public class MembershipActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(MembershipActivity.this, "Subscribe!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MembershipActivity.this, "You Are Subscribed!", Toast.LENGTH_SHORT).show();
 
 
                         refreshPage();
@@ -452,7 +452,7 @@ public class MembershipActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("customer", customerID);
-                params.put("amount", "299"+"00");
+                params.put("amount", "100"+"00");
                 params.put("currency", "usd");
                 params.put("automatic_payment_methods[enabled]", "true");
                 return params;
