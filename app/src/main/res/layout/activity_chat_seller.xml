@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:height="50dp"
         android:fontFamily="@font/aldrich"
-        android:text="Commnets"
+        android:text="Chat Seller"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"

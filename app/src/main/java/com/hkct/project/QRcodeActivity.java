@@ -40,60 +40,60 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QRcodeActivity extends AppCompatActivity implements View.OnClickListener{
+public class QRcodeActivity extends AppCompatActivity implements View.OnClickListener {
 
-        private final String TAG = "QRcodeActivity===>";
-        private CardView btnScan;
-        private String uidQR;
+    private final String TAG = "QRcodeActivity===>";
+    private CardView btnScan;
+    private String uidQR;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_qrcode);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qrcode);
 
-            // Navigation drawer icon always appear on the action bar
+        // Navigation drawer icon always appear on the action bar
 //            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //            setNavigationDrawer();
 
-            Log.d(TAG, "===>QRcodeActivity!!!");
+        Log.d(TAG, "===>QRcodeActivity!!!");
 
-            //-g QrCode btn
-            CardView btn = (CardView) findViewById(R.id.btn);
-            btn.setOnClickListener(this);
+        //-g QrCode btn
+        CardView btn = (CardView) findViewById(R.id.btn);
+        btn.setOnClickListener(this);
 
-            // Scan Button
-            btnScan = findViewById(R.id.QRscan);
-            btnScan.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(QRcodeActivity.this, QRscanActivity.class));
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                }
-            });
-
-            Bundle bundle = getIntent().getExtras();
-            if (bundle != null) {
-                uidQR = bundle.getString("uidQR");
-                Log.d("===", "bundle.getString(\\\"uidQR\\\");\" "+uidQR);
+        // Scan Button
+        btnScan = findViewById(R.id.QRscan);
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(QRcodeActivity.this, QRscanActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
+        });
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            uidQR = bundle.getString("uidQR");
+            Log.d("===", "bundle.getString(\\\"uidQR\\\");\" " + uidQR);
+        }
 
 
-        }//onCreate
+    }//onCreate
 
     // -g QRcode by EditText -- findViewById(R.id.qrtext)
-    public void getCode(){
-        ImageView ivCode=(ImageView)findViewById(R.id.qrview);
-        EditText etContent=(EditText)findViewById(R.id.qrtext);
+    public void getCode() {
+        ImageView ivCode = (ImageView) findViewById(R.id.qrview);
+        EditText etContent = (EditText) findViewById(R.id.qrtext);
         etContent.setText(uidQR);
 
         BarcodeEncoder encoder = new BarcodeEncoder();
 
-        try{
+        try {
             Bitmap bit = encoder.encodeBitmap(etContent.getText().toString()
-                    , BarcodeFormat.QR_CODE,250,250);
+                    , BarcodeFormat.QR_CODE, 250, 250);
             ivCode.setImageBitmap(bit);
-        }catch (WriterException e){
+        } catch (WriterException e) {
             e.printStackTrace();
         }
     }
@@ -111,9 +111,9 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 //
 //        } //setNavigationDrawer()
 
-        // override the onOptionsItemSelected() function to implement
-        // the item click listener callback to open and close the navigation
-        // drawer when the icon is clicked
+    // override the onOptionsItemSelected() function to implement
+    // the item click listener callback to open and close the navigation
+    // drawer when the icon is clicked
 //        @Override
 //        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //            Log.d(TAG, "onOptionsItemSelected->" + item.getItemId());
@@ -131,7 +131,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-            getCode();
+        getCode();
     }
 
     @Override
@@ -141,7 +141,7 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void menu_logout_click(MenuItem m) {
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         FirebaseAuth.getInstance().signOut();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(QRcodeActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();

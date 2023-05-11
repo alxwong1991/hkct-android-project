@@ -34,7 +34,7 @@
                 android:fontFamily="@font/aldrich"
                 android:text="New Notification"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -40,27 +40,6 @@ public class QRscanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscan);
-
-
-//        // Scan Button
-//        textView = findViewById(R.id.textView);
-//        textView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
-//                intent.putExtras(bundle);
-//
-//                startActivity(intent);
-//
-//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//            }
-//        });
-
-
-
         getPermissionCamera();
 
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -69,50 +48,40 @@ public class QRscanActivity extends AppCompatActivity {
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>(){
-
-            @Override
-            public void release() {
-
-            }
-
-
-            @Override
-            public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> qrCodes=detections.getDetectedItems();
-                if(qrCodes.size()!=0){
-                    textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
-
-//                    Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("uidQR", textView.toString());
-//                    intent.putExtras(bundle);
+//        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
 //
-//                    startActivity(intent);
+//            @Override
+//            public void release() {
 //
-//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(QRscanActivity.this, ScanOtherUserActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("uidQR", textView.getText().toString());
-//                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        });
-
-                    Log.d(TAG, "displayValue->" + qrCodes.valueAt(0).displayValue);
-                }
-            }
-        });
+//            }
+//
+//
+//            @Override
+//            public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
+//                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+//                if (qrCodes.size() != 0) {
+//                    textView.post(() -> textView.setText(qrCodes.valueAt(0).displayValue));
+//
+//                    textView.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                            Intent intent = new Intent(QRscanActivity.this,. class);
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("uidQR", textView.getText().toString());
+////                bundle.putString("uidQR", "N77hXGofqjdLT3lbPYX2bLQnyr73");
+//                            intent.putExtras(bundle);
+//
+//                            startActivity(intent);
+//
+//                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                        }
+//                    });
+//
+//                    Log.d(TAG, "displayValue->" + qrCodes.valueAt(0).displayValue);
+//                }
+//            }
+//        });
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setAutoFocusEnabled(true)
@@ -206,11 +175,12 @@ public class QRscanActivity extends AppCompatActivity {
                 break;
         }
     }
-    public void backClick(View v){
-        startActivity(new Intent(this,MembershipActivity.class));
+
+    public void backClick(View v) {
+        startActivity(new Intent(this, MembershipActivity.class));
 
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(version >=5){
+        if (version >= 5) {
 
 //            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -225,7 +195,7 @@ public class QRscanActivity extends AppCompatActivity {
     }
 
     public void menu_logout_click(MenuItem m) {
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         FirebaseAuth.getInstance().signOut();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Toast.makeText(QRscanActivity.this, "Logout successful", Toast.LENGTH_SHORT).show();

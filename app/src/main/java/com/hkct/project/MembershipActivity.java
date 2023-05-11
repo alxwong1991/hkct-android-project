@@ -223,8 +223,8 @@ public class MembershipActivity extends AppCompatActivity {
                             mMembershipIcon.setVisibility(View.VISIBLE);
                             plan=findViewById(R.id.plan);
                             plan.setText("Premium");
-                            plan.setTextColor(Color.parseColor("#FFE384"));
-                            plan.setTextSize(TypedValue.COMPLEX_UNIT_DIP,50);
+                            plan.setTextColor(Color.parseColor("#85C343"));
+                            plan.setTextSize(TypedValue.COMPLEX_UNIT_DIP,42);
 
 //                            TextView title_plan=findViewById(R.id.title_plan);
 //                            title_plan.setText("transaction number ： " + customerID);
@@ -233,9 +233,11 @@ public class MembershipActivity extends AppCompatActivity {
                             TextView monthplan=findViewById(R.id.monthplan);
                             monthplan.setText("Expiry Date");
                             monthplan.setTextColor(Color.parseColor("#E3170D"));
+                            monthplan.setTextSize(18);
 
                             planDate=findViewById(R.id.planDate);
                             planDate.setText(format);
+                            planDate.setTextSize(22);
 
                             Button btnPay =findViewById(R.id.btn);
                             btnPay.setVisibility(View.GONE);
@@ -298,7 +300,7 @@ public class MembershipActivity extends AppCompatActivity {
                                                 TextView title_plan=findViewById(R.id.title_plan);
                                                 title_plan.setText("Transaction Number " + customerID);
                                                 title_plan.setTextColor(Color.parseColor("#FFFAFA"));
-
+                                                title_plan.setTextSize(20);
                                             }
 
                                         }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/member"
     tools:context=".QRcodeActivity">
 
     <LinearLayout
@@ -21,12 +21,14 @@
             android:id="@+id/qrtext"
             android:hint="input text"
             android:gravity="center"
+            android:textColorHint="#444138"
             android:textColor="@color/white">
         </EditText>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
